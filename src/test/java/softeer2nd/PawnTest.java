@@ -11,5 +11,8 @@ public class PawnTest {
     public void create() {
         Pawn pawn = new Pawn("white");
         assertThat(pawn.getColor()).isEqualTo("white");
+
+        Pawn pawn2 = new Pawn("black");
+        assertThat(pawn2.getColor()).isEqualTo("black");
     }
 }
