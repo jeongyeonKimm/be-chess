@@ -8,24 +8,23 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class PawnTest {
 
     @Test
-    @DisplayName("흰색 폰이 생성되어야 한다")
-    public void create() {
-        String white = "white";
-        String black = "black";
-
-        verifyPawn(white);
-        verifyPawn(black);
-    }
-
-    private void verifyPawn(final String color) {
-        Pawn pawn = new Pawn(color);
-        assertThat(pawn.getColor()).isEqualTo(color);
+    public void create_기본생성자() throws Exception {
+        Pawn pawn = new Pawn();
+        assertEquals(Pawn.WHITE_COLOR, pawn.getColor());
+        assertEquals(Pawn.WHITE_REPRESENTATION, pawn.getRepresentation());
     }
 
     @Test
-    public void create_기본생성자() throws Exception {
-        Pawn pawn = new Pawn();
-        assertEquals("white", pawn.getColor());
+    @DisplayName("흰색 폰이 생성되어야 한다")
+    public void create() {
+        verifyPawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION);
+        verifyPawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION);
+    }
+
+    private void verifyPawn(final String color, final char representation) {
+        Pawn pawn = new Pawn(color, representation);
+        assertThat(pawn.getColor()).isEqualTo(color);
+        assertThat(pawn.getRepresentation()).isEqualTo(representation);
     }
 
 }

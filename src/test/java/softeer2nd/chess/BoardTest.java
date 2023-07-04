@@ -1,7 +1,6 @@
 package softeer2nd.chess;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import softeer2nd.chess.pieces.Pawn;
 
@@ -23,6 +22,14 @@ public class BoardTest {
 
         Pawn black = new Pawn(Pawn.BLACK_COLOR);
         verifyInputPawn(black);
+    }
+
+    @Test
+    public void initialize() throws Exception {
+        Board board = new Board();
+        board.initialize();
+        assertEquals("pppppppp", board.getWhitePawnsResult());
+        assertEquals("PPPPPPPP", board.getBlackPawnsResult());
     }
 
     public void verifyInputPawn(Pawn pawn) {
