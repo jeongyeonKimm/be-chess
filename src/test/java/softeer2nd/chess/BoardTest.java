@@ -21,4 +21,13 @@ public class BoardTest {
         assertEquals(2, board.size());
         assertEquals(black, board.findPawn(1));
     }
+
+//    @Test
+//    public void create_Pawn_이외_객체() {
+//        Board board = new Board();
+//
+//        Integer num = new Integer("7");
+//        board.add(num);
+//        // 에러 발생
+//    }
 }
