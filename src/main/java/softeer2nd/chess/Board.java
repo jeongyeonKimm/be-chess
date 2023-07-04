@@ -55,6 +55,21 @@ public class Board {
         }
     }
 
+    public String print() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < 8; i++) {
+            if (i == 1) {
+                sb.append(getBlackPawnsResult()).append("\n");
+            } else if (i == 6) {
+                sb.append(getWhitePawnsResult()).append("\n");
+            } else {
+                sb.append("........").append("\n");
+            }
+        }
+
+        return sb.toString();
+    }
+
     public void createBlackPawn() {
         for (int i = 0; i < 8; i++) {
             Pawn black = new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION);
