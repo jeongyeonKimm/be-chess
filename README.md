@@ -15,11 +15,14 @@
     - [x] PawnTest에서 흰색과 검은색 Pawn을 생성하고 결과 값을 확인하는 부분 중복 코드 제거
 
 #### 미션 2 - 체스판 생성
-- [ ] 1. Board class 구현
-  - [ ] 여러개의 Pawn 저장 가능해야 함(ArrayList)
-- [ ] 2. Pawn class 변경
-  - [ ] 색이 없는 Pawn 생성할 경우 white가 기본값으로 설정되는 생성자 추가
-  - [ ] white/black Pawn 클래스에 상수화
+- [x] 1. Board class 구현
+  - [x] 여러개의 Pawn 저장 가능해야 함(ArrayList)
+- [x] 2. Pawn class 변경
+  - [x] 색이 없는 Pawn 생성할 경우 white가 기본값으로 설정되는 생성자 추가
+  - [x] white/black Pawn 클래스에 상수화
+
+### 7월 4일
+#### 미션 2 - 체스판 생성
 - [ ] 3. BoardTest
   - [ ] BoardTest 클래스 생성
   - [ ] create() 메소드 작성
