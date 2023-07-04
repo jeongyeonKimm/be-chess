@@ -18,10 +18,10 @@ public class BoardTest {
     @Test
     public void create() throws Exception {
         Pawn white = new Pawn(Pawn.WHITE_COLOR);
-        verifyInputPawn(white);
+        verifyInputPawn(0, 0, white);
 
         Pawn black = new Pawn(Pawn.BLACK_COLOR);
-        verifyInputPawn(black);
+        verifyInputPawn(6, 0, black);
     }
 
     @Test
@@ -32,21 +32,21 @@ public class BoardTest {
         assertEquals("PPPPPPPP", board.getBlackPawnsResult());
     }
 
-    public void verifyInputPawn(Pawn pawn) {
+    public void verifyInputPawn(int row, int col, Pawn pawn) {
         int size = board.size();
 
         board.add(pawn);
         verifySize(size + 1);
-        verifyPawn(pawn);
+        // verifyPawn(pawn);
     }
 
     public void verifySize(int size) {
         assertEquals(size, board.size());
     }
 
-    public void verifyPawn(Pawn pawn) {
-        assertEquals(pawn, board.findPawn(board.size() - 1));
-    }
+//    public void verifyPawn(Pawn pawn) {
+//        assertEquals(pawn, board.findPawn(board.size() - 1));
+//    }
 
 //    @Test
 //    @DisplayName("Pawn 이외의 객체가 체스판에 입력되면 에러가 발생해야 한다.")

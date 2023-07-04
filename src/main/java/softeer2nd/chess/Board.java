@@ -6,23 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Board {
-    private ArrayList<Pawn> chessBoard = new ArrayList<>();
+    private final Pawn[][] chessBoard = new Pawn[8][8];
     private List<Pawn> whitePawnsList = new ArrayList<>();
     private List<Pawn> blackPawnsList = new ArrayList<>();
 
     public Board() {
-    }
-
-    public void add(Pawn pawn) {
-        chessBoard.add(pawn);
-    }
-
-    public int size() {
-        return chessBoard.size();
-    }
-
-    public Pawn findPawn(int idx) {
-        return chessBoard.get(idx);
     }
 
     public String getWhitePawnsResult() {
@@ -41,13 +29,33 @@ public class Board {
         return sb.toString();
     }
 
+    public void add(Pawn pawn) {
+        if (pawn.getColor().equals(Pawn.WHITE_COLOR)) {
+            whitePawnsList.add(pawn);
+        } else {
+            blackPawnsList.add(pawn);
+        }
+    }
+
+    public int size() {
+        return whitePawnsList.size() + blackPawnsList.size();
+    }
+
+    public Pawn findPawn(int row, int col) {
+        return chessBoard[row][col];
+    }
+
     public void initialize() {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 if (i == 1) {
-                    blackPawnsList.add(new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION));
+                    Pawn black = new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION);
+                    chessBoard[6][j] = black;
+                    blackPawnsList.add(black);
                 } else if (i == 6) {
-                    whitePawnsList.add(new Pawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION));
+                    Pawn white = new Pawn();
+                    chessBoard[1][j] = white;
+                    whitePawnsList.add(white);
                 }
             }
         }
