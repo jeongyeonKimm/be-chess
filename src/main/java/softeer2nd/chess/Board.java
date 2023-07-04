@@ -47,17 +47,27 @@ public class Board {
 
     public void initialize() {
         for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                if (i == 1) {
-                    Pawn black = new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION);
-                    chessBoard[6][j] = black;
-                    blackPawnsList.add(black);
-                } else if (i == 6) {
-                    Pawn white = new Pawn();
-                    chessBoard[1][j] = white;
-                    whitePawnsList.add(white);
-                }
+            if (i == 1) {
+                createBlackPawn();
+            } else if (i == 6) {
+                createWhitePawn();
             }
+        }
+    }
+
+    public void createBlackPawn() {
+        for (int i = 0; i < 8; i++) {
+            Pawn black = new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION);
+            chessBoard[6][i] = black;
+            blackPawnsList.add(black);
+        }
+    }
+
+    public void createWhitePawn() {
+        for (int i = 0; i < 8; i++) {
+            Pawn white = new Pawn();
+            chessBoard[1][i] = white;
+            whitePawnsList.add(white);
         }
     }
 }
