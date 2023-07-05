@@ -1,15 +1,15 @@
 package softeer2nd.chess;
 
-import softeer2nd.chess.pieces.Pawn;
+import softeer2nd.chess.pieces.Piece;
 import softeer2nd.utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Board {
-    private final Pawn[][] chessBoard = new Pawn[8][8];
-    private List<Pawn> whitePawnsList = new ArrayList<>();
-    private List<Pawn> blackPawnsList = new ArrayList<>();
+    private final Piece[][] chessBoard = new Piece[8][8];
+    private List<Piece> whitePawnsList = new ArrayList<>();
+    private List<Piece> blackPawnsList = new ArrayList<>();
 
     public Board() {
     }
@@ -30,8 +30,8 @@ public class Board {
         return sb.toString();
     }
 
-    public void add(Pawn pawn) {
-        if (pawn.getColor().equals(Pawn.WHITE_COLOR)) {
+    public void add(Piece pawn) {
+        if (pawn.getColor().equals(Piece.WHITE_COLOR)) {
             whitePawnsList.add(pawn);
         } else {
             blackPawnsList.add(pawn);
@@ -42,7 +42,7 @@ public class Board {
         return whitePawnsList.size() + blackPawnsList.size();
     }
 
-    public Pawn findPawn(int row, int col) {
+    public Piece findPawn(int row, int col) {
         return chessBoard[row][col];
     }
 
@@ -76,7 +76,7 @@ public class Board {
 
     public void createBlackPawn() {
         for (int i = 0; i < 8; i++) {
-            Pawn black = new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION);
+            Piece black = Piece.createBlackPawn();
             chessBoard[6][i] = black;
             blackPawnsList.add(black);
         }
@@ -84,7 +84,7 @@ public class Board {
 
     public void createWhitePawn() {
         for (int i = 0; i < 8; i++) {
-            Pawn white = new Pawn();
+            Piece white = Piece.createWhitePawn();
             chessBoard[1][i] = white;
             whitePawnsList.add(white);
         }
