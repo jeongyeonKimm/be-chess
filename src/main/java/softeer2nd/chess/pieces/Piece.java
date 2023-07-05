@@ -2,6 +2,10 @@ package softeer2nd.chess.pieces;
 
 import java.util.Objects;
 
+import static softeer2nd.chess.pieces.Piece.Color.*;
+import static softeer2nd.chess.pieces.Piece.Color.BLACK;
+import static softeer2nd.chess.pieces.Piece.Type.*;
+
 public class Piece {
     public enum Color {
         WHITE, BLACK, NO_COLOR;
@@ -51,70 +55,70 @@ public class Piece {
     }
 
     public static Piece createWhitePawn() {
-        Piece piece = createPiece(Color.WHITE, Type.PAWN);
+        Piece piece = createPiece(WHITE, PAWN);
         return piece;
     }
 
     public static Piece createBlackPawn() {
-        Piece piece = createPiece(Color.BLACK, Type.PAWN);
+        Piece piece = createPiece(BLACK, PAWN);
         return piece;
     }
 
     public static Piece createWhiteKnight() {
-        Piece piece = createPiece(Color.WHITE, Type.KNIGHT);
+        Piece piece = createPiece(WHITE, KNIGHT);
         return piece;
     }
 
     public static Piece createBlackKnight() {
-        Piece piece = createPiece(Color.BLACK, Type.KNIGHT);
+        Piece piece = createPiece(BLACK, KNIGHT);
         return piece;
     }
 
     public static Piece createWhiteRook() {
-        Piece piece = createPiece(Color.WHITE, Type.ROOK);
+        Piece piece = createPiece(WHITE, ROOK);
         return piece;
     }
 
     public static Piece createBlackRook() {
-        Piece piece = createPiece(Color.BLACK, Type.ROOK);
+        Piece piece = createPiece(BLACK, ROOK);
         return piece;
     }
 
     public static Piece createWhiteBishop() {
-        Piece piece = createPiece(Color.WHITE, Type.BISHOP);
+        Piece piece = createPiece(WHITE, BISHOP);
         return piece;
     }
 
     public static Piece createBlackBishop() {
-        Piece piece = createPiece(Color.BLACK, Type.BISHOP);
+        Piece piece = createPiece(BLACK, BISHOP);
         return piece;
     }
 
     public static Piece createWhiteQueen() {
-        Piece piece = createPiece(Color.WHITE, Type.QUEEN);
+        Piece piece = createPiece(WHITE, QUEEN);
         return piece;
     }
 
     public static Piece createBlackQueen() {
-        Piece piece = createPiece(Color.BLACK, Type.QUEEN);
+        Piece piece = createPiece(BLACK, QUEEN);
         return piece;
     }
 
     public static Piece createWhiteKing() {
-        Piece piece = createPiece(Color.WHITE, Type.KING);
+        Piece piece = createPiece(WHITE, KING);
         return piece;
     }
 
     public static Piece createBlackKing() {
-        Piece piece = createPiece(Color.BLACK, Type.KING);
+        Piece piece = createPiece(BLACK, KING);
         return piece;
     }
 
     public boolean isWhite() {
-        return color.equals(Color.WHITE);
+        return color.equals(WHITE);
     }
 
     public boolean isBlack() {
-        return Objects.equals(color, Color.BLACK);
+        return Objects.equals(color, BLACK);
     }
 }
