@@ -1,5 +1,7 @@
 package softeer2nd.chess.pieces;
 
+import java.util.Objects;
+
 public class Piece {
 
     public static final String WHITE_COLOR = "white";
@@ -116,5 +118,13 @@ public class Piece {
         Piece piece = createPiece(BLACK_COLOR, "KING");
         piece.representation = BLACK_KING_REPRESENTATION;
         return piece;
+    }
+
+    public boolean isWhite() {
+        return color.equals(WHITE_COLOR);
+    }
+
+    public boolean isBlack() {
+        return Objects.equals(color, BLACK_COLOR);
     }
 }
