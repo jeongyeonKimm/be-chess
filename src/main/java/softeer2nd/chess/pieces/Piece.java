@@ -55,68 +55,63 @@ public class Piece {
     }
 
     public static Piece createWhitePawn() {
-        Piece piece = createPiece(WHITE, PAWN);
-        return piece;
+        return createWhite(PAWN);
     }
 
     public static Piece createBlackPawn() {
-        Piece piece = createPiece(BLACK, PAWN);
-        return piece;
+        return createBlack(PAWN);
     }
 
     public static Piece createWhiteKnight() {
-        Piece piece = createPiece(WHITE, KNIGHT);
-        return piece;
+        return createWhite(KNIGHT);
     }
 
     public static Piece createBlackKnight() {
-        Piece piece = createPiece(BLACK, KNIGHT);
-        return piece;
+        return createBlack(KNIGHT);
     }
 
     public static Piece createWhiteRook() {
-        Piece piece = createPiece(WHITE, ROOK);
-        return piece;
+        return createWhite(ROOK);
     }
 
     public static Piece createBlackRook() {
-        Piece piece = createPiece(BLACK, ROOK);
-        return piece;
+        return createBlack(ROOK);
     }
 
     public static Piece createWhiteBishop() {
-        Piece piece = createPiece(WHITE, BISHOP);
-        return piece;
+        return createWhite(BISHOP);
     }
 
     public static Piece createBlackBishop() {
-        Piece piece = createPiece(BLACK, BISHOP);
-        return piece;
+        return createBlack(BISHOP);
     }
 
     public static Piece createWhiteQueen() {
-        Piece piece = createPiece(WHITE, QUEEN);
-        return piece;
+        return createWhite(QUEEN);
     }
 
     public static Piece createBlackQueen() {
-        Piece piece = createPiece(BLACK, QUEEN);
-        return piece;
+        return createBlack(QUEEN);
     }
 
     public static Piece createWhiteKing() {
-        Piece piece = createPiece(WHITE, KING);
-        return piece;
+        return createWhite(KING);
     }
 
     public static Piece createBlackKing() {
-        Piece piece = createPiece(BLACK, KING);
-        return piece;
+        return createBlack(KING);
     }
 
     public static Piece createBlank() {
-        Piece piece = createPiece(NO_COLOR, NO_PIECE);
-        return piece;
+        return createPiece(NO_COLOR, NO_PIECE);
+    }
+
+    private static Piece createWhite(Type type) {
+        return createPiece(WHITE, type);
+    }
+
+    private static Piece createBlack(Type type) {
+        return createPiece(BLACK, type);
     }
 
     public boolean isWhite() {
