@@ -114,6 +114,11 @@ public class Piece {
         return piece;
     }
 
+    public static Piece createBlank() {
+        Piece piece = createPiece(NO_COLOR, NO_PIECE);
+        return piece;
+    }
+
     public boolean isWhite() {
         return color.equals(WHITE);
     }

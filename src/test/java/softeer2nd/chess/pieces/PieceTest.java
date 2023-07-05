@@ -43,8 +43,12 @@ public class PieceTest {
         assertTrue(blackPawn.isBlack());
     }
 
-    private void verifyPiece(final Piece white, final Piece black, final Piece.Type type) {
-        assertEquals(white.getType().getRepresentation(), white.getType().getRepresentation());
+    private void verifyPiece(final Piece whitePiece, final Piece blackPiece, final Piece.Type type) {
+        assertTrue(whitePiece.isWhite());
+        assertEquals(type, whitePiece.getType());
+
+        assertTrue(blackPiece.isBlack());
+        assertEquals(type, blackPiece.getType());
     }
 
     private void verifyPawn(final Piece.Color color, final char representation) {
