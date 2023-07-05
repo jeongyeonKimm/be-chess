@@ -52,6 +52,14 @@ public class PieceTest {
         verifyPiece(Piece.createBlackKing(), Piece.BLACK_COLOR, Piece.BLACK_KING_REPRESENTATION);
     }
 
+    @Test
+    @DisplayName("기물이 흰색인지 검정색인지 확인한다.")
+    public void verifyWhiteOrBlack() {
+        Piece whitePawn = Piece.createPiece(Piece.WHITE_COLOR, "pawn");
+        assertEquals(true, whitePawn.isWhite());
+        assertEquals(false, whitePawn.isBlack());
+    }
+
     private void verifyPiece(final Piece piece, final String color, final char representation) {
         assertEquals(color, piece.getColor());
         assertEquals(representation, piece.getRepresentation());
