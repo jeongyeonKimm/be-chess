@@ -24,7 +24,8 @@ public class Main {
     public static void startGame(Board board) {
         System.out.println("Start Game!");
         board.initialize();
-        System.out.println(board.print());
+        // System.out.println(board.print());
+        System.out.println(board.showBoard());
     }
 
     public static void endGame() {
