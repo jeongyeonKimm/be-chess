@@ -8,13 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class PieceTest {
 
     @Test
-    public void create_기본생성자() throws Exception {
-        Piece pawn = Piece.createPiece(Piece.WHITE_COLOR, "pawn");
-        assertEquals(Piece.WHITE_COLOR, pawn.getColor());
-        // assertEquals(Piece.WHITE_PAWN_REPRESENTATION, pawn.getRepresentation());
-    }
-
-    @Test
     @DisplayName("흰색 폰이 생성되어야 한다")
     public void create() {
         verifyPawn(Piece.WHITE_COLOR, Piece.WHITE_PAWN_REPRESENTATION);
@@ -34,10 +27,29 @@ public class PieceTest {
 
     @Test
     public void create_piece() {
+        // pawn
         verifyPiece(Piece.createWhitePawn(), Piece.WHITE_COLOR, Piece.WHITE_PAWN_REPRESENTATION);
         verifyPiece(Piece.createBlackPawn(), Piece.BLACK_COLOR, Piece.BLACK_PAWN_REPRESENTATION);
 
-        // [...다른 Piece 구현...]
+        // knight
+        verifyPiece(Piece.createWhiteKnight(), Piece.WHITE_COLOR, Piece.WHITE_KNIGHT_REPRESENTATION);
+        verifyPiece(Piece.createBlackKnight(), Piece.BLACK_COLOR, Piece.BLACK_KNIGHT_REPRESENTATION);
+
+        // rook
+        verifyPiece(Piece.createWhiteRook(), Piece.WHITE_COLOR, Piece.WHITE_ROOK_REPRESENTATION);
+        verifyPiece(Piece.createBlackRook(), Piece.BLACK_COLOR, Piece.BLACK_ROOK_REPRESENTATION);
+
+        // bishop
+        verifyPiece(Piece.createWhiteBishop(), Piece.WHITE_COLOR, Piece.WHITE_BISHOP_REPRESENTATION);
+        verifyPiece(Piece.createBlackBishop(), Piece.BLACK_COLOR, Piece.BLACK_BISHOP_REPRESENTATION);
+
+        // queen
+        verifyPiece(Piece.createWhiteQueen(), Piece.WHITE_COLOR, Piece.WHITE_QUEEN_REPRESENTATION);
+        verifyPiece(Piece.createBlackQueen(), Piece.BLACK_COLOR, Piece.BLACK_QUEEN_REPRESENTATION);
+
+        // king
+        verifyPiece(Piece.createWhiteKing(), Piece.WHITE_COLOR, Piece.WHITE_KING_REPRESENTATION);
+        verifyPiece(Piece.createBlackKing(), Piece.BLACK_COLOR, Piece.BLACK_KING_REPRESENTATION);
     }
 
     private void verifyPiece(final Piece piece, final String color, final char representation) {
