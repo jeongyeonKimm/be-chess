@@ -17,7 +17,7 @@ public class Board {
     public String getWhitePawnsResult() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < 8; i++) {
-            sb.append(whitePawnsList.get(i).getRepresentation());
+            sb.append(whitePawnsList.get(i).getType().getRepresentation());
         }
         return sb.toString();
     }
@@ -25,13 +25,13 @@ public class Board {
     public String getBlackPawnsResult() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < 8; i++) {
-            sb.append(blackPawnsList.get(i).getRepresentation());
+            sb.append(blackPawnsList.get(i).getType().getRepresentation());
         }
         return sb.toString();
     }
 
     public void add(Piece pawn) {
-        if (pawn.getColor().equals(Piece.WHITE_COLOR)) {
+        if (pawn.getColor().equals(Piece.Color.WHITE)) {
             whitePawnsList.add(pawn);
         } else {
             blackPawnsList.add(pawn);
@@ -141,7 +141,7 @@ public class Board {
                 sb.append(StringUtils.appendNewLine("........"));
             } else {
                 StringBuilder sb2 = new StringBuilder();
-                chessBoard.get(i).forEach(p -> sb2.append(p.getRepresentation()));
+                chessBoard.get(i).forEach(p -> sb2.append(p.getType().getRepresentation()));
                 sb.append(StringUtils.appendNewLine(sb2.toString()));
             }
         }
