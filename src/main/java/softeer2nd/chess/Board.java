@@ -1,6 +1,7 @@
 package softeer2nd.chess;
 
 import softeer2nd.chess.pieces.Pawn;
+import softeer2nd.utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,11 +60,14 @@ public class Board {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < 8; i++) {
             if (i == 1) {
-                sb.append(getBlackPawnsResult()).append("\n");
+                sb.append(getBlackPawnsResult());
+                sb = new StringBuilder(StringUtils.appendNewLine(sb.toString()));
             } else if (i == 6) {
-                sb.append(getWhitePawnsResult()).append("\n");
+                sb.append(getWhitePawnsResult());
+                sb = new StringBuilder(StringUtils.appendNewLine(sb.toString()));
             } else {
-                sb.append("........").append("\n");
+                sb.append("........");
+                sb = new StringBuilder(StringUtils.appendNewLine(sb.toString()));
             }
         }
 
