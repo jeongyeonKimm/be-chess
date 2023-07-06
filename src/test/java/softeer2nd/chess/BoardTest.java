@@ -5,7 +5,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import softeer2nd.chess.pieces.Piece;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 

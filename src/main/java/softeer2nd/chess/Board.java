@@ -6,7 +6,6 @@ import softeer2nd.chess.pieces.Piece.Type;
 import softeer2nd.utils.StringUtils;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
