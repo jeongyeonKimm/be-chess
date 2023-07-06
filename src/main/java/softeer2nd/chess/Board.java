@@ -5,6 +5,9 @@ import softeer2nd.utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
+
+import static softeer2nd.chess.pieces.Piece.Color.*;
 
 public class Board {
     private final List<List<Piece>> chessBoard = new ArrayList<>();
@@ -31,7 +34,7 @@ public class Board {
     }
 
     public void add(Piece pawn) {
-        if (pawn.getColor().equals(Piece.Color.WHITE)) {
+        if (pawn.getColor().equals(WHITE)) {
             whitePawnsList.add(pawn);
         } else {
             blackPawnsList.add(pawn);
@@ -57,7 +60,7 @@ public class Board {
             } else if (i == 7) {
                 chessBoard.add(createWhiteOthers());
             } else {
-                chessBoard.add(new ArrayList<>());
+                chessBoard.add(createBlank());
             }
         }
     }
@@ -126,10 +129,20 @@ public class Board {
         return blackOthers;
     }
 
+    public List<Piece> createBlank() {
+        List<Piece> blanks = new ArrayList<>();
+        for (int i = 0; i < 8; i++) {
+            blanks.add(Piece.createBlank());
+        }
+        return blanks;
+    }
+
     public int pieceCount() {
         int size = 0;
         for (int i = 0; i < chessBoard.size(); i++) {
-            size += chessBoard.get(i).size();
+            if (i == 0 || i == 1 || i == 6 || i == 7) {
+                size += chessBoard.get(i).size();
+            }
         }
         return size;
     }
@@ -137,14 +150,17 @@ public class Board {
     public String showBoard() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < 8; i++) {
-            if (chessBoard.get(i).isEmpty()) {
-                sb.append(StringUtils.appendNewLine("........"));
-            } else {
-                StringBuilder sb2 = new StringBuilder();
-                chessBoard.get(i).forEach(p -> sb2.append(p.getType().getRepresentation()));
-                sb.append(StringUtils.appendNewLine(sb2.toString()));
-            }
+            StringBuilder sb2 = new StringBuilder();
+            chessBoard.get(i).forEach(p -> {
+                if (p.getColor().equals(WHITE) || p.getColor().equals(NO_COLOR)) {
+                    sb2.append(p.getType().getRepresentation());
+                } else {
+                    sb2.append(Character.toUpperCase(p.getType().getRepresentation()));
+                }
+            });
+            sb.append(StringUtils.appendNewLine(sb2.toString()));
         }
+
         return sb.toString();
     }
 }

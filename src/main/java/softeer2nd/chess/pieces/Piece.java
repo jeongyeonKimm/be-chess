@@ -13,8 +13,8 @@ public class Piece {
 
     public enum Type {
         PAWN('p'),
-        KNIGHT('k'),
-        ROOK('K'),
+        KNIGHT('n'),
+        ROOK('r'),
         BISHOP('b'),
         QUEEN('q'),
         KING('k'),
@@ -52,6 +52,18 @@ public class Piece {
         piece.color = color;
         piece.type = type;
         return piece;
+    }
+
+    public static Piece createBlank() {
+        return createPiece(NO_COLOR, NO_PIECE);
+    }
+
+    private static Piece createWhite(Type type) {
+        return createPiece(WHITE, type);
+    }
+
+    private static Piece createBlack(Type type) {
+        return createPiece(BLACK, type);
     }
 
     public static Piece createWhitePawn() {
@@ -100,18 +112,6 @@ public class Piece {
 
     public static Piece createBlackKing() {
         return createBlack(KING);
-    }
-
-    public static Piece createBlank() {
-        return createPiece(NO_COLOR, NO_PIECE);
-    }
-
-    private static Piece createWhite(Type type) {
-        return createPiece(WHITE, type);
-    }
-
-    private static Piece createBlack(Type type) {
-        return createPiece(BLACK, type);
     }
 
     public boolean isWhite() {
