@@ -3,6 +3,7 @@ package softeer2nd.chess;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import softeer2nd.chess.pieces.Piece;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static softeer2nd.chess.pieces.Piece.Color.BLACK;
@@ -45,7 +46,16 @@ public class BoardTest {
         assertEquals(2, count);
     }
 
+    @Test
+    @DisplayName("기물의 위치가 주어지면 해당 기물이 반환되어야 한다.")
+    public void findPiece() throws Exception {
+        board.initialize();
 
+        assertEquals(Piece.createBlackRook(), board.findPiece("a8"));
+        assertEquals(Piece.createBlackRook(), board.findPiece("h8"));
+        assertEquals(Piece.createWhiteRook(), board.findPiece("a1"));
+        assertEquals(Piece.createWhiteRook(), board.findPiece("h1"));
+    }
 
 //    public void verifyPawn(Pawn pawn) {
 //        assertEquals(pawn, board.findPawn(board.size() - 1));
