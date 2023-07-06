@@ -5,6 +5,7 @@ import softeer2nd.chess.pieces.Piece.Color;
 import softeer2nd.chess.pieces.Piece.Type;
 import softeer2nd.utils.StringUtils;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -135,6 +136,18 @@ public class Board {
         Position position = new Position(location);
 
         chessBoard.get(position.getY()).rank.set(position.getX(), piece);
+    }
+
+    public void move(String source, String target) {
+        Position sourcePos = new Position(source);
+        Position targetPos = new Position(target);
+
+        Piece findPiece = findPiece(source);
+        chessBoard
+                .get(targetPos.getY())
+                .rank
+                .set(targetPos.getX(), Piece.createPiece(findPiece.getColor(), findPiece.getType(), targetPos));
+        chessBoard.get(sourcePos.getY()).rank.set(sourcePos.getX(), Piece.createBlank(sourcePos));
     }
 
     public double calculatePoint(Color color) {

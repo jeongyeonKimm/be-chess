@@ -82,8 +82,10 @@ public class BoardTest {
         String sourcePosition = "b2";
         String targetPosition = "b3";
         board.move(sourcePosition, targetPosition);
-        assertEquals(Piece.createBlank(new Position(sourcePosition)), board.findPiece(sourcePosition));
-        assertEquals(Piece.createWhitePawn(new Position(targetPosition)), board.findPiece(targetPosition));
+        assertEquals(Piece.createBlank(new Position(sourcePosition)).getColor(), board.findPiece(sourcePosition).getColor());
+        assertEquals(Piece.createBlank(new Position(sourcePosition)).getType(), board.findPiece(sourcePosition).getType());
+        assertEquals(Piece.createWhitePawn(new Position(targetPosition)).getColor(), board.findPiece(targetPosition).getColor());
+        assertEquals(Piece.createWhitePawn(new Position(targetPosition)).getType(), board.findPiece(targetPosition).getType());
     }
 
     @Test

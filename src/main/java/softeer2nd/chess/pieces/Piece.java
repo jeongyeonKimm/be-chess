@@ -62,6 +62,10 @@ public class Piece {
         return type;
     }
 
+    public Position getPosition() {
+        return position;
+    }
+
     // == factory method == //
     public static Piece createPiece(Color color, Type type, Position position) {
         return new Piece(color, type, position);
@@ -133,5 +137,9 @@ public class Piece {
 
     public boolean isBlack() {
         return Objects.equals(color, BLACK);
+    }
+
+    public void changePosition(Position position) {
+        this.position = position;
     }
 }
