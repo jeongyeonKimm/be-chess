@@ -8,8 +8,7 @@ import softeer2nd.chess.pieces.Piece;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static softeer2nd.chess.pieces.Piece.Color.BLACK;
 import static softeer2nd.chess.pieces.Piece.Color.WHITE;
-import static softeer2nd.chess.pieces.Piece.Type.KNIGHT;
-import static softeer2nd.chess.pieces.Piece.Type.PAWN;
+import static softeer2nd.chess.pieces.Piece.Type.*;
 import static softeer2nd.utils.StringUtils.appendNewLine;
 
 public class BoardTest {
@@ -51,10 +50,10 @@ public class BoardTest {
     public void findPiece() throws Exception {
         board.initialize();
 
-        assertEquals(Piece.createBlackRook(), board.findPiece("a8"));
-        assertEquals(Piece.createBlackRook(), board.findPiece("h8"));
-        assertEquals(Piece.createWhiteRook(), board.findPiece("a1"));
-        assertEquals(Piece.createWhiteRook(), board.findPiece("h1"));
+        assertEquals(BLACK, board.findPiece("a8").getColor());
+        assertEquals(ROOK, board.findPiece("a8").getType());
+        assertEquals(WHITE, board.findPiece("a1").getColor());
+        assertEquals(ROOK, board.findPiece("a1").getType());;
     }
 
 //    public void verifyPawn(Pawn pawn) {

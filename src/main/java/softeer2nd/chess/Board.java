@@ -17,6 +17,24 @@ public class Board {
         private final List<Piece> rank = new ArrayList<>();
     }
 
+    public static class Position {
+        private int x;
+        private int y;
+
+        public Position(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        public int getX() {
+            return x;
+        }
+
+        public int getY() {
+            return y;
+        }
+    }
+
     private final List<Rank> chessBoard = new ArrayList<>();
     private Type[] typeOrder = new Type[] {ROOK, KNIGHT, BISHOP, QUEEN, KING, BISHOP, KNIGHT, ROOK};
 
@@ -116,5 +134,14 @@ public class Board {
             count += (int) chessBoard.get(i).rank.stream().filter(p -> p.getColor().equals(color) && p.getType().equals(type)).count();
         }
         return count;
+    }
+
+    public Piece findPiece(String location) {
+        int xPos = 8 - Character.getNumericValue(location.charAt(1));
+        int yPos = location.charAt(0) - 'a';
+
+        Position position = new Position(xPos, yPos);
+
+        return chessBoard.get(position.getX()).rank.get(position.getY());
     }
 }
