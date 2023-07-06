@@ -1,6 +1,7 @@
 package softeer2nd.chess;
 
 import softeer2nd.chess.pieces.Piece;
+import softeer2nd.chess.pieces.Piece.Color;
 import softeer2nd.chess.pieces.Piece.Type;
 import softeer2nd.utils.StringUtils;
 
@@ -40,6 +41,23 @@ public class Board {
                 chessBoard.add(createBlank());
             }
         }
+    }
+
+    public String showBoard() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < 8; i++) {
+            StringBuilder sb2 = new StringBuilder();
+            chessBoard.get(i).rank.forEach(p -> {
+                if (p.getColor().equals(WHITE) || p.getColor().equals(NO_COLOR)) {
+                    sb2.append(p.getType().getRepresentation());
+                } else {
+                    sb2.append(Character.toUpperCase(p.getType().getRepresentation()));
+                }
+            });
+            sb.append(StringUtils.appendNewLine(sb2.toString()));
+        }
+
+        return sb.toString();
     }
 
     public Rank createWhitePawn() {
@@ -92,20 +110,11 @@ public class Board {
         return size;
     }
 
-    public String showBoard() {
-        StringBuilder sb = new StringBuilder();
+    public int pieceCountByColorAndType(Color color, Type type) {
+        int count = 0;
         for (int i = 0; i < 8; i++) {
-            StringBuilder sb2 = new StringBuilder();
-            chessBoard.get(i).rank.forEach(p -> {
-                if (p.getColor().equals(WHITE) || p.getColor().equals(NO_COLOR)) {
-                    sb2.append(p.getType().getRepresentation());
-                } else {
-                    sb2.append(Character.toUpperCase(p.getType().getRepresentation()));
-                }
-            });
-            sb.append(StringUtils.appendNewLine(sb2.toString()));
+            count += (int) chessBoard.get(i).rank.stream().filter(p -> p.getColor().equals(color) && p.getType().equals(type)).count();
         }
-
-        return sb.toString();
+        return count;
     }
 }
