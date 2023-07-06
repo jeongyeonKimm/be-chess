@@ -67,6 +67,13 @@ public class BoardTest {
 
         assertEquals(piece, board.findPiece(position));
         System.out.println(board.showBoard());
+
+        position = "e3";
+        piece = Piece.createWhiteKing();
+        board.move(position, piece);
+
+        assertEquals(piece, board.findPiece(position));
+        System.out.println(board.showBoard());
     }
 
 //    public void verifyPawn(Pawn pawn) {

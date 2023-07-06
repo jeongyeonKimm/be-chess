@@ -45,6 +45,12 @@ public class Board {
         return chessBoard.get(row).rank.get(col);
     }
 
+    public void initializeEmpty() {
+        for (int i = 0; i < 8; i++) {
+            chessBoard.add(createBlank());
+        }
+    }
+
     public void initialize() {
         for (int i = 0; i < 8; i++) {
             if (i == 0) {
@@ -137,11 +143,18 @@ public class Board {
     }
 
     public Piece findPiece(String location) {
-        int xPos = 8 - Character.getNumericValue(location.charAt(1));
-        int yPos = location.charAt(0) - 'a';
+        int xPos = location.charAt(0) - 'a';
+        int yPos = 8 - Character.getNumericValue(location.charAt(1));
 
         Position position = new Position(xPos, yPos);
 
-        return chessBoard.get(position.getX()).rank.get(position.getY());
+        return chessBoard.get(position.getY()).rank.get(position.getX());
+    }
+
+    public void move(String position, Piece piece) {
+        int xPos = position.charAt(0) - 'a';
+        int yPos = 8 - Character.getNumericValue(position.charAt(1));
+
+        chessBoard.get(yPos).rank.set(xPos, piece);
     }
 }
