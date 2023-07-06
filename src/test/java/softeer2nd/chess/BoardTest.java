@@ -56,6 +56,19 @@ public class BoardTest {
         assertEquals(ROOK, board.findPiece("a1").getType());;
     }
 
+    @Test
+    @DisplayName("빈 체스판을 생성하고 주어진 위치에 기물이 추가 되는지 확인한다.")
+    public void move() throws Exception {
+        board.initializeEmpty();
+
+        String position = "b5";
+        Piece piece = Piece.createBlackRook();
+        board.move(position, piece);
+
+        assertEquals(piece, board.findPiece(position));
+        System.out.println(board.showBoard());
+    }
+
 //    public void verifyPawn(Pawn pawn) {
 //        assertEquals(pawn, board.findPawn(board.size() - 1));
 //    }
