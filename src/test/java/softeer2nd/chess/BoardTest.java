@@ -78,7 +78,7 @@ public class BoardTest {
 
     @Test
     @DisplayName("주어진 위치에 기물을 추가하고 색깔별로 점수 계산이 되는지 확인한다.")
-    public void caculcatePoint() throws Exception {
+    public void calculatePoint() throws Exception {
         board.initializeEmpty();
 
         addPiece("b6", Piece.createBlackPawn());
@@ -91,10 +91,48 @@ public class BoardTest {
         addPiece("e1", Piece.createWhiteRook());
         addPiece("f1", Piece.createWhiteKing());
 
+        System.out.println(board.showBoard());
+
         assertEquals(15.0, board.calculatePoint(BLACK), 0.01);
         assertEquals(7.0, board.calculatePoint(WHITE), 0.01);
 
         System.out.println(board.showBoard());
+    }
+
+    @Test
+    @DisplayName("점수가 오름차순으로 정렬되는지 확인한다.")
+    void sortAscByPoint() {
+        board.initializeEmpty();
+
+        addPiece("b6", Piece.createBlackPawn());
+        addPiece("e6", Piece.createBlackQueen());
+        addPiece("b8", Piece.createBlackKing());
+        addPiece("c8", Piece.createBlackRook());
+
+        addPiece("f2", Piece.createWhitePawn());
+        addPiece("g2", Piece.createWhitePawn());
+        addPiece("e1", Piece.createWhiteRook());
+        addPiece("f1", Piece.createWhiteKing());
+
+        board.sortAscByPoint();
+    }
+
+    @Test
+    @DisplayName("점수가 내림차순으로 정렬되는지 확인한다.")
+    void sortDescByPoint() {
+        board.initializeEmpty();
+
+        addPiece("b6", Piece.createBlackPawn());
+        addPiece("e6", Piece.createBlackQueen());
+        addPiece("b8", Piece.createBlackKing());
+        addPiece("c8", Piece.createBlackRook());
+
+        addPiece("f2", Piece.createWhitePawn());
+        addPiece("g2", Piece.createWhitePawn());
+        addPiece("e1", Piece.createWhiteRook());
+        addPiece("f1", Piece.createWhiteKing());
+
+        board.sortDescByPoint();
     }
 
     private void addPiece(String position, Piece piece) {
