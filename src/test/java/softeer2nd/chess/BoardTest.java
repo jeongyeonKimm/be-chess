@@ -1,6 +1,7 @@
 package softeer2nd.chess;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -34,6 +35,7 @@ public class BoardTest {
     }
 
     @Test
+    @DisplayName("기물의 색상과 종류가 주어지면 해당 기물의 개수를 반환해야 한다.")
     void pieceCountByColorAndType() {
         board.initialize();
         int count = board.pieceCountByColorAndType(WHITE, PAWN);
@@ -42,6 +44,8 @@ public class BoardTest {
         count = board.pieceCountByColorAndType(BLACK, KNIGHT);
         assertEquals(2, count);
     }
+
+
 
 //    public void verifyPawn(Pawn pawn) {
 //        assertEquals(pawn, board.findPawn(board.size() - 1));
