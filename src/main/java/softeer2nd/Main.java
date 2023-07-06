@@ -2,6 +2,7 @@ package softeer2nd;
 
 import softeer2nd.chess.Board;
 import softeer2nd.chess.ChessView;
+import softeer2nd.chess.pieces.ChessGame;
 
 import java.util.Scanner;
 
@@ -22,7 +23,7 @@ public class Main {
                 String[] commands = command.split(" ");
                 String source = commands[1];
                 String target = commands[2];
-                board.move(source, target);
+                ChessGame.move(source, target);
                 System.out.println(ChessView.showBoard());
             }
         }

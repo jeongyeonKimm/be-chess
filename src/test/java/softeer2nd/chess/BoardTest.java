@@ -3,6 +3,7 @@ package softeer2nd.chess;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import softeer2nd.chess.pieces.ChessGame;
 import softeer2nd.chess.pieces.Piece;
 
 import java.util.List;
@@ -26,7 +27,7 @@ public class BoardTest {
     @Test
     public void initialize() throws Exception {
         board.initialize();
-        assertEquals(32, board.pieceCount());
+        assertEquals(32, ChessGame.pieceCount());
         String blankRank = appendNewLine("........");
         assertEquals(
                 appendNewLine("RNBQKBNR") +
@@ -41,10 +42,10 @@ public class BoardTest {
     @DisplayName("기물의 색상과 종류가 주어지면 해당 기물의 개수를 반환해야 한다.")
     void pieceCountByColorAndType() {
         board.initialize();
-        int count = board.pieceCountByColorAndType(WHITE, PAWN);
+        int count = ChessGame.pieceCountByColorAndType(WHITE, PAWN);
         assertEquals(8, count);
 
-        count = board.pieceCountByColorAndType(BLACK, KNIGHT);
+        count = ChessGame.pieceCountByColorAndType(BLACK, KNIGHT);
         assertEquals(2, count);
     }
 
@@ -53,10 +54,10 @@ public class BoardTest {
     public void findPiece() throws Exception {
         board.initialize();
 
-        assertEquals(BLACK, board.findPiece("a8").getColor());
-        assertEquals(ROOK, board.findPiece("a8").getType());
-        assertEquals(WHITE, board.findPiece("a1").getColor());
-        assertEquals(ROOK, board.findPiece("a1").getType());;
+        assertEquals(BLACK, ChessGame.findPiece("a8").getColor());
+        assertEquals(ROOK, ChessGame.findPiece("a8").getType());
+        assertEquals(WHITE, ChessGame.findPiece("a1").getColor());
+        assertEquals(ROOK, ChessGame.findPiece("a1").getType());;
     }
 
     @Test
@@ -66,12 +67,12 @@ public class BoardTest {
         String position = "b5";
         Piece piece = Piece.createBlackRook(new Position(position));
         board.initialSetPiece(position, piece);
-        assertEquals(piece, board.findPiece(position));
+        assertEquals(piece, ChessGame.findPiece(position));
 
         position = "e3";
         piece = Piece.createWhiteKing(new Position(position));
         board.initialSetPiece(position, piece);
-        assertEquals(piece, board.findPiece(position));
+        assertEquals(piece, ChessGame.findPiece(position));
     }
 
     @Test
@@ -81,11 +82,11 @@ public class BoardTest {
 
         String sourcePosition = "b2";
         String targetPosition = "b3";
-        board.move(sourcePosition, targetPosition);
-        assertEquals(Piece.createBlank(new Position(sourcePosition)).getColor(), board.findPiece(sourcePosition).getColor());
-        assertEquals(Piece.createBlank(new Position(sourcePosition)).getType(), board.findPiece(sourcePosition).getType());
-        assertEquals(Piece.createWhitePawn(new Position(targetPosition)).getColor(), board.findPiece(targetPosition).getColor());
-        assertEquals(Piece.createWhitePawn(new Position(targetPosition)).getType(), board.findPiece(targetPosition).getType());
+        ChessGame.move(sourcePosition, targetPosition);
+        assertEquals(Piece.createBlank(new Position(sourcePosition)).getColor(), ChessGame.findPiece(sourcePosition).getColor());
+        assertEquals(Piece.createBlank(new Position(sourcePosition)).getType(), ChessGame.findPiece(sourcePosition).getType());
+        assertEquals(Piece.createWhitePawn(new Position(targetPosition)).getColor(), ChessGame.findPiece(targetPosition).getColor());
+        assertEquals(Piece.createWhitePawn(new Position(targetPosition)).getType(), ChessGame.findPiece(targetPosition).getType());
     }
 
     @Test
@@ -105,8 +106,8 @@ public class BoardTest {
 
         System.out.println(ChessView.showBoard());
 
-        assertEquals(15.0, board.calculatePoint(BLACK), 0.01);
-        assertEquals(7.0, board.calculatePoint(WHITE), 0.01);
+        assertEquals(15.0, ChessGame.calculatePoint(BLACK), 0.01);
+        assertEquals(7.0, ChessGame.calculatePoint(WHITE), 0.01);
 
         System.out.println(ChessView.showBoard());
     }
@@ -126,7 +127,7 @@ public class BoardTest {
         addPiece("e1", Piece.createWhiteRook(new Position("e1")));
         addPiece("f1", Piece.createWhiteKing(new Position("f1")));
 
-        List<Piece> blackList = board.sortAscByPoint(BLACK);
+        List<Piece> blackList = ChessGame.sortAscByPoint(BLACK);
         assertEquals("KPRQ", blackList.stream()
                 .map(p -> Character.toUpperCase(p.getType().getRepresentation()))
                 .map(String::valueOf)
@@ -148,7 +149,7 @@ public class BoardTest {
         addPiece("e1", Piece.createWhiteRook(new Position("e1")));
         addPiece("f1", Piece.createWhiteKing(new Position("f1")));
 
-        List<Piece> whiteList = board.sortDescByPoint(WHITE);
+        List<Piece> whiteList = ChessGame.sortDescByPoint(WHITE);
         assertEquals(whiteList.stream().map(p -> p.getType().getRepresentation()).map(String::valueOf).collect(Collectors.joining()), "rppk");
     }
 
