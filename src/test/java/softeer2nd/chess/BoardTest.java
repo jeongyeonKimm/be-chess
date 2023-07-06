@@ -5,6 +5,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import softeer2nd.chess.pieces.Piece;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static softeer2nd.chess.pieces.Piece.Color.BLACK;
 import static softeer2nd.chess.pieces.Piece.Color.WHITE;
@@ -114,7 +118,11 @@ public class BoardTest {
         addPiece("e1", Piece.createWhiteRook());
         addPiece("f1", Piece.createWhiteKing());
 
-        board.sortAscByPoint();
+        List<Piece> blackList = board.sortAscByPoint(BLACK);
+        assertEquals("KPRQ", blackList.stream()
+                .map(p -> Character.toUpperCase(p.getType().getRepresentation()))
+                .map(String::valueOf)
+                .collect(Collectors.joining()));
     }
 
     @Test
@@ -132,7 +140,8 @@ public class BoardTest {
         addPiece("e1", Piece.createWhiteRook());
         addPiece("f1", Piece.createWhiteKing());
 
-        board.sortDescByPoint();
+        List<Piece> whiteList = board.sortDescByPoint(WHITE);
+        assertEquals(whiteList.stream().map(p -> p.getType().getRepresentation()).map(String::valueOf).collect(Collectors.joining()), "rppk");
     }
 
     private void addPiece(String position, Piece piece) {

@@ -6,6 +6,8 @@ import softeer2nd.chess.pieces.Piece.Type;
 import softeer2nd.utils.StringUtils;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import static softeer2nd.chess.Board.Position.createPosition;
@@ -210,5 +212,27 @@ public class Board {
             }
         }
         return flag;
+    }
+
+    public List<Piece> sortAscByPoint(Color color) {
+        List<Piece> pieceList = new ArrayList<>();
+        for (Rank rank : chessBoard) {
+            rank.rank.stream().filter(p -> p.getColor().equals(color)).forEach(pieceList::add);
+        }
+
+        pieceList.sort(Comparator.comparingDouble(piece -> piece.getType().getDefaultPoint()));
+
+        return pieceList;
+    }
+
+    public List<Piece> sortDescByPoint(Color color) {
+        List<Piece> pieceList = new ArrayList<>();
+        for (Rank rank : chessBoard) {
+            rank.rank.stream().filter(p -> p.getColor().equals(color)).forEach(pieceList::add);
+        }
+
+        pieceList.sort(Comparator.comparingDouble(piece -> -piece.getType().getDefaultPoint()));
+
+        return pieceList;
     }
 }
