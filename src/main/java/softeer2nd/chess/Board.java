@@ -161,4 +161,54 @@ public class Board {
 
         chessBoard.get(position.getY()).rank.set(position.getX(), piece);
     }
+
+    public double calculatePoint(Color color) {
+        double totalPoint = 0;
+
+        if (color.equals(WHITE)) {
+            for (int i = 0; i < 8; i++) {
+                totalPoint += getTotalPoint(i, WHITE);
+            }
+        } else if (color.equals(BLACK)){
+            for (int i = 0; i < 8; i++) {
+                totalPoint += getTotalPoint(i, BLACK);
+            }
+        }
+
+        return totalPoint;
+    }
+
+    private double getTotalPoint(int row, Color color) {
+        double totalPoint = 0;
+        List<Piece> pieces = chessBoard.get(row).rank;
+
+        for (Piece piece : pieces) {
+            if (piece.getColor().equals(color)) {
+                totalPoint += getPiecePoint(piece, row, pieces.indexOf(piece));
+            }
+        }
+        return totalPoint;
+    }
+
+    private double getPiecePoint(Piece piece, int row, int col) {
+        double piecePoint = piece.getType().getDefaultPoint();
+
+        if (piece.getType().equals(PAWN) && existPawn(piece.getColor(), row, col)) {
+            piecePoint = 0.5;
+        }
+
+        return piecePoint;
+    }
+
+    private boolean existPawn(Color color, int row, int col) {
+        boolean flag = false;
+        for (int i = 0; i < 8; i++) {
+            Piece piece = chessBoard.get(i).rank.get(col);
+            if (piece.getType().equals(PAWN) && piece.getColor().equals(color) && i != row) {
+                flag = true;
+                break;
+            }
+        }
+        return flag;
+    }
 }
