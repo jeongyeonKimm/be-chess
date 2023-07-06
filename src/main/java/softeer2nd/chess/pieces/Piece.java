@@ -44,6 +44,11 @@ public class Piece {
     private Piece() {
     }
 
+    private Piece(Color color, Type type) {
+        this.color = color;
+        this.type = type;
+    }
+
     public Color getColor() {
         return color;
     }
@@ -54,10 +59,7 @@ public class Piece {
 
     // == factory method == //
     public static Piece createPiece(Color color, Type type) {
-        Piece piece = new Piece();
-        piece.color = color;
-        piece.type = type;
-        return piece;
+        return new Piece(color, type);
     }
 
     public static Piece createBlank() {

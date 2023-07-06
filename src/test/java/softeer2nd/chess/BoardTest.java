@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import softeer2nd.chess.pieces.Piece;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static softeer2nd.chess.pieces.Piece.Color.*;
 import static softeer2nd.chess.pieces.Piece.Color.BLACK;
 import static softeer2nd.chess.pieces.Piece.Color.WHITE;
 import static softeer2nd.chess.pieces.Piece.Type.*;
