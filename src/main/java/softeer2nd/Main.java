@@ -11,12 +11,18 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         while (sc.hasNext()) {
-            String command = sc.next();
-            if (command.equals("start")) {
+            String command = sc.nextLine();
+            if (command.startsWith("start")) {
                 startGame(board);
-            } else if (command.equals("end")) {
+            } else if (command.startsWith("end")) {
                 endGame();
                 break;
+            } else if (command.startsWith("move")) {
+                String[] commands = command.split(" ");
+                String source = commands[1];
+                String target = commands[2];
+                board.move(source, target);
+                System.out.println(board.showBoard());
             }
         }
     }
