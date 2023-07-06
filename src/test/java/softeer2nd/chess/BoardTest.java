@@ -60,6 +60,21 @@ public class BoardTest {
     }
 
     @Test
+    @DisplayName("빈 체스판을 생성하고 주어진 위치에 기물이 추가 되는지 확인한다.")
+    public void initialSetPiece() throws Exception {
+        board.initializeEmpty();
+        String position = "b5";
+        Piece piece = Piece.createBlackRook(new Position(position));
+        board.initialSetPiece(position, piece);
+        assertEquals(piece, board.findPiece(position));
+
+        position = "e3";
+        piece = Piece.createWhiteKing(new Position(position));
+        board.initialSetPiece(position, piece);
+        assertEquals(piece, board.findPiece(position));
+    }
+
+    @Test
     @DisplayName("기물이 source에서 target으로 이동하는지 확인한다.")
     public void move() throws Exception {
         board.initialize();
