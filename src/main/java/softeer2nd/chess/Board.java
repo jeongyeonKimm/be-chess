@@ -8,6 +8,7 @@ import softeer2nd.utils.StringUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import static softeer2nd.chess.Board.Position.createPosition;
 import static softeer2nd.chess.pieces.Piece.Color.*;
 import static softeer2nd.chess.pieces.Piece.Type.*;
 
@@ -32,6 +33,13 @@ public class Board {
 
         public int getY() {
             return y;
+        }
+
+        public static Position createPosition(String location) {
+            int xPos = location.charAt(0) - 'a';
+            int yPos = 8 - Character.getNumericValue(location.charAt(1));
+
+            return new Position(xPos, yPos);
         }
     }
 
@@ -143,18 +151,14 @@ public class Board {
     }
 
     public Piece findPiece(String location) {
-        int xPos = location.charAt(0) - 'a';
-        int yPos = 8 - Character.getNumericValue(location.charAt(1));
-
-        Position position = new Position(xPos, yPos);
+        Position position = createPosition(location);
 
         return chessBoard.get(position.getY()).rank.get(position.getX());
     }
 
-    public void move(String position, Piece piece) {
-        int xPos = position.charAt(0) - 'a';
-        int yPos = 8 - Character.getNumericValue(position.charAt(1));
+    public void move(String location, Piece piece) {
+        Position position = createPosition(location);
 
-        chessBoard.get(yPos).rank.set(xPos, piece);
+        chessBoard.get(position.getY()).rank.set(position.getX(), piece);
     }
 }
