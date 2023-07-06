@@ -3,9 +3,7 @@ package softeer2nd.chess;
 import softeer2nd.chess.pieces.Piece;
 import softeer2nd.chess.pieces.Piece.Color;
 import softeer2nd.chess.pieces.Piece.Type;
-import softeer2nd.utils.StringUtils;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -14,13 +12,21 @@ import static softeer2nd.chess.pieces.Piece.Color.*;
 import static softeer2nd.chess.pieces.Piece.Type.*;
 
 public class Board {
-
     public static class Rank {
-        private final List<Piece> rank = new ArrayList<>();
+
+        private List<Piece> rank = new ArrayList<>();
+
+        public List<Piece> getRank() {
+            return rank;
+        }
     }
 
-    private final List<Rank> chessBoard = new ArrayList<>();
     private Type[] typeOrder = new Type[] {ROOK, KNIGHT, BISHOP, QUEEN, KING, BISHOP, KNIGHT, ROOK};
+    private static final List<Rank> chessBoard = new ArrayList<>();
+
+    public static List<Rank> getChessBoard() {
+        return chessBoard;
+    }
 
     public Board() {
     }
@@ -49,23 +55,6 @@ public class Board {
                 chessBoard.add(createBlank(i));
             }
         }
-    }
-
-    public String showBoard() {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < 8; i++) {
-            StringBuilder sb2 = new StringBuilder();
-            chessBoard.get(i).rank.forEach(p -> {
-                if (p.getColor().equals(WHITE) || p.getColor().equals(NO_COLOR)) {
-                    sb2.append(p.getType().getRepresentation());
-                } else {
-                    sb2.append(Character.toUpperCase(p.getType().getRepresentation()));
-                }
-            });
-            sb.append(StringUtils.appendNewLine(sb2.toString()));
-        }
-
-        return sb.toString();
     }
 
     public Rank createWhitePawn() {

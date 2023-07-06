@@ -34,7 +34,7 @@ public class BoardTest {
                         blankRank + blankRank + blankRank + blankRank +
                         appendNewLine("pppppppp") +
                         appendNewLine("rnbqkbnr"),
-                board.showBoard());
+                ChessView.showBoard());
     }
 
     @Test
@@ -103,12 +103,12 @@ public class BoardTest {
         addPiece("e1", Piece.createWhiteRook(new Position("e1")));
         addPiece("f1", Piece.createWhiteKing(new Position("f1")));
 
-        System.out.println(board.showBoard());
+        System.out.println(ChessView.showBoard());
 
         assertEquals(15.0, board.calculatePoint(BLACK), 0.01);
         assertEquals(7.0, board.calculatePoint(WHITE), 0.01);
 
-        System.out.println(board.showBoard());
+        System.out.println(ChessView.showBoard());
     }
 //
     @Test
