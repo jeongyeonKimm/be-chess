@@ -60,7 +60,7 @@ public class BoardTest {
     }
 
     @Test
-    @DisplayName("빈 체스판을 생성하고 특정 위치로 기물이 이동하는지 확인한다.")
+    @DisplayName("기물이 source에서 target으로 이동하는지 확인한다.")
     public void move() throws Exception {
         board.initialize();
 
@@ -76,15 +76,15 @@ public class BoardTest {
     public void calculatePoint() throws Exception {
         board.initializeEmpty();
 
-        addPiece("b6", Piece.createBlackPawn());
-        addPiece("e6", Piece.createBlackQueen());
-        addPiece("b8", Piece.createBlackKing());
-        addPiece("c8", Piece.createBlackRook());
+        addPiece("b6", Piece.createBlackPawn(new Position("b6")));
+        addPiece("e6", Piece.createBlackQueen(new Position("e6")));
+        addPiece("b8", Piece.createBlackKing(new Position("b8")));
+        addPiece("c8", Piece.createBlackRook(new Position("e8")));
 
-        addPiece("f2", Piece.createWhitePawn());
-        addPiece("g2", Piece.createWhitePawn());
-        addPiece("e1", Piece.createWhiteRook());
-        addPiece("f1", Piece.createWhiteKing());
+        addPiece("f2", Piece.createWhitePawn(new Position("f2")));
+        addPiece("g2", Piece.createWhitePawn(new Position("g2")));
+        addPiece("e1", Piece.createWhiteRook(new Position("e1")));
+        addPiece("f1", Piece.createWhiteKing(new Position("f1")));
 
         System.out.println(board.showBoard());
 
@@ -93,21 +93,21 @@ public class BoardTest {
 
         System.out.println(board.showBoard());
     }
-
+//
     @Test
     @DisplayName("점수가 오름차순으로 정렬되는지 확인한다.")
     void sortAscByPoint() {
         board.initializeEmpty();
 
-        addPiece("b6", Piece.createBlackPawn());
-        addPiece("e6", Piece.createBlackQueen());
-        addPiece("b8", Piece.createBlackKing());
-        addPiece("c8", Piece.createBlackRook());
+        addPiece("b6", Piece.createBlackPawn(new Position("b6")));
+        addPiece("e6", Piece.createBlackQueen(new Position("e6")));
+        addPiece("b8", Piece.createBlackKing(new Position("b8")));
+        addPiece("c8", Piece.createBlackRook(new Position("e8")));
 
-        addPiece("f2", Piece.createWhitePawn());
-        addPiece("g2", Piece.createWhitePawn());
-        addPiece("e1", Piece.createWhiteRook());
-        addPiece("f1", Piece.createWhiteKing());
+        addPiece("f2", Piece.createWhitePawn(new Position("f2")));
+        addPiece("g2", Piece.createWhitePawn(new Position("g2")));
+        addPiece("e1", Piece.createWhiteRook(new Position("e1")));
+        addPiece("f1", Piece.createWhiteKing(new Position("f1")));
 
         List<Piece> blackList = board.sortAscByPoint(BLACK);
         assertEquals("KPRQ", blackList.stream()
@@ -121,22 +121,22 @@ public class BoardTest {
     void sortDescByPoint() {
         board.initializeEmpty();
 
-        addPiece("b6", Piece.createBlackPawn());
-        addPiece("e6", Piece.createBlackQueen());
-        addPiece("b8", Piece.createBlackKing());
-        addPiece("c8", Piece.createBlackRook());
+        addPiece("b6", Piece.createBlackPawn(new Position("b6")));
+        addPiece("e6", Piece.createBlackQueen(new Position("e6")));
+        addPiece("b8", Piece.createBlackKing(new Position("b8")));
+        addPiece("c8", Piece.createBlackRook(new Position("e8")));
 
-        addPiece("f2", Piece.createWhitePawn());
-        addPiece("g2", Piece.createWhitePawn());
-        addPiece("e1", Piece.createWhiteRook());
-        addPiece("f1", Piece.createWhiteKing());
+        addPiece("f2", Piece.createWhitePawn(new Position("f2")));
+        addPiece("g2", Piece.createWhitePawn(new Position("g2")));
+        addPiece("e1", Piece.createWhiteRook(new Position("e1")));
+        addPiece("f1", Piece.createWhiteKing(new Position("f1")));
 
         List<Piece> whiteList = board.sortDescByPoint(WHITE);
         assertEquals(whiteList.stream().map(p -> p.getType().getRepresentation()).map(String::valueOf).collect(Collectors.joining()), "rppk");
     }
 
     private void addPiece(String position, Piece piece) {
-        board.move(position, piece);
+        board.initialSetPiece(position, piece);
     }
 
 //    public void verifyPawn(Pawn pawn) {

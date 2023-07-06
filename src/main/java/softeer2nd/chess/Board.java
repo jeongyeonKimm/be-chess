@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-import static softeer2nd.chess.Board.Position.createPosition;
 import static softeer2nd.chess.pieces.Piece.Color.*;
 import static softeer2nd.chess.pieces.Piece.Type.*;
 
@@ -17,31 +16,6 @@ public class Board {
 
     public static class Rank {
         private final List<Piece> rank = new ArrayList<>();
-    }
-
-    public static class Position {
-        private int x;
-        private int y;
-
-        public Position(int x, int y) {
-            this.x = x;
-            this.y = y;
-        }
-
-        public int getX() {
-            return x;
-        }
-
-        public int getY() {
-            return y;
-        }
-
-        public static Position createPosition(String location) {
-            int xPos = location.charAt(0) - 'a';
-            int yPos = 8 - Character.getNumericValue(location.charAt(1));
-
-            return new Position(xPos, yPos);
-        }
     }
 
     private final List<Rank> chessBoard = new ArrayList<>();
@@ -56,7 +30,7 @@ public class Board {
 
     public void initializeEmpty() {
         for (int i = 0; i < 8; i++) {
-            chessBoard.add(createBlank());
+            chessBoard.add(createBlank(i));
         }
     }
 
@@ -71,7 +45,7 @@ public class Board {
             } else if (i == 7) {
                 chessBoard.add(createWhiteOthers());
             } else {
-                chessBoard.add(createBlank());
+                chessBoard.add(createBlank(i));
             }
         }
     }
@@ -96,7 +70,7 @@ public class Board {
     public Rank createWhitePawn() {
         Rank rank = new Rank();
         for (int i = 0; i < 8; i++) {
-            rank.rank.add(Piece.createWhitePawn());
+            rank.rank.add(Piece.createWhitePawn(new Position(6, i)));
         }
         return rank;
     }
@@ -104,7 +78,7 @@ public class Board {
     public Rank createBlackPawn() {
         Rank rank = new Rank();
         for (int i = 0; i < 8; i++) {
-            rank.rank.add(Piece.createBlackPawn());
+            rank.rank.add(Piece.createBlackPawn(new Position(1, i)));
         }
         return rank;
     }
@@ -112,7 +86,7 @@ public class Board {
     public Rank createWhiteOthers() {
         Rank rank = new Rank();
         for (int i = 0; i < typeOrder.length; i++) {
-            rank.rank.add(Piece.createPiece(WHITE, typeOrder[i]));
+            rank.rank.add(Piece.createPiece(WHITE, typeOrder[i], new Position(7, i)));
         }
         return rank;
     }
@@ -120,15 +94,15 @@ public class Board {
     public Rank createBlackOthers() {
         Rank rank = new Rank();
         for (int i = 0; i < typeOrder.length; i++) {
-            rank.rank.add(Piece.createPiece(BLACK, typeOrder[i]));
+            rank.rank.add(Piece.createPiece(BLACK, typeOrder[i], new Position(0, i)));
         }
         return rank;
     }
 
-    public Rank createBlank() {
+    public Rank createBlank(int row) {
         Rank rank = new Rank();
         for (int i = 0; i < 8; i++) {
-            rank.rank.add(Piece.createBlank());
+            rank.rank.add(Piece.createBlank(new Position(row, i)));
         }
         return rank;
     }
@@ -152,13 +126,13 @@ public class Board {
     }
 
     public Piece findPiece(String location) {
-        Position position = createPosition(location);
+        Position position = new Position(location);
 
         return chessBoard.get(position.getY()).rank.get(position.getX());
     }
 
-    public void move(String location, Piece piece) {
-        Position position = createPosition(location);
+    public void initialSetPiece(String location, Piece piece) {
+        Position position = new Position(location);
 
         chessBoard.get(position.getY()).rank.set(position.getX(), piece);
     }
