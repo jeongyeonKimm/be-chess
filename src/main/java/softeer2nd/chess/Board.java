@@ -1,11 +1,9 @@
 package softeer2nd.chess;
 
 import softeer2nd.chess.pieces.Piece;
-import softeer2nd.chess.pieces.Piece.Color;
 import softeer2nd.chess.pieces.Piece.Type;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 import static softeer2nd.chess.pieces.Piece.Color.*;
