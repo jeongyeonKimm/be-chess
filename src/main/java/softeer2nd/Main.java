@@ -9,13 +9,15 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Board board = new Board();
+        ChessGame chessGame = new ChessGame(board);
+        ChessView chessView = new ChessView(board);
 
         Scanner sc = new Scanner(System.in);
 
         while (sc.hasNext()) {
             String command = sc.nextLine();
             if (command.startsWith("start")) {
-                startGame(board);
+                startGame(chessView, board);
             } else if (command.startsWith("end")) {
                 endGame();
                 break;
@@ -23,17 +25,17 @@ public class Main {
                 String[] commands = command.split(" ");
                 String source = commands[1];
                 String target = commands[2];
-                ChessGame.move(source, target);
-                System.out.println(ChessView.showBoard());
+                chessGame.move(source, target);
+                System.out.println(chessView.showBoard());
             }
         }
     }
 
-    public static void startGame(Board board) {
+    public static void startGame(ChessView chessView, Board board) {
         System.out.println("Start Game!");
         board.initialize();
         // System.out.println(board.print());
-        System.out.println(ChessView.showBoard());
+        System.out.println(chessView.showBoard());
     }
 
     public static void endGame() {

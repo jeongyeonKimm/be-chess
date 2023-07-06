@@ -12,19 +12,11 @@ import static softeer2nd.chess.pieces.Piece.Color.*;
 import static softeer2nd.chess.pieces.Piece.Type.*;
 
 public class Board {
-    public static class Rank {
-
-        private List<Piece> rank = new ArrayList<>();
-
-        public List<Piece> getRank() {
-            return rank;
-        }
-    }
 
     private Type[] typeOrder = new Type[] {ROOK, KNIGHT, BISHOP, QUEEN, KING, BISHOP, KNIGHT, ROOK};
-    private static final List<Rank> chessBoard = new ArrayList<>();
+    private final List<Rank> chessBoard = new ArrayList<>();
 
-    public static List<Rank> getChessBoard() {
+    public List<Rank> getChessBoard() {
         return chessBoard;
     }
 
@@ -32,7 +24,7 @@ public class Board {
     }
 
     public Piece findPawn(int row, int col) {
-        return chessBoard.get(row).rank.get(col);
+        return chessBoard.get(row).getRank().get(col);
     }
 
     public void initializeEmpty() {
@@ -60,7 +52,7 @@ public class Board {
     public Rank createWhitePawn() {
         Rank rank = new Rank();
         for (int i = 0; i < 8; i++) {
-            rank.rank.add(Piece.createWhitePawn(new Position(6, i)));
+            rank.getRank().add(Piece.createWhitePawn(new Position(6, i)));
         }
         return rank;
     }
@@ -68,7 +60,7 @@ public class Board {
     public Rank createBlackPawn() {
         Rank rank = new Rank();
         for (int i = 0; i < 8; i++) {
-            rank.rank.add(Piece.createBlackPawn(new Position(1, i)));
+            rank.getRank().add(Piece.createBlackPawn(new Position(1, i)));
         }
         return rank;
     }
@@ -76,7 +68,7 @@ public class Board {
     public Rank createWhiteOthers() {
         Rank rank = new Rank();
         for (int i = 0; i < typeOrder.length; i++) {
-            rank.rank.add(Piece.createPiece(WHITE, typeOrder[i], new Position(7, i)));
+            rank.getRank().add(Piece.createPiece(WHITE, typeOrder[i], new Position(7, i)));
         }
         return rank;
     }
@@ -84,7 +76,7 @@ public class Board {
     public Rank createBlackOthers() {
         Rank rank = new Rank();
         for (int i = 0; i < typeOrder.length; i++) {
-            rank.rank.add(Piece.createPiece(BLACK, typeOrder[i], new Position(0, i)));
+            rank.getRank().add(Piece.createPiece(BLACK, typeOrder[i], new Position(0, i)));
         }
         return rank;
     }
@@ -92,7 +84,7 @@ public class Board {
     public Rank createBlank(int row) {
         Rank rank = new Rank();
         for (int i = 0; i < 8; i++) {
-            rank.rank.add(Piece.createBlank(new Position(row, i)));
+            rank.getRank().add(Piece.createBlank(new Position(row, i)));
         }
         return rank;
     }
@@ -100,6 +92,26 @@ public class Board {
     public void initialSetPiece(String location, Piece piece) {
         Position position = new Position(location);
 
-        chessBoard.get(position.getY()).rank.set(position.getX(), piece);
+        chessBoard.get(position.getY()).getRank().set(position.getX(), piece);
+    }
+
+    public int pieceCount() {
+        int size = 0;
+        for (int i = 0; i < chessBoard.size(); i++) {
+            if (i == 0 || i == 1 || i == 6 || i == 7) {
+                size += chessBoard.get(i).getRank().size();
+            }
+        }
+        return size;
+    }
+
+    public int pieceCountByColorAndType(Piece.Color color, Piece.Type type) {
+        int count = 0;
+        for (int i = 0; i < 8; i++) {
+            count += (int) chessBoard.get(i).getRank()
+                    .stream()
+                    .filter(p -> p.getColor().equals(color) && p.getType().equals(type)).count();
+        }
+        return count;
     }
 }
