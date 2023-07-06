@@ -31,11 +31,13 @@ public class ChessGame {
         Position targetPos = new Position(target);
 
         Piece findPiece = findPiece(source);
-        board.getChessBoard()
-                .get(targetPos.getY())
-                .getRank()
-                .set(targetPos.getX(), Piece.createPiece(findPiece.getColor(), findPiece.getType(), targetPos));
-        board.getChessBoard().get(sourcePos.getY()).getRank().set(sourcePos.getX(), Piece.createBlank(sourcePos));
+        List<Piece> r = new ArrayList<>(board.getChessBoard().get(targetPos.getY()).getRank());
+        r.set(targetPos.getX(), Piece.createPiece(findPiece.getColor(), findPiece.getType(), targetPos));
+        board.getChessBoard().set(targetPos.getY(), new Rank(r));
+
+        r = new ArrayList<>(board.getChessBoard().get(sourcePos.getY()).getRank());
+        r.set(sourcePos.getX(), Piece.createBlank(sourcePos));
+        board.getChessBoard().set(sourcePos.getY(), new Rank(r));
     }
 
     public double calculatePoint(Piece.Color color) {

@@ -48,49 +48,57 @@ public class Board {
     }
 
     public Rank createWhitePawn() {
-        Rank rank = new Rank();
+        List<Piece> r = new ArrayList<>();
         for (int i = 0; i < 8; i++) {
-            rank.getRank().add(Piece.createWhitePawn(new Position(6, i)));
+            r.add(Piece.createWhitePawn(new Position(6, i)));
         }
-        return rank;
+
+        return new Rank(r);
     }
 
     public Rank createBlackPawn() {
-        Rank rank = new Rank();
+        List<Piece> r = new ArrayList<>();
         for (int i = 0; i < 8; i++) {
-            rank.getRank().add(Piece.createBlackPawn(new Position(1, i)));
+            r.add(Piece.createBlackPawn(new Position(1, i)));
         }
-        return rank;
+
+        return new Rank(r);
     }
 
     public Rank createWhiteOthers() {
-        Rank rank = new Rank();
+        List<Piece> r = new ArrayList<>();
         for (int i = 0; i < typeOrder.length; i++) {
-            rank.getRank().add(Piece.createPiece(WHITE, typeOrder[i], new Position(7, i)));
+            r.add(Piece.createPiece(WHITE, typeOrder[i], new Position(7, i)));
         }
-        return rank;
+
+        return new Rank(r);
     }
 
     public Rank createBlackOthers() {
-        Rank rank = new Rank();
+        List<Piece> r = new ArrayList<>();
+
         for (int i = 0; i < typeOrder.length; i++) {
-            rank.getRank().add(Piece.createPiece(BLACK, typeOrder[i], new Position(0, i)));
+            r.add(Piece.createPiece(BLACK, typeOrder[i], new Position(0, i)));
         }
-        return rank;
+
+        return new Rank(r);
     }
 
     public Rank createBlank(int row) {
-        Rank rank = new Rank();
+        List<Piece> r = new ArrayList<>();
         for (int i = 0; i < 8; i++) {
-            rank.getRank().add(Piece.createBlank(new Position(row, i)));
+            r.add(Piece.createBlank(new Position(row, i)));
         }
-        return rank;
+
+        return new Rank(r);
     }
 
     public void initialSetPiece(String location, Piece piece) {
         Position position = new Position(location);
 
-        chessBoard.get(position.getY()).getRank().set(position.getX(), piece);
+        List<Piece> r = new ArrayList<>(chessBoard.get(position.getY()).getRank());
+        r.set(position.getX(), piece);
+        chessBoard.set(position.getY(), new Rank(r));
     }
 
     public int pieceCount() {
