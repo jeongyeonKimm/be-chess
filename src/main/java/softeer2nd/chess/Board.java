@@ -5,7 +5,6 @@ import softeer2nd.chess.pieces.Piece.Type;
 import softeer2nd.utils.StringUtils;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import static softeer2nd.chess.pieces.Piece.Color.*;
@@ -21,10 +20,6 @@ public class Board {
     private Type[] typeOrder = new Type[] {ROOK, KNIGHT, BISHOP, QUEEN, KING, BISHOP, KNIGHT, ROOK};
 
     public Board() {
-    }
-
-    public List<Rank> getChessBoard() {
-        return chessBoard;
     }
 
     public Piece findPawn(int row, int col) {

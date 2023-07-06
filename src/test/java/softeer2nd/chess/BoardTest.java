@@ -4,6 +4,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static softeer2nd.chess.pieces.Piece.Color.BLACK;
+import static softeer2nd.chess.pieces.Piece.Color.WHITE;
+import static softeer2nd.chess.pieces.Piece.Type.KNIGHT;
+import static softeer2nd.chess.pieces.Piece.Type.PAWN;
 import static softeer2nd.utils.StringUtils.appendNewLine;
 
 public class BoardTest {
@@ -27,6 +31,16 @@ public class BoardTest {
                         appendNewLine("pppppppp") +
                         appendNewLine("rnbqkbnr"),
                 board.showBoard());
+    }
+
+    @Test
+    void pieceCountByColorAndType() {
+        board.initialize();
+        int count = board.pieceCountByColorAndType(WHITE, PAWN);
+        assertEquals(8, count);
+
+        count = board.pieceCountByColorAndType(BLACK, KNIGHT);
+        assertEquals(2, count);
     }
 
 //    public void verifyPawn(Pawn pawn) {
