@@ -1,7 +1,9 @@
 package softeer2nd.chess.pieces;
 
-import softeer2nd.chess.Board;
+import softeer2nd.chess.ChessView;
 import softeer2nd.chess.Position;
+import softeer2nd.chess.exception.BoardOutOfBounds;
+import softeer2nd.chess.exception.SameColorPiece;
 
 import java.util.Objects;
 
@@ -39,7 +41,6 @@ public class Piece {
             return defaultPoint;
         }
     }
-
 
     private Color color;
     private Type type;
@@ -141,5 +142,28 @@ public class Piece {
 
     public void changePosition(Position position) {
         this.position = position;
+    }
+
+    public void moveKing(String target, ChessGame chessGame) {
+        Position sourcePosition = this.position;
+        Position targetPosition = new Position(target);
+
+        verifyChessBoardBound(sourcePosition, targetPosition);
+        verifySameColorPiece(this, chessGame.findPiece(target));
+
+        chessGame.move(this.position.toString(), target);
+    }
+
+    private static void verifySameColorPiece(Piece source, Piece target) {
+        if (source.getColor() == target.getColor()) {
+            throw new SameColorPiece("이동하려는 위치에 같은 편의 기물이 있습니다.");
+        }
+    }
+
+    private static void verifyChessBoardBound(Position sourcePosition, Position targetPosition) {
+        if (Math.abs(sourcePosition.getX() - targetPosition.getX()) > 1 ||
+                Math.abs(sourcePosition.getY() - targetPosition.getY()) > 1) {
+            throw new BoardOutOfBounds("체스판 밖으로 이동할 수 없습니다.");
+        }
     }
 }
