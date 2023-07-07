@@ -9,6 +9,7 @@ import softeer2nd.chess.pieces.Piece;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static softeer2nd.chess.pieces.Piece.Color.BLACK;
 import static softeer2nd.chess.pieces.Piece.Color.WHITE;
@@ -46,10 +47,8 @@ public class ChessGameTest {
         String sourcePosition = "b2";
         String targetPosition = "b3";
         chessGame.move(sourcePosition, targetPosition);
-        assertEquals(Piece.createBlank(new Position(sourcePosition)).getColor(), chessGame.findPiece(sourcePosition).getColor());
-        assertEquals(Piece.createBlank(new Position(sourcePosition)).getType(), chessGame.findPiece(sourcePosition).getType());
-        assertEquals(Piece.createWhitePawn(new Position(targetPosition)).getColor(), chessGame.findPiece(targetPosition).getColor());
-        assertEquals(Piece.createWhitePawn(new Position(targetPosition)).getType(), chessGame.findPiece(targetPosition).getType());
+        assertThat(Piece.createBlank(new Position(sourcePosition))).isEqualToComparingFieldByFieldRecursively(chessGame.findPiece(sourcePosition));
+        assertThat(Piece.createWhitePawn(new Position(targetPosition))).isEqualToComparingFieldByFieldRecursively(chessGame.findPiece(targetPosition));
     }
 
     @Test
