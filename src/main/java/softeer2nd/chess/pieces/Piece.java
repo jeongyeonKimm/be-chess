@@ -3,6 +3,7 @@ package softeer2nd.chess.pieces;
 import softeer2nd.chess.ChessView;
 import softeer2nd.chess.Position;
 import softeer2nd.chess.exception.BoardOutOfBounds;
+import softeer2nd.chess.exception.IllegalDirection;
 import softeer2nd.chess.exception.SameColorPiece;
 
 import java.util.Objects;
@@ -140,30 +141,62 @@ public class Piece {
         return Objects.equals(color, BLACK);
     }
 
-    public void changePosition(Position position) {
-        this.position = position;
+    public void moveKing(Piece target, ChessGame chessGame) {
+        Position targetPosition = target.position;
+
+        verifyChessBoardBound(targetPosition);
+        verifySameColorPiece(chessGame.findPiece(targetPosition.toString()));
+
+        chessGame.move(this.position.toString(), targetPosition.toString());
     }
 
-    public void moveKing(String target, ChessGame chessGame) {
-        Position sourcePosition = this.position;
-        Position targetPosition = new Position(target);
+    public void moveQueen(Piece target, ChessGame chessGame) {
+        Position targetPosition = target.getPosition();
 
-        verifyChessBoardBound(sourcePosition, targetPosition);
-        verifySameColorPiece(this, chessGame.findPiece(target));
+        if (position.getX() == targetPosition.getX() &&
+                position.getY() == targetPosition.getY()) {
+            chessGame.move(position.toString(), target.toString());
+            return;
+        }
 
-        chessGame.move(this.position.toString(), target);
+        int dx = ((targetPosition.getX() - position.getX()) > 0
+                ? 1
+                : (targetPosition.getX() - position.getX() == 0 ? 0 : -1));
+        int dy = ((targetPosition.getY() - position.getY()) > 0
+                ? 1
+                : (targetPosition.getY() - position.getY() == 0 ? 0 : -1));
+
+        int nx = position.getX() + dx;
+        int ny = position.getY() + dy;
+
+        verifyQueenDirection(targetPosition);
+        verifySameColorPiece(target);
+        this.position = targetPosition;
+        moveQueen(chessGame.findPiece(new Position(nx, ny).toString()), chessGame);
     }
 
-    private static void verifySameColorPiece(Piece source, Piece target) {
-        if (source.getColor() == target.getColor()) {
-            throw new SameColorPiece("이동하려는 위치에 같은 편의 기물이 있습니다.");
+    private void verifyChessBoardBound(Position targetPosition) {
+        if (Math.abs(position.getX() - targetPosition.getX()) > 1 ||
+                Math.abs(position.getY() - targetPosition.getY()) > 1) {
+            throw new BoardOutOfBounds("체스판 밖으로 이동할 수 없습니다.");
         }
     }
 
-    private static void verifyChessBoardBound(Position sourcePosition, Position targetPosition) {
-        if (Math.abs(sourcePosition.getX() - targetPosition.getX()) > 1 ||
-                Math.abs(sourcePosition.getY() - targetPosition.getY()) > 1) {
-            throw new BoardOutOfBounds("체스판 밖으로 이동할 수 없습니다.");
+    private void verifyQueenDirection(Position targetPosition) {
+        if (position.getX() == targetPosition.getX() || position.getY() == targetPosition.getY()) {
+            return;
+        }
+
+        if (position.getX() + 1 == targetPosition.getX() && position.getY() + 1 == targetPosition.getY()) {
+            return;
+        }
+
+        throw new IllegalDirection("Queen이 이동할 수 없는 방향 입니다.");
+    }
+
+    private void verifySameColorPiece(Piece target) {
+        if (this.color == target.getColor()) {
+            throw new SameColorPiece("이동하려는 위치에 같은 편의 기물이 있습니다.");
         }
     }
 }
