@@ -1,8 +1,6 @@
-package softeer2nd.chess.pieces;
+package softeer2nd.chess;
 
-import softeer2nd.chess.Board;
-import softeer2nd.chess.Position;
-import softeer2nd.chess.Rank;
+import softeer2nd.chess.pieces.Piece;
 
 import java.util.ArrayList;
 import java.util.Comparator;

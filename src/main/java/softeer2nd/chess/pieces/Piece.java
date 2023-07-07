@@ -1,5 +1,6 @@
 package softeer2nd.chess.pieces;
 
+import softeer2nd.chess.ChessGame;
 import softeer2nd.chess.Position;
 import softeer2nd.chess.exception.BoardOutOfBounds;
 import softeer2nd.chess.exception.IllegalDirection;

@@ -2,7 +2,7 @@ package softeer2nd;
 
 import softeer2nd.chess.Board;
 import softeer2nd.chess.ChessView;
-import softeer2nd.chess.pieces.ChessGame;
+import softeer2nd.chess.ChessGame;
 
 import java.util.Scanner;
 
