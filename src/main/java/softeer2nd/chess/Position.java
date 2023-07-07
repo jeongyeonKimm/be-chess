@@ -24,6 +24,6 @@ public class Position {
 
     @Override
     public String toString() {
-        return ('a' + x) + "" + (y + 8);
+        return (char) ('a' + x) + "" + (8 - y);
     }
 }
