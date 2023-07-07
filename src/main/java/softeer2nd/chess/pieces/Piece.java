@@ -1,10 +1,9 @@
 package softeer2nd.chess.pieces;
 
-import softeer2nd.chess.ChessView;
 import softeer2nd.chess.Position;
 import softeer2nd.chess.exception.BoardOutOfBounds;
 import softeer2nd.chess.exception.IllegalDirection;
-import softeer2nd.chess.exception.SameColorPiece;
+import softeer2nd.chess.exception.ExistSameColorPiece;
 
 import java.util.Objects;
 
@@ -196,7 +195,7 @@ public class Piece {
 
     private void verifySameColorPiece(Piece target) {
         if (this.color == target.getColor()) {
-            throw new SameColorPiece("이동하려는 위치에 같은 편의 기물이 있습니다.");
+            throw new ExistSameColorPiece("이동하려는 위치에 같은 편의 기물이 있습니다.");
         }
     }
 }
