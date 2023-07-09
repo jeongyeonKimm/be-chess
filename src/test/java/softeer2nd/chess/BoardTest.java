@@ -3,23 +3,25 @@ package softeer2nd.chess;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import softeer2nd.chess.pieces.King;
 import softeer2nd.chess.pieces.Piece;
+import softeer2nd.chess.pieces.Rook;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static softeer2nd.chess.pieces.Piece.Color.BLACK;
-import static softeer2nd.chess.pieces.Piece.Color.WHITE;
-import static softeer2nd.chess.pieces.Piece.Type.KNIGHT;
-import static softeer2nd.chess.pieces.Piece.Type.PAWN;
+import static softeer2nd.chess.pieces.Color.BLACK;
+import static softeer2nd.chess.pieces.Color.WHITE;
+import static softeer2nd.chess.pieces.Type.KNIGHT;
+import static softeer2nd.chess.pieces.Type.PAWN;
 import static softeer2nd.utils.StringUtils.appendNewLine;
 
-public class BoardTest {
+class BoardTest {
 
     private Board board;
     private ChessGame chessGame;
     private ChessView chessView;
 
     @BeforeEach
-    public void create_board() {
+    void create_board() {
         board = new Board();
         chessGame = new ChessGame(board);
         chessView = new ChessView(board);
@@ -27,7 +29,7 @@ public class BoardTest {
 
     @Test
     @DisplayName("체스판을 초기화 한다.")
-    public void initialize() throws Exception {
+    void initialize() throws Exception {
         board.initialize();
         assertEquals(32, board.pieceCount());
         String blankRank = appendNewLine("........");
@@ -53,29 +55,16 @@ public class BoardTest {
 
     @Test
     @DisplayName("빈 체스판을 생성하고 주어진 위치에 기물이 추가 되는지 확인한다.")
-    public void initialSetPiece() throws Exception {
+    void initialSetPiece() throws Exception {
         board.initializeEmpty();
         String position = "b5";
-        Piece piece = Piece.createBlackRook(new Position(position));
+        Piece piece = Rook.createBlackRook(new Position(position));
         board.initialSetPiece(position, piece);
         assertEquals(piece, chessGame.findPiece(position));
 
         position = "e3";
-        piece = Piece.createWhiteKing(new Position(position));
+        piece = King.createWhiteKing(new Position(position));
         board.initialSetPiece(position, piece);
         assertEquals(piece, chessGame.findPiece(position));
     }
-
-//    public void verifyPawn(Pawn pawn) {
-//        assertEquals(pawn, board.findPawn(board.size() - 1));
-//    }
-
-//    @Test
-//    @DisplayName("Pawn 이외의 객체가 체스판에 입력되면 에러가 발생해야 한다.")
-//    public void create_Pawn_이외_객체() {
-//        Board board = new Board();
-//
-//        Integer num = new Integer("7");
-//        board.add(num);
-//    }
 }

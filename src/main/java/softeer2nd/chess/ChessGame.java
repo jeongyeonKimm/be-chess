@@ -1,14 +1,15 @@
 package softeer2nd.chess;
 
+import softeer2nd.chess.pieces.Color;
 import softeer2nd.chess.pieces.Piece;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-import static softeer2nd.chess.pieces.Piece.Color.BLACK;
-import static softeer2nd.chess.pieces.Piece.Color.WHITE;
-import static softeer2nd.chess.pieces.Piece.Type.PAWN;
+import static softeer2nd.chess.pieces.Color.BLACK;
+import static softeer2nd.chess.pieces.Color.WHITE;
+import static softeer2nd.chess.pieces.Type.PAWN;
 
 public class ChessGame {
 
@@ -28,24 +29,20 @@ public class ChessGame {
         Position sourcePos = new Position(source);
         Position targetPos = new Position(target);
 
-        Piece findPiece = findPiece(source);
-        List<Piece> r = new ArrayList<>(board.getChessBoard().get(targetPos.getY()).getRank());
-        r.set(targetPos.getX(), Piece.createPiece(findPiece.getColor(), findPiece.getType(), targetPos));
-        board.getChessBoard().set(targetPos.getY(), new Rank(r));
+        Piece sourcePiece = findPiece(source);
+        Piece targetPiece = findPiece(target);
 
-        r = new ArrayList<>(board.getChessBoard().get(sourcePos.getY()).getRank());
-        r.set(sourcePos.getX(), Piece.createBlank(sourcePos));
-        board.getChessBoard().set(sourcePos.getY(), new Rank(r));
+        sourcePiece.move(targetPiece);
     }
 
-    public double calculatePoint(Piece.Color color) {
+    public double calculatePoint(Color color) {
         double totalPoint = 0;
 
-        if (color.equals(WHITE)) {
+        if (color == WHITE) {
             for (int i = 0; i < 8; i++) {
                 totalPoint += getTotalPoint(i, WHITE);
             }
-        } else if (color.equals(BLACK)){
+        } else if (color == BLACK){
             for (int i = 0; i < 8; i++) {
                 totalPoint += getTotalPoint(i, BLACK);
             }
@@ -54,12 +51,12 @@ public class ChessGame {
         return totalPoint;
     }
 
-    private double getTotalPoint(int row, Piece.Color color) {
+    private double getTotalPoint(int row, Color color) {
         double totalPoint = 0;
         List<Piece> pieces = board.getChessBoard().get(row).getRank();
 
         for (Piece piece : pieces) {
-            if (piece.getColor().equals(color)) {
+            if (piece.getColor() == color) {
                 totalPoint += getPiecePoint(piece, row, pieces.indexOf(piece));
             }
         }
@@ -69,18 +66,18 @@ public class ChessGame {
     private double getPiecePoint(Piece piece, int row, int col) {
         double piecePoint = piece.getType().getDefaultPoint();
 
-        if (piece.getType().equals(PAWN) && existPawn(piece.getColor(), row, col)) {
+        if (piece.getType() == PAWN && existPawn(piece.getColor(), row, col)) {
             piecePoint = 0.5;
         }
 
         return piecePoint;
     }
 
-    private boolean existPawn(Piece.Color color, int row, int col) {
+    private boolean existPawn(Color color, int row, int col) {
         boolean flag = false;
         for (int i = 0; i < 8; i++) {
             Piece piece = board.getChessBoard().get(i).getRank().get(col);
-            if (piece.getType().equals(PAWN) && piece.getColor().equals(color) && i != row) {
+            if (piece.getType() == PAWN && piece.getColor() == color && i != row) {
                 flag = true;
                 break;
             }
@@ -88,10 +85,12 @@ public class ChessGame {
         return flag;
     }
 
-    public List<Piece> sortAscByPoint(Piece.Color color) {
+    public List<Piece> sortByPointAsc(Color color) {
         List<Piece> pieceList = new ArrayList<>();
         for (Rank rank : board.getChessBoard()) {
-            rank.getRank().stream().filter(p -> p.getColor().equals(color)).forEach(pieceList::add);
+            rank.getRank().stream()
+                    .filter(p -> p.getColor() == color)
+                    .forEach(pieceList::add);
         }
 
         pieceList.sort(Comparator.comparingDouble(piece -> piece.getType().getDefaultPoint()));
@@ -99,13 +98,16 @@ public class ChessGame {
         return pieceList;
     }
 
-    public List<Piece> sortDescByPoint(Piece.Color color) {
+    public List<Piece> sortByPointDesc(Color color) {
         List<Piece> pieceList = new ArrayList<>();
         for (Rank rank : board.getChessBoard()) {
-            rank.getRank().stream().filter(p -> p.getColor().equals(color)).forEach(pieceList::add);
+
+            rank.getRank().stream()
+                    .filter(p -> p.getColor() == color)
+                    .forEach(pieceList::add);
         }
 
-        pieceList.sort(Comparator.comparingDouble(piece -> -piece.getType().getDefaultPoint()));
+        pieceList.sort(Comparator.comparingDouble(piece -> -1 * piece.getType().getDefaultPoint()));
 
         return pieceList;
     }
