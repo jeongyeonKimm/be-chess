@@ -23,13 +23,10 @@ class BishopTest {
     @DisplayName("Bishop이 북동쪽으로 2칸 이동하는 것을 확인한다.")
     void verifyMovePositionToNorthEast() {
         // given
-        board.initialize();
+        board.initializeEmpty();
 
-        Piece sourceBishop = chessGame.findPiece("c1");
-        sourceBishop.setNewPosition(new Position("c3"));
-
-        Position target = new Position("e5");
-        Piece targetBishop = Piece.createPiece(Color.NO_COLOR, Type.NO_PIECE, target);
+        Piece sourceBishop = Bishop.createBlackBishop(new Position("c3"));
+        Piece targetBishop = Bishop.createBlackBishop(new Position("e5"));
 
         // when
         sourceBishop.verifyMovePosition(targetBishop, chessGame);
@@ -42,13 +39,10 @@ class BishopTest {
     @DisplayName("Bishop이 북서쪽으로 2칸 이동하는 것을 확인한다.")
     void verifyMovePositionToNorthWest() {
         // given
-        board.initialize();
+        board.initializeEmpty();
 
-        Piece sourceBishop = chessGame.findPiece("f1");
-        sourceBishop.setNewPosition(new Position("f3"));
-
-        Position target = new Position("d5");
-        Piece targetBishop = Piece.createPiece(Color.NO_COLOR, Type.NO_PIECE, target);
+        Piece sourceBishop = Bishop.createBlackBishop(new Position("f3"));
+        Piece targetBishop = Bishop.createBlackBishop(new Position("d5"));
 
         // when
         sourceBishop.verifyMovePosition(targetBishop, chessGame);
@@ -61,13 +55,10 @@ class BishopTest {
     @DisplayName("Bishop이 남동쪽으로 3칸 이동하는 것을 확인한다.")
     void verifyMovePositionToSouthEast() {
         // given
-        board.initialize();
+        board.initializeEmpty();
 
-        Piece sourceBishop = chessGame.findPiece("c1");
-        sourceBishop.setNewPosition(new Position("c6"));
-
-        Position target = new Position("f3");
-        Piece targetBishop = Piece.createPiece(Color.NO_COLOR, Type.NO_PIECE, target);
+        Piece sourceBishop = Bishop.createBlackBishop(new Position("c6"));
+        Piece targetBishop = Bishop.createBlackBishop(new Position("f3"));
 
         // when
         sourceBishop.verifyMovePosition(targetBishop, chessGame);
@@ -80,13 +71,10 @@ class BishopTest {
     @DisplayName("Bishop이 남서쪽으로 3칸 이동하는 것을 확인한다.")
     void verifyMovePositionToSouthWest() {
         // given
-        board.initialize();
+        board.initializeEmpty();
 
-        Piece sourceBishop = chessGame.findPiece("f1");
-        sourceBishop.setNewPosition(new Position("f6"));
-
-        Position target = new Position("c3");
-        Piece targetBishop = Piece.createPiece(Color.NO_COLOR, Type.NO_PIECE, target);
+        Piece sourceBishop = Bishop.createBlackBishop(new Position("f6"));
+        Piece targetBishop = Bishop.createBlackBishop(new Position("c3"));
 
         // when
         sourceBishop.verifyMovePosition(targetBishop, chessGame);
