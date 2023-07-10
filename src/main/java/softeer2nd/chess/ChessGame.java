@@ -1,5 +1,6 @@
 package softeer2nd.chess;
 
+import softeer2nd.chess.pieces.Blank;
 import softeer2nd.chess.pieces.Color;
 import softeer2nd.chess.pieces.Piece;
 
@@ -32,7 +33,14 @@ public class ChessGame {
         Piece sourcePiece = findPiece(source);
         Piece targetPiece = findPiece(target);
 
-        sourcePiece.move(targetPiece);
+        sourcePiece.verifyMovePosition(targetPiece, this);
+
+        List<Piece> sourcePieceList = board.getChessBoard().get(sourcePos.getY()).getRank();
+        sourcePieceList.set(sourcePos.getX(), Blank.createBlank(sourcePos));
+        board.getChessBoard().set(sourcePos.getY(), new Rank(sourcePieceList));
+
+        List<Piece> targetPieceList = board.getChessBoard().get(targetPos.getY()).getRank();
+        targetPieceList.set(targetPos.getX(), sourcePiece);
     }
 
     public double calculatePoint(Color color) {

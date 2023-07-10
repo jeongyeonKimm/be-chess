@@ -1,5 +1,6 @@
 package softeer2nd.chess.pieces;
 
+import softeer2nd.chess.ChessGame;
 import softeer2nd.chess.Position;
 
 import static softeer2nd.chess.pieces.Color.NO_COLOR;
@@ -16,7 +17,7 @@ public class Blank extends Piece {
     }
 
     @Override
-    public void verifyMovePosition(Piece target) {
+    public void verifyMovePosition(Piece target, ChessGame chessGame) {
 
     }
 }

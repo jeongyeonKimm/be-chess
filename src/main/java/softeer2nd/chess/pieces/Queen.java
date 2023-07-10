@@ -1,5 +1,6 @@
 package softeer2nd.chess.pieces;
 
+import softeer2nd.chess.ChessGame;
 import softeer2nd.chess.Position;
 
 import static softeer2nd.chess.pieces.Color.BLACK;
@@ -21,7 +22,7 @@ public class Queen extends Piece {
     }
 
     @Override
-    public void verifyMovePosition() {
+    public void verifyMovePosition(Piece target, ChessGame chessGame) {
 
     }
 }

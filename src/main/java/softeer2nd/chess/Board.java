@@ -118,7 +118,8 @@ public class Board {
         for (int i = 0; i < 8; i++) {
             count += (int) chessBoard.get(i).getRank()
                     .stream()
-                    .filter(p -> p.getColor().equals(color) && p.getType().equals(type)).count();
+                    .filter(p -> p.getColor().equals(color) && p.getType().equals(type))
+                    .count();
         }
         return count;
     }

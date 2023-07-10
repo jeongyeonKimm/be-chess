@@ -1,10 +1,9 @@
 package softeer2nd.chess.pieces;
 
+import softeer2nd.chess.ChessGame;
 import softeer2nd.chess.Position;
 import softeer2nd.chess.exception.BoardOutOfBounds;
 import softeer2nd.chess.exception.ExistSameColorPiece;
-
-import java.util.Objects;
 
 import static softeer2nd.chess.pieces.Color.*;
 
@@ -33,21 +32,21 @@ abstract public class Piece {
     }
 
     public boolean isWhite() {
-        return color.equals(WHITE);
+        return this.color == WHITE;
     }
 
     public boolean isBlack() {
-        return Objects.equals(color, BLACK);
+        return this.color == BLACK;
     }
 
-    abstract public void verifyMovePosition(Piece target);
+    abstract public void verifyMovePosition(Piece target, ChessGame chessGame);
 
-    public Piece createPiece(Color color, Type type, Position position) {
-        if (color.equals(NO_COLOR)) {
+    public static Piece createPiece(Color color, Type type, Position position) {
+        if (color == NO_COLOR) {
             return Blank.createBlank(position);
         }
 
-        boolean flag = isWhite();
+        boolean flag = color == WHITE;
 
         switch(type) {
             case PAWN:
@@ -67,22 +66,18 @@ abstract public class Piece {
         }
     }
 
-    public void move(Piece targetPiece) {
-        Position targetPosition = targetPiece.getPosition();
-
-        verifyChessBoardBound(targetPosition);
-        verifySameTeamOnPath(targetPiece);
-        verifyMovePosition(target);
+    public void setNewPosition(Position newPosition) {
+        this.position = newPosition;
     }
 
-    private void verifyChessBoardBound(Position targetPosition) {
+    public void verifyChessBoardBound(Position targetPosition) {
         if (Math.abs(position.getX() - targetPosition.getX()) > 1 ||
                 Math.abs(position.getY() - targetPosition.getY()) > 1) {
             throw new BoardOutOfBounds("체스판 밖으로 이동할 수 없습니다.");
         }
     }
 
-    private void verifySameTeamOnPath(Piece target) {
+    public void verifySameTeamOnPath(Piece target) {
         if (this.color == target.getColor()) {
             throw new ExistSameColorPiece("이동하려는 위치에 같은 편의 기물이 있습니다.");
         }

@@ -1,5 +1,6 @@
 package softeer2nd.chess.pieces;
 
+import softeer2nd.chess.ChessGame;
 import softeer2nd.chess.Position;
 
 import static softeer2nd.chess.pieces.Color.BLACK;
@@ -12,16 +13,16 @@ public class King extends Piece {
         super(color, type, position);
     }
 
-    @Override
-    public void verifyMovePosition() {
-
-    }
-
     public static Piece createWhiteKing(Position position) {
         return new King(WHITE, KING, position);
     }
 
     public static Piece createBlackKing(Position position) {
         return new King(BLACK, KING, position);
+    }
+
+    @Override
+    public void verifyMovePosition(Piece target, ChessGame chessGame) {
+
     }
 }

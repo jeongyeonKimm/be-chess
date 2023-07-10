@@ -21,4 +21,8 @@ public class Position {
     public int getY() {
         return y;
     }
+
+    public String positionToString() {
+        return (char) ('a' + this.getX()) + "" + (8 - this.getY());
+    }
 }
