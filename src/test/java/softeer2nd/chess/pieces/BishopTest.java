@@ -83,7 +83,7 @@ class BishopTest {
         board.initialize();
 
         Piece sourceBishop = chessGame.findPiece("f1");
-        sourceBishop.setNewPosition(new Position("f5"));
+        sourceBishop.setNewPosition(new Position("f6"));
 
         Position target = new Position("c3");
         Piece targetBishop = Piece.createPiece(Color.NO_COLOR, Type.NO_PIECE, target);

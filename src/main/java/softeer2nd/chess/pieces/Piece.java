@@ -71,10 +71,12 @@ abstract public class Piece {
     }
 
     public void verifyChessBoardBound(Position targetPosition) {
-        if (Math.abs(position.getX() - targetPosition.getX()) > 1 ||
-                Math.abs(position.getY() - targetPosition.getY()) > 1) {
-            throw new BoardOutOfBounds("체스판 밖으로 이동할 수 없습니다.");
+        if (targetPosition.getX() >= 0 && targetPosition.getX() < 8 &&
+                targetPosition.getY() >= 0 && targetPosition.getY() < 8) {
+            return;
         }
+
+        throw new BoardOutOfBounds("체스판 밖으로 이동할 수 없습니다.");
     }
 
     public void verifySameTeamOnPath(Piece target) {

@@ -38,7 +38,6 @@ public class Bishop extends Piece {
 
         int nx = sourcePos.getX() + dx;
         int ny = sourcePos.getY() + dy;
-
         Position newPosition = new Position(nx, ny);
 
         verifyChessBoardBound(newPosition);
