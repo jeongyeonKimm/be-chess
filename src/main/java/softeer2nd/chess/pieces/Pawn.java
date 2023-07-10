@@ -21,7 +21,7 @@ public class Pawn extends Piece{
     }
 
     @Override
-    public void verifyMovePosition() {
+    public void verifyMovePosition(Piece target) {
 
     }
 }

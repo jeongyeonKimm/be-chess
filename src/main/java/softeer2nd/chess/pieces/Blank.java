@@ -16,7 +16,7 @@ public class Blank extends Piece {
     }
 
     @Override
-    public void verifyMovePosition() {
+    public void verifyMovePosition(Piece target) {
 
     }
 }

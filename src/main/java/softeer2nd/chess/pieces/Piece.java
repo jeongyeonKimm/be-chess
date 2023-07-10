@@ -1,15 +1,12 @@
 package softeer2nd.chess.pieces;
 
-import softeer2nd.chess.ChessGame;
 import softeer2nd.chess.Position;
 import softeer2nd.chess.exception.BoardOutOfBounds;
-import softeer2nd.chess.exception.IllegalDirection;
 import softeer2nd.chess.exception.ExistSameColorPiece;
 
 import java.util.Objects;
 
-import static softeer2nd.chess.pieces.Color.BLACK;
-import static softeer2nd.chess.pieces.Color.WHITE;
+import static softeer2nd.chess.pieces.Color.*;
 
 abstract public class Piece {
 
@@ -43,14 +40,39 @@ abstract public class Piece {
         return Objects.equals(color, BLACK);
     }
 
-    abstract public void verifyMovePosition();
+    abstract public void verifyMovePosition(Piece target);
+
+    public Piece createPiece(Color color, Type type, Position position) {
+        if (color.equals(NO_COLOR)) {
+            return Blank.createBlank(position);
+        }
+
+        boolean flag = isWhite();
+
+        switch(type) {
+            case PAWN:
+                return flag ? Pawn.createWhitePawn(position) : Pawn.createBlackPawn(position);
+            case KNIGHT:
+                return flag ? Knight.createWhiteKnight(position) : Knight.createBlackKnight(position);
+            case ROOK:
+                return flag ? Rook.createWhiteRook(position) : Rook.createBlackRook(position);
+            case BISHOP:
+                return flag ? Bishop.createWhiteBishop(position) : Bishop.createBlackBishop(position);
+            case QUEEN:
+                return flag ? Queen.createWhiteQueen(position) : Queen.createBlackQueen(position);
+            case KING:
+                return flag ? King.createWhiteKing(position) : King.createBlackKing(position);
+            default:
+                return Blank.createBlank(position);
+        }
+    }
 
     public void move(Piece targetPiece) {
         Position targetPosition = targetPiece.getPosition();
 
         verifyChessBoardBound(targetPosition);
         verifySameTeamOnPath(targetPiece);
-        verifyMovePosition();
+        verifyMovePosition(target);
     }
 
     private void verifyChessBoardBound(Position targetPosition) {
