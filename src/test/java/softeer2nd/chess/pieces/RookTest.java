@@ -5,9 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import softeer2nd.chess.Board;
 import softeer2nd.chess.ChessGame;
-import softeer2nd.chess.ChessView;
 import softeer2nd.chess.Position;
-import softeer2nd.chess.exception.InvalidTargetPosition;
 
 import static org.junit.jupiter.api.Assertions.*;
 

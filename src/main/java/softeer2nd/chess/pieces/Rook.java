@@ -32,7 +32,7 @@ public class Rook extends Piece {
 
         if (dx == 0 && dy == 0) {
             return;
-        } else if ((dx == 1 && dy == 1) || (dx == -1 && dy == -1)) {
+        } else if (dx == dy || dx == -1 * dy) {
             throw new InvalidTargetPosition("유효하지 않은 도착지 입니다.");
         }
 
