@@ -24,13 +24,10 @@ class RookTest {
     @DisplayName("Rook이 동쪽으로 2칸 이동하는 것을 확인한다.")
     void verifyMovePositionToEast() {
         // given
-        board.initialize();
+        board.initializeEmpty();
 
-        Piece sourceRook = chessGame.findPiece("a1");
-        sourceRook.setNewPosition(new Position("a3"));
-
-        Position target = new Position("c3");
-        Piece targetRook = Piece.createPiece(Color.NO_COLOR, Type.NO_PIECE, target);
+        Piece sourceRook = Rook.createWhiteRook(new Position("a3"));
+        Piece targetRook = Rook.createWhiteRook(new Position("c3"));
 
         // when
         sourceRook.verifyMovePosition(targetRook, chessGame);
@@ -43,13 +40,10 @@ class RookTest {
     @DisplayName("Rook이 서쪽으로 2칸 이동하는 것을 확인한다.")
     void verifyMovePositionToWest() {
         // given
-        board.initialize();
+        board.initializeEmpty();
 
-        Piece sourceRook = chessGame.findPiece("h1");
-        sourceRook.setNewPosition(new Position("h3"));
-
-        Position target = new Position("f3");
-        Piece targetRook = Piece.createPiece(Color.NO_COLOR, Type.NO_PIECE, target);
+        Piece sourceRook = Rook.createWhiteRook(new Position("h3"));
+        Piece targetRook = Rook.createWhiteRook(new Position("f3"));
 
         // when
         sourceRook.verifyMovePosition(targetRook, chessGame);
@@ -62,13 +56,10 @@ class RookTest {
     @DisplayName("Rook이 북쪽으로 3칸 이동하는 것을 확인한다.")
     void verifyMovePositionToNorth() {
         // given
-        board.initialize();
+        board.initializeEmpty();
 
-        Piece sourceRook = chessGame.findPiece("a1");
-        sourceRook.setNewPosition(new Position("a3"));
-
-        Position target = new Position("a6");
-        Piece targetRook = Piece.createPiece(Color.NO_COLOR, Type.NO_PIECE, target);
+        Piece sourceRook = Rook.createWhiteRook(new Position("a3"));
+        Piece targetRook = Rook.createWhiteRook(new Position("a6"));
 
         // when
         sourceRook.verifyMovePosition(targetRook, chessGame);
@@ -81,13 +72,10 @@ class RookTest {
     @DisplayName("Rook이 남쪽으로 3칸 이동하는 것을 확인한다.")
     void verifyMovePositionToSouth() {
         // given
-        board.initialize();
+        board.initializeEmpty();
 
-        Piece sourceRook = chessGame.findPiece("h1");
-        sourceRook.setNewPosition(new Position("h6"));
-
-        Position target = new Position("h3");
-        Piece targetRook = Piece.createPiece(Color.NO_COLOR, Type.NO_PIECE, target);
+        Piece sourceRook = Rook.createWhiteRook(new Position("h6"));
+        Piece targetRook = Rook.createWhiteRook(new Position("h3"));
 
         // when
         sourceRook.verifyMovePosition(targetRook, chessGame);
