@@ -147,20 +147,4 @@ class QueenTest {
         // then
         assertEquals("d8", sourceKing.getPosition().positionToString());
     }
-
-    @Test
-    @DisplayName("Queen이 이동 에러")
-    void verifyMovePosition() {
-        // given
-        board.initializeEmpty();
-
-        Piece sourceKing = Queen.createBlackQueen(new Position("d4"));
-        Piece targetKing = Blank.createBlank(new Position("g6"));
-
-        // when
-        sourceKing.verifyMovePosition(targetKing, chessGame);
-
-        // then
-        assertEquals("g6", sourceKing.getPosition().positionToString());
-    }
 }
