@@ -27,7 +27,7 @@ class RookTest {
         board.initializeEmpty();
 
         Piece sourceRook = Rook.createWhiteRook(new Position("a3"));
-        Piece targetRook = Rook.createWhiteRook(new Position("c3"));
+        Piece targetRook = Blank.createBlank(new Position("c3"));
 
         // when
         sourceRook.verifyMovePosition(targetRook, chessGame);
@@ -43,7 +43,7 @@ class RookTest {
         board.initializeEmpty();
 
         Piece sourceRook = Rook.createWhiteRook(new Position("h3"));
-        Piece targetRook = Rook.createWhiteRook(new Position("f3"));
+        Piece targetRook = Blank.createBlank(new Position("f3"));
 
         // when
         sourceRook.verifyMovePosition(targetRook, chessGame);
@@ -59,7 +59,7 @@ class RookTest {
         board.initializeEmpty();
 
         Piece sourceRook = Rook.createWhiteRook(new Position("a3"));
-        Piece targetRook = Rook.createWhiteRook(new Position("a6"));
+        Piece targetRook = Blank.createBlank(new Position("a6"));
 
         // when
         sourceRook.verifyMovePosition(targetRook, chessGame);
@@ -75,7 +75,7 @@ class RookTest {
         board.initializeEmpty();
 
         Piece sourceRook = Rook.createWhiteRook(new Position("h6"));
-        Piece targetRook = Rook.createWhiteRook(new Position("h3"));
+        Piece targetRook = Blank.createBlank(new Position("h3"));
 
         // when
         sourceRook.verifyMovePosition(targetRook, chessGame);

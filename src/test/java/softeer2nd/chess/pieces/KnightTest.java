@@ -27,7 +27,7 @@ class KnightTest {
         board.initialize();
 
         Piece sourceKnight = Knight.createWhiteKnight(new Position("b3"));
-        Piece targetKnight = Knight.createWhiteKnight(new Position("c5"));
+        Piece targetKnight = Blank.createBlank(new Position("c5"));
 
         // when
         sourceKnight.verifyMovePosition(targetKnight, chessGame);
@@ -43,7 +43,7 @@ class KnightTest {
         board.initializeEmpty();
 
         Piece sourceKnight = Knight.createWhiteKnight(new Position("g3"));
-        Piece targetKnight = Knight.createWhiteKnight(new Position("f5"));
+        Piece targetKnight = Blank.createBlank(new Position("f5"));
 
         // when
         sourceKnight.verifyMovePosition(targetKnight, chessGame);
@@ -59,7 +59,7 @@ class KnightTest {
         board.initializeEmpty();
 
         Piece sourceKnight = Knight.createWhiteKnight(new Position("b6"));
-        Piece targetKnight = Knight.createWhiteKnight(new Position("c4"));
+        Piece targetKnight = Blank.createBlank(new Position("c4"));
 
         // when
         sourceKnight.verifyMovePosition(targetKnight, chessGame);
@@ -75,7 +75,7 @@ class KnightTest {
         board.initializeEmpty();
 
         Piece sourceKnight = Knight.createWhiteKnight(new Position("g6"));
-        Piece targetKnight = Knight.createWhiteKnight(new Position("f4"));
+        Piece targetKnight = Blank.createBlank(new Position("f4"));
 
         // when
         sourceKnight.verifyMovePosition(targetKnight, chessGame);
@@ -91,7 +91,7 @@ class KnightTest {
         board.initialize();
 
         Piece sourceKnight = Knight.createWhiteKnight(new Position("b3"));
-        Piece targetKnight = Knight.createWhiteKnight(new Position("d4"));
+        Piece targetKnight = Blank.createBlank(new Position("d4"));
 
         // when
         sourceKnight.verifyMovePosition(targetKnight, chessGame);
@@ -107,7 +107,7 @@ class KnightTest {
         board.initializeEmpty();
 
         Piece sourceKnight = Knight.createWhiteKnight(new Position("g3"));
-        Piece targetKnight = Knight.createWhiteKnight(new Position("e4"));
+        Piece targetKnight = Blank.createBlank(new Position("e4"));
 
         // when
         sourceKnight.verifyMovePosition(targetKnight, chessGame);
@@ -123,7 +123,7 @@ class KnightTest {
         board.initializeEmpty();
 
         Piece sourceKnight = Knight.createWhiteKnight(new Position("b4"));
-        Piece targetKnight = Knight.createWhiteKnight(new Position("d3"));
+        Piece targetKnight = Blank.createBlank(new Position("d3"));
 
         // when
         sourceKnight.verifyMovePosition(targetKnight, chessGame);
@@ -139,7 +139,7 @@ class KnightTest {
         board.initializeEmpty();
 
         Piece sourceKnight = Knight.createWhiteKnight(new Position("g4"));
-        Piece targetKnight = Knight.createWhiteKnight(new Position("e3"));
+        Piece targetKnight = Blank.createBlank(new Position("e3"));
 
         // when
         sourceKnight.verifyMovePosition(targetKnight, chessGame);

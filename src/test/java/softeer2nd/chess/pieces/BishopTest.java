@@ -26,7 +26,7 @@ class BishopTest {
         board.initializeEmpty();
 
         Piece sourceBishop = Bishop.createBlackBishop(new Position("c3"));
-        Piece targetBishop = Bishop.createBlackBishop(new Position("e5"));
+        Piece targetBishop = Blank.createBlank(new Position("e5"));
 
         // when
         sourceBishop.verifyMovePosition(targetBishop, chessGame);
@@ -42,7 +42,7 @@ class BishopTest {
         board.initializeEmpty();
 
         Piece sourceBishop = Bishop.createBlackBishop(new Position("f3"));
-        Piece targetBishop = Bishop.createBlackBishop(new Position("d5"));
+        Piece targetBishop = Blank.createBlank(new Position("d5"));
 
         // when
         sourceBishop.verifyMovePosition(targetBishop, chessGame);
@@ -58,7 +58,7 @@ class BishopTest {
         board.initializeEmpty();
 
         Piece sourceBishop = Bishop.createBlackBishop(new Position("c6"));
-        Piece targetBishop = Bishop.createBlackBishop(new Position("f3"));
+        Piece targetBishop = Blank.createBlank(new Position("f3"));
 
         // when
         sourceBishop.verifyMovePosition(targetBishop, chessGame);
@@ -74,7 +74,7 @@ class BishopTest {
         board.initializeEmpty();
 
         Piece sourceBishop = Bishop.createBlackBishop(new Position("f6"));
-        Piece targetBishop = Bishop.createBlackBishop(new Position("c3"));
+        Piece targetBishop = Blank.createBlank(new Position("c3"));
 
         // when
         sourceBishop.verifyMovePosition(targetBishop, chessGame);
