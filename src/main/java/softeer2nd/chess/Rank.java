@@ -20,7 +20,7 @@ public class Rank {
     public static Rank createWhitePawns() {
         List<Piece> r = new ArrayList<>();
 
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < Board.BOARD_LENGTH; i++) {
             r.add(Pawn.createWhitePawn(new Position(6, i)));
         }
 
@@ -30,7 +30,7 @@ public class Rank {
     public static Rank createBlackPawns() {
         List<Piece> r = new ArrayList<>();
 
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < Board.BOARD_LENGTH; i++) {
             r.add(Pawn.createBlackPawn(new Position(1, i)));
         }
 
@@ -70,7 +70,7 @@ public class Rank {
     public static Rank createBlank(int row) {
         List<Piece> r = new ArrayList<>();
 
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < Board.BOARD_LENGTH; i++) {
             r.add(Blank.createBlank(new Position(row, i)));
         }
 

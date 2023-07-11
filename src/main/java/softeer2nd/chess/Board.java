@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Board {
 
-    private static final int BOARD_LENGTH = 8;
+    public static final int BOARD_LENGTH = 8;
 
     private final List<Rank> chessBoard = new ArrayList<>();
 

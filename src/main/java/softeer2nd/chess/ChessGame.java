@@ -48,7 +48,7 @@ public class ChessGame {
     public double calculatePoint(Color color) {
         double totalPoint = 0;
 
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < Board.BOARD_LENGTH; i++) {
             totalPoint += getTotalPoint(i, color);
         }
 
@@ -79,7 +79,7 @@ public class ChessGame {
 
     private boolean existPawn(Color color, int row, int col) {
         boolean flag = false;
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < Board.BOARD_LENGTH; i++) {
             Piece piece = board.getChessBoard().get(i).getRank().get(col);
             if (piece.getType() == PAWN && piece.getColor() == color && i != row) {
                 flag = true;

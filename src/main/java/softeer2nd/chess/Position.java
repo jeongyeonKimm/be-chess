@@ -23,6 +23,6 @@ public class Position {
     }
 
     public String positionToString() {
-        return (char) ('a' + this.getY()) + "" + (8 - this.getX());
+        return (char) ('a' + this.getY()) + "" + (Board.BOARD_LENGTH - this.getX());
     }
 }
