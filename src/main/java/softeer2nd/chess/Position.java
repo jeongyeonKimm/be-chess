@@ -23,6 +23,6 @@ public class Position {
     }
 
     public String positionToString() {
-        return (char) ('a' + this.getX()) + "" + (8 - this.getY());
+        return (char) ('a' + this.getY()) + "" + (8 - this.getX());
     }
 }

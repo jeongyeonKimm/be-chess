@@ -34,7 +34,6 @@ public class Main {
     public static void startGame(ChessView chessView, Board board) {
         System.out.println("Start Game!");
         board.initialize();
-        // System.out.println(board.print());
         System.out.println(chessView.showBoard());
     }
 

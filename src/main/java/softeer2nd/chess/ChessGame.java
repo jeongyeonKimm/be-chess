@@ -1,10 +1,10 @@
 package softeer2nd.chess;
 
+import softeer2nd.chess.exception.InvalidTargetPosition;
 import softeer2nd.chess.pieces.Blank;
 import softeer2nd.chess.pieces.Color;
 import softeer2nd.chess.pieces.Piece;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -28,6 +28,10 @@ public class ChessGame {
     }
 
     public void move(String source, String target) {
+        if (source.equals(target)) {
+            throw new InvalidTargetPosition("현재 위치와 같습니다.");
+        }
+
         Position sourcePos = new Position(source);
         Position targetPos = new Position(target);
 

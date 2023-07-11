@@ -36,16 +36,18 @@ public class Pawn extends Piece{
         int nx = sourcePos.getX() + dx;
         int ny = sourcePos.getY() + dy;
         Position newPosition = new Position(nx, ny);
+        System.out.println(newPosition.positionToString());
 
         if (initialState) {
-            if (dx == 0 && dy == -2) {
+            if ((isWhite() && dx == 0 && dy == -2) ||
+                    (isBlack() && dx == 0 && dy == 2)) {
                 initialState = false;
             }
         } else if (verifyDiagonal(dx, dy)) {
             if (!verifyOtherTeamOnDiagonal(target)) {
                 throw new ExistSameColorPiece("같은 편 기물 입니다.");
             }
-        } else if (dx != 0 || dy != -1) {
+        } else if (dx != 0 || Math.abs(dy) != 1) {
             throw new InvalidTargetPosition("유효하지 않은 도착지 입니다.");
         }
 
@@ -55,7 +57,8 @@ public class Pawn extends Piece{
     }
 
     private boolean verifyDiagonal(int dx, int dy) {
-        return dy == -1 && Math.abs(dx) == 1;
+        if (isWhite()) return dy == -1 && Math.abs(dx) == 1;
+        else return dy == 1 && Math.abs(dx) == 1;
     }
 
     private boolean verifyOtherTeamOnDiagonal(Piece target) {
