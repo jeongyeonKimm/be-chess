@@ -40,8 +40,6 @@ public class King extends Piece {
         int ny = sourcePos.getY() + dy;
         Position newPosition = new Position(nx, ny);
 
-        verifyChessBoardBound(newPosition);
-        verifySameTeamOnPath(chessGame.findPiece(newPosition.positionToString()));
         this.setNewPosition(newPosition);
     }
 }

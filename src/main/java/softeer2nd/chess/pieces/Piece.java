@@ -69,19 +69,4 @@ abstract public class Piece {
     public void setNewPosition(Position newPosition) {
         this.position = newPosition;
     }
-
-    public void verifyChessBoardBound(Position targetPosition) {
-        if (targetPosition.getX() >= 0 && targetPosition.getX() < 8 &&
-                targetPosition.getY() >= 0 && targetPosition.getY() < 8) {
-            return;
-        }
-
-        throw new BoardOutOfBounds("체스판 밖으로 이동할 수 없습니다.");
-    }
-
-    public void verifySameTeamOnPath(Piece target) {
-        if (this.color == target.getColor()) {
-            throw new ExistSameColorPiece("이동하려는 위치에 같은 편의 기물이 있습니다.");
-        }
-    }
 }

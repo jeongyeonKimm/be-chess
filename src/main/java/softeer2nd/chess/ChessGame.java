@@ -1,5 +1,7 @@
 package softeer2nd.chess;
 
+import softeer2nd.chess.exception.BoardOutOfBounds;
+import softeer2nd.chess.exception.ExistSameColorPiece;
 import softeer2nd.chess.exception.InvalidTargetPosition;
 import softeer2nd.chess.pieces.Blank;
 import softeer2nd.chess.pieces.Color;
@@ -38,6 +40,9 @@ public class ChessGame {
         Piece sourcePiece = findPiece(source);
         Piece targetPiece = findPiece(target);
 
+        verifyChessBoardBound(targetPiece);
+        verifySameTeamOnPath(sourcePiece, targetPiece);
+
         sourcePiece.verifyMovePosition(targetPiece, this);
 
         List<Piece> sourcePieceList = new ArrayList<>(board.getChessBoard().get(sourcePos.getY()).getRank());
@@ -47,6 +52,21 @@ public class ChessGame {
         List<Piece> targetPieceList = new ArrayList<>(board.getChessBoard().get(targetPos.getY()).getRank());
         targetPieceList.set(targetPos.getX(), sourcePiece);
         board.getChessBoard().set(targetPos.getY(), new Rank(targetPieceList));
+    }
+
+    private void verifyChessBoardBound(Piece target) {
+        if (target.getPosition().getX() >= 0 && target.getPosition().getX() < 8&&
+                target.getPosition().getY() >= 0 && target.getPosition().getY() < 8) {
+            return;
+        }
+
+        throw new BoardOutOfBounds("체스판 밖으로 이동할 수 없습니다.");
+    }
+
+    private void verifySameTeamOnPath(Piece source, Piece target) {
+        if (source.getColor() == target.getColor()) {
+            throw new ExistSameColorPiece("이동하려는 위치에 같은 편의 기물이 있습니다.");
+        }
     }
 
     public double calculatePoint(Color color) {

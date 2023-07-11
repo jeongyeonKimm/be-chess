@@ -37,10 +37,8 @@ public class Knight extends Piece {
 
         int nx = sourcePos.getX() + dx;
         int ny = sourcePos.getY() + dy;
-        Position newPosition = new Position(nx, ny);
 
-        verifyChessBoardBound(newPosition);
-        verifySameTeamOnPath(chessGame.findPiece(newPosition.positionToString()));
+        Position newPosition = new Position(nx, ny);
         this.setNewPosition(newPosition);
     }
 }

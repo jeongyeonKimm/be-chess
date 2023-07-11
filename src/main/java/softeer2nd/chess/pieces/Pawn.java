@@ -33,11 +33,6 @@ public class Pawn extends Piece{
         int dx = targetPos.getX() - sourcePos.getX();
         int dy = targetPos.getY() - sourcePos.getY();
 
-        int nx = sourcePos.getX() + dx;
-        int ny = sourcePos.getY() + dy;
-        Position newPosition = new Position(nx, ny);
-        System.out.println(newPosition.positionToString());
-
         if (initialState) {
             if ((isWhite() && dx == 0 && dy == -2) ||
                     (isBlack() && dx == 0 && dy == 2)) {
@@ -51,8 +46,10 @@ public class Pawn extends Piece{
             throw new InvalidTargetPosition("유효하지 않은 도착지 입니다.");
         }
 
-        verifyChessBoardBound(newPosition);
-        verifySameTeamOnPath(chessGame.findPiece(newPosition.positionToString()));
+        int nx = sourcePos.getX() + dx;
+        int ny = sourcePos.getY() + dy;
+
+        Position newPosition = new Position(nx, ny);
         this.setNewPosition(newPosition);
     }
 
