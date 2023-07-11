@@ -38,8 +38,9 @@ public class King extends Piece {
 
         int nx = sourcePos.getX() + dx;
         int ny = sourcePos.getY() + dy;
-        Position newPosition = new Position(nx, ny);
 
+        Position newPosition = new Position(nx, ny);
+        verifySameTeamOnPath(target);
         this.setNewPosition(newPosition);
     }
 }

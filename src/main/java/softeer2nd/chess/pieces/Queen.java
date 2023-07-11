@@ -43,6 +43,7 @@ public class Queen extends Piece {
         int ny = sourcePos.getY() + dy;
 
         Position newPosition = new Position(nx, ny);
+        verifySameTeamOnPath(target);
         this.setNewPosition(newPosition);
 
         verifyMovePosition(target, chessGame);

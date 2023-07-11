@@ -1,5 +1,7 @@
 package softeer2nd.chess;
 
+import softeer2nd.chess.exception.BoardOutOfBounds;
+import softeer2nd.chess.exception.ExistSameColorPiece;
 import softeer2nd.chess.pieces.*;
 
 import java.util.ArrayList;
@@ -124,5 +126,14 @@ public class Board {
                     .count();
         }
         return count;
+    }
+
+    public void verifyChessBoardBound(Position target) {
+        if (target.getX() >= 0 && target.getX() < BOARD_LENGTH &&
+                target.getY() >= 0 && target.getY() < BOARD_LENGTH) {
+            return;
+        }
+
+        throw new BoardOutOfBounds("체스판 밖으로 이동할 수 없습니다.");
     }
 }

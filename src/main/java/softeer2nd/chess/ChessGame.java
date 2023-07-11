@@ -28,14 +28,16 @@ public class ChessGame {
             throw new InvalidTargetPosition("현재 위치와 같습니다.");
         }
 
+
         Position sourcePos = new Position(source);
         Position targetPos = new Position(target);
+
+        board.verifyChessBoardBound(sourcePos);
+        board.verifyChessBoardBound(targetPos);
 
         Piece sourcePiece = board.findPiece(sourcePos);
         Piece targetPiece = board.findPiece(targetPos);
 
-        verifyChessBoardBound(targetPiece);
-        verifySameTeamOnPath(sourcePiece, targetPiece);
 
         sourcePiece.verifyMovePosition(targetPiece, this);
 
@@ -46,21 +48,6 @@ public class ChessGame {
         List<Piece> targetPieceList = new ArrayList<>(board.getChessBoard().get(targetPos.getY()).getRank());
         targetPieceList.set(targetPos.getX(), sourcePiece);
         board.getChessBoard().set(targetPos.getY(), new Rank(targetPieceList));
-    }
-
-    private void verifyChessBoardBound(Piece target) {
-        if (target.getPosition().getX() >= 0 && target.getPosition().getX() < 8 &&
-                target.getPosition().getY() >= 0 && target.getPosition().getY() < 8) {
-            return;
-        }
-
-        throw new BoardOutOfBounds("체스판 밖으로 이동할 수 없습니다.");
-    }
-
-    private void verifySameTeamOnPath(Piece source, Piece target) {
-        if (source.getColor() == target.getColor()) {
-            throw new ExistSameColorPiece("이동하려는 위치에 같은 편의 기물이 있습니다.");
-        }
     }
 
     public double calculatePoint(Color color) {

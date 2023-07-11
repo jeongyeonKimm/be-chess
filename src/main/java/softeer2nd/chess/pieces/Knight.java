@@ -39,6 +39,7 @@ public class Knight extends Piece {
         int ny = sourcePos.getY() + dy;
 
         Position newPosition = new Position(nx, ny);
+        verifySameTeamOnPath(target);
         this.setNewPosition(newPosition);
     }
 }

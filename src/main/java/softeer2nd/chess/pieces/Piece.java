@@ -69,4 +69,10 @@ abstract public class Piece {
     public void setNewPosition(Position newPosition) {
         this.position = newPosition;
     }
+
+    public void verifySameTeamOnPath(Piece target) {
+        if (this.getColor() == target.getColor()) {
+            throw new ExistSameColorPiece("이동하려는 위치에 같은 편의 기물이 있습니다.");
+        }
+    }
 }
