@@ -37,9 +37,9 @@ public class Pawn extends Piece{
         int ny = sourcePos.getY() + dy;
         Position newPosition = new Position(nx, ny);
 
-        if (!initialState) {
+        if (initialState) {
             if (dx == 0 && dy == -2) {
-                throw new InvalidTargetPosition("유효하지 않은 도착지 입니다.");
+                initialState = false;
             }
         } else if (verifyDiagonal(dx, dy)) {
             if (!verifyOtherTeamOnDiagonal(target)) {

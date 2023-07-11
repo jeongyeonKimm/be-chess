@@ -4,6 +4,7 @@ import softeer2nd.chess.pieces.Blank;
 import softeer2nd.chess.pieces.Color;
 import softeer2nd.chess.pieces.Piece;
 
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -35,12 +36,13 @@ public class ChessGame {
 
         sourcePiece.verifyMovePosition(targetPiece, this);
 
-        List<Piece> sourcePieceList = board.getChessBoard().get(sourcePos.getY()).getRank();
+        List<Piece> sourcePieceList = new ArrayList<>(board.getChessBoard().get(sourcePos.getY()).getRank());
         sourcePieceList.set(sourcePos.getX(), Blank.createBlank(sourcePos));
         board.getChessBoard().set(sourcePos.getY(), new Rank(sourcePieceList));
 
-        List<Piece> targetPieceList = board.getChessBoard().get(targetPos.getY()).getRank();
+        List<Piece> targetPieceList = new ArrayList<>(board.getChessBoard().get(targetPos.getY()).getRank());
         targetPieceList.set(targetPos.getX(), sourcePiece);
+        board.getChessBoard().set(targetPos.getY(), new Rank(targetPieceList));
     }
 
     public double calculatePoint(Color color) {

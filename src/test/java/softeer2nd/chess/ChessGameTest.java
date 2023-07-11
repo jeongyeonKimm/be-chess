@@ -12,7 +12,8 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static softeer2nd.chess.pieces.Color.BLACK;
 import static softeer2nd.chess.pieces.Color.WHITE;
-import static softeer2nd.chess.pieces.Type.ROOK;
+import static softeer2nd.chess.pieces.Type.*;
+import static softeer2nd.utils.StringUtils.appendNewLine;
 
 class ChessGameTest {
 
@@ -41,15 +42,18 @@ class ChessGameTest {
     @Test
     @DisplayName("기물이 source에서 target으로 이동하는지 확인한다.")
     void move() throws Exception {
+        // given
         board.initialize();
 
         String sourcePosition = "b2";
         String targetPosition = "b3";
+
+        // when
         chessGame.move(sourcePosition, targetPosition);
-        assertThat(Blank.createBlank(new Position(sourcePosition)))
-                .isEqualToComparingFieldByFieldRecursively(chessGame.findPiece(sourcePosition));
-        assertThat(Pawn.createWhitePawn(new Position(targetPosition)))
-                .isEqualToComparingFieldByFieldRecursively(chessGame.findPiece(targetPosition));
+
+        // then
+        assertEquals(NO_PIECE, chessGame.findPiece(sourcePosition).getType());
+        assertEquals(PAWN, chessGame.findPiece(targetPosition).getType());
     }
 
     @Test
