@@ -26,14 +26,14 @@ class QueenTest {
         // given
         board.initializeEmpty();
 
-        Piece sourceKing = Queen.createBlackQueen(new Position("d4"));
-        Piece targetKing = Blank.createBlank(new Position("g7"));
+        Piece sourceQueen = Queen.createBlackQueen(new Position("d4"));
+        Piece targetQueen = Blank.createBlank(new Position("g7"));
 
         // when
-        sourceKing.verifyMovePosition(targetKing, chessGame);
+        sourceQueen.verifyMovePosition(targetQueen, chessGame);
 
         // then
-        assertEquals("g7", sourceKing.getPosition().positionToString());
+        assertEquals("g7", sourceQueen.getPosition().positionToString());
     }
 
     @Test
@@ -42,14 +42,14 @@ class QueenTest {
         // given
         board.initializeEmpty();
 
-        Piece sourceKing = Queen.createBlackQueen(new Position("d4"));
-        Piece targetKing = Blank.createBlank(new Position("h4"));
+        Piece sourceQueen = Queen.createBlackQueen(new Position("d4"));
+        Piece targetQueen = Blank.createBlank(new Position("h4"));
 
         // when
-        sourceKing.verifyMovePosition(targetKing, chessGame);
+        sourceQueen.verifyMovePosition(targetQueen, chessGame);
 
         // then
-        assertEquals("h4", sourceKing.getPosition().positionToString());
+        assertEquals("h4", sourceQueen.getPosition().positionToString());
     }
 
     @Test
@@ -58,14 +58,14 @@ class QueenTest {
         // given
         board.initializeEmpty();
 
-        Piece sourceKing = Queen.createBlackQueen(new Position("d4"));
-        Piece targetKing = Blank.createBlank(new Position("f2"));
+        Piece sourceQueen = Queen.createBlackQueen(new Position("d4"));
+        Piece targetQueen = Blank.createBlank(new Position("f2"));
 
         // when
-        sourceKing.verifyMovePosition(targetKing, chessGame);
+        sourceQueen.verifyMovePosition(targetQueen, chessGame);
 
         // then
-        assertEquals("f2", sourceKing.getPosition().positionToString());
+        assertEquals("f2", sourceQueen.getPosition().positionToString());
     }
 
     @Test
@@ -74,14 +74,14 @@ class QueenTest {
         // given
         board.initializeEmpty();
 
-        Piece sourceKing = Queen.createBlackQueen(new Position("d4"));
-        Piece targetKing = Blank.createBlank(new Position("d1"));
+        Piece sourceQueen = Queen.createBlackQueen(new Position("d4"));
+        Piece targetQueen = Blank.createBlank(new Position("d1"));
 
         // when
-        sourceKing.verifyMovePosition(targetKing, chessGame);
+        sourceQueen.verifyMovePosition(targetQueen, chessGame);
 
         // then
-        assertEquals("d1", sourceKing.getPosition().positionToString());
+        assertEquals("d1", sourceQueen.getPosition().positionToString());
     }
 
     @Test
@@ -90,14 +90,14 @@ class QueenTest {
         // given
         board.initializeEmpty();
 
-        Piece sourceKing = Queen.createBlackQueen(new Position("d4"));
-        Piece targetKing = Blank.createBlank(new Position("a1"));
+        Piece sourceQueen = Queen.createBlackQueen(new Position("d4"));
+        Piece targetQueen = Blank.createBlank(new Position("a1"));
 
         // when
-        sourceKing.verifyMovePosition(targetKing, chessGame);
+        sourceQueen.verifyMovePosition(targetQueen, chessGame);
 
         // then
-        assertEquals("a1", sourceKing.getPosition().positionToString());
+        assertEquals("a1", sourceQueen.getPosition().positionToString());
     }
 
     @Test
@@ -106,14 +106,14 @@ class QueenTest {
         // given
         board.initializeEmpty();
 
-        Piece sourceKing = Queen.createBlackQueen(new Position("d4"));
-        Piece targetKing = Blank.createBlank(new Position("c4"));
+        Piece sourceQueen = Queen.createBlackQueen(new Position("d4"));
+        Piece targetQueen = Blank.createBlank(new Position("c4"));
 
         // when
-        sourceKing.verifyMovePosition(targetKing, chessGame);
+        sourceQueen.verifyMovePosition(targetQueen, chessGame);
 
         // then
-        assertEquals("c4", sourceKing.getPosition().positionToString());
+        assertEquals("c4", sourceQueen.getPosition().positionToString());
     }
 
     @Test
@@ -122,14 +122,14 @@ class QueenTest {
         // given
         board.initializeEmpty();
 
-        Piece sourceKing = Queen.createBlackQueen(new Position("d4"));
-        Piece targetKing = Blank.createBlank(new Position("b6"));
+        Piece sourceQueen = Queen.createBlackQueen(new Position("d4"));
+        Piece targetQueen = Blank.createBlank(new Position("b6"));
 
         // when
-        sourceKing.verifyMovePosition(targetKing, chessGame);
+        sourceQueen.verifyMovePosition(targetQueen, chessGame);
 
         // then
-        assertEquals("b6", sourceKing.getPosition().positionToString());
+        assertEquals("b6", sourceQueen.getPosition().positionToString());
     }
 
     @Test
@@ -138,13 +138,13 @@ class QueenTest {
         // given
         board.initializeEmpty();
 
-        Piece sourceKing = Queen.createBlackQueen(new Position("d4"));
-        Piece targetKing = Blank.createBlank(new Position("d8"));
+        Piece sourceQueen = Queen.createBlackQueen(new Position("d4"));
+        Piece targetQueen = Blank.createBlank(new Position("d8"));
 
         // when
-        sourceKing.verifyMovePosition(targetKing, chessGame);
+        sourceQueen.verifyMovePosition(targetQueen, chessGame);
 
         // then
-        assertEquals("d8", sourceKing.getPosition().positionToString());
+        assertEquals("d8", sourceQueen.getPosition().positionToString());
     }
 }
