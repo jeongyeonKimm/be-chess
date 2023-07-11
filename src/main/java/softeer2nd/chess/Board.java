@@ -1,7 +1,6 @@
 package softeer2nd.chess;
 
 import softeer2nd.chess.exception.BoardOutOfBounds;
-import softeer2nd.chess.exception.ExistSameColorPiece;
 import softeer2nd.chess.pieces.*;
 
 import java.util.ArrayList;
@@ -26,77 +25,24 @@ public class Board {
 
     public void initializeEmpty() {
         for (int i = 0; i < BOARD_LENGTH; i++) {
-            chessBoard.add(createBlank(i));
+            chessBoard.add(Rank.createBlank(i));
         }
     }
 
     public void initialize() {
         for (int i = 0; i < BOARD_LENGTH; i++) {
             if (i == 0) {
-                chessBoard.add(createBlackOthers());
+                chessBoard.add(Rank.createBlackOthers());
             } else if (i == 1) {
-                chessBoard.add(createBlackPawn());
+                chessBoard.add(Rank.createBlackPawns());
             } else if (i == 6) {
-                chessBoard.add(createWhitePawn());
+                chessBoard.add(Rank.createWhitePawns());
             } else if (i == 7) {
-                chessBoard.add(createWhiteOthers());
+                chessBoard.add(Rank.createWhiteOthers());
             } else {
-                chessBoard.add(createBlank(i));
+                chessBoard.add(Rank.createBlank(i));
             }
         }
-    }
-
-    public Rank createWhitePawn() {
-        List<Piece> r = new ArrayList<>();
-        for (int i = 0; i < BOARD_LENGTH; i++) {
-            r.add(Pawn.createWhitePawn(new Position(6, i)));
-        }
-
-        return new Rank(r);
-    }
-
-    public Rank createBlackPawn() {
-        List<Piece> r = new ArrayList<>();
-        for (int i = 0; i < BOARD_LENGTH; i++) {
-            r.add(Pawn.createBlackPawn(new Position(1, i)));
-        }
-
-        return new Rank(r);
-    }
-
-    public Rank createWhiteOthers() {
-        List<Piece> r = new ArrayList<>();
-        r.add(Rook.createWhiteRook(new Position(7, 0)));
-        r.add(Knight.createWhiteKnight(new Position(7, 1)));
-        r.add(Bishop.createWhiteBishop(new Position(7, 2)));
-        r.add(Queen.createWhiteQueen(new Position(7, 3)));
-        r.add(King.createWhiteKing(new Position(7, 4)));
-        r.add(Bishop.createWhiteBishop(new Position(7, 2)));
-        r.add(Knight.createWhiteKnight(new Position(7, 1)));
-        r.add(Rook.createWhiteRook(new Position(7, 0)));
-        return new Rank(r);
-    }
-
-    public Rank createBlackOthers() {
-        List<Piece> r = new ArrayList<>();
-        r.add(Rook.createBlackRook(new Position(0, 0)));
-        r.add(Knight.createBlackKnight(new Position(0, 1)));
-        r.add(Bishop.createBlackBishop(new Position(0, 2)));
-        r.add(Queen.createBlackQueen(new Position(0, 3)));
-        r.add(King.createBlackKing(new Position(0, 4)));
-        r.add(Bishop.createBlackBishop(new Position(0, 2)));
-        r.add(Knight.createBlackKnight(new Position(0, 1)));
-        r.add(Rook.createBlackRook(new Position(0, 0)));
-        return new Rank(r);
-    }
-
-    public Rank createBlank(int row) {
-        List<Piece> r = new ArrayList<>();
-        for (int i = 0; i < BOARD_LENGTH; i++) {
-            r.add(Blank.createBlank(new Position(row, i)));
-        }
-
-        return new Rank(r);
     }
 
     public void initialSetPiece(String location, Piece piece) {

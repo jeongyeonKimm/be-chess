@@ -9,8 +9,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-import static softeer2nd.chess.pieces.Color.BLACK;
-import static softeer2nd.chess.pieces.Color.WHITE;
 import static softeer2nd.chess.pieces.Type.PAWN;
 
 public class ChessGame {
