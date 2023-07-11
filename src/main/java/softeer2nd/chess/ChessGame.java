@@ -23,12 +23,6 @@ public class ChessGame {
         this.board = board;
     }
 
-    public Piece findPiece(String location) {
-        Position position = new Position(location);
-
-        return board.getChessBoard().get(position.getY()).getRank().get(position.getX());
-    }
-
     public void move(String source, String target) {
         if (source.equals(target)) {
             throw new InvalidTargetPosition("현재 위치와 같습니다.");
@@ -37,8 +31,8 @@ public class ChessGame {
         Position sourcePos = new Position(source);
         Position targetPos = new Position(target);
 
-        Piece sourcePiece = findPiece(source);
-        Piece targetPiece = findPiece(target);
+        Piece sourcePiece = board.findPiece(sourcePos);
+        Piece targetPiece = board.findPiece(targetPos);
 
         verifyChessBoardBound(targetPiece);
         verifySameTeamOnPath(sourcePiece, targetPiece);
@@ -55,7 +49,7 @@ public class ChessGame {
     }
 
     private void verifyChessBoardBound(Piece target) {
-        if (target.getPosition().getX() >= 0 && target.getPosition().getX() < 8&&
+        if (target.getPosition().getX() >= 0 && target.getPosition().getX() < 8 &&
                 target.getPosition().getY() >= 0 && target.getPosition().getY() < 8) {
             return;
         }

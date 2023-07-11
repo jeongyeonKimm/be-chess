@@ -18,8 +18,8 @@ public class Board {
     public Board() {
     }
 
-    public Piece findPawn(int row, int col) {
-        return chessBoard.get(row).getRank().get(col);
+    public Piece findPiece(Position position) {
+        return chessBoard.get(position.getY()).getRank().get(position.getX());
     }
 
     public void initializeEmpty() {

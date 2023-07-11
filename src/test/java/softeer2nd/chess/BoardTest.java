@@ -60,11 +60,11 @@ class BoardTest {
         String position = "b5";
         Piece piece = Rook.createBlackRook(new Position(position));
         board.initialSetPiece(position, piece);
-        assertEquals(piece, chessGame.findPiece(position));
+        assertEquals(piece, board.findPiece(new Position(position)));
 
         position = "e3";
         piece = King.createWhiteKing(new Position(position));
         board.initialSetPiece(position, piece);
-        assertEquals(piece, chessGame.findPiece(position));
+        assertEquals(piece, board.findPiece(new Position(position)));
     }
 }

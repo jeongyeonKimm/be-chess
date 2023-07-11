@@ -31,10 +31,10 @@ class ChessGameTest {
     void findPiece() throws Exception {
         board.initialize();
 
-        assertEquals(BLACK, chessGame.findPiece("a8").getColor());
-        assertEquals(ROOK, chessGame.findPiece("a8").getType());
-        assertEquals(WHITE, chessGame.findPiece("a1").getColor());
-        assertEquals(ROOK, chessGame.findPiece("a1").getType());;
+        assertEquals(BLACK, board.findPiece(new Position("a8")).getColor());
+        assertEquals(ROOK, board.findPiece(new Position("a8")).getType());
+        assertEquals(WHITE, board.findPiece(new Position("a1")).getColor());
+        assertEquals(ROOK, board.findPiece(new Position("a1")).getType());;
     }
 
     @Test
@@ -50,8 +50,8 @@ class ChessGameTest {
         chessGame.move(sourcePosition, targetPosition);
 
         // then
-        assertEquals(NO_PIECE, chessGame.findPiece(sourcePosition).getType());
-        assertEquals(PAWN, chessGame.findPiece(targetPosition).getType());
+        assertEquals(NO_PIECE, board.findPiece(new Position(sourcePosition)).getType());
+        assertEquals(PAWN, board.findPiece(new Position(targetPosition)).getType());
     }
 
     @Test
