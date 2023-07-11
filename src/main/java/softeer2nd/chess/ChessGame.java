@@ -1,7 +1,5 @@
 package softeer2nd.chess;
 
-import softeer2nd.chess.exception.BoardOutOfBounds;
-import softeer2nd.chess.exception.ExistSameColorPiece;
 import softeer2nd.chess.exception.InvalidTargetPosition;
 import softeer2nd.chess.pieces.Blank;
 import softeer2nd.chess.pieces.Color;
@@ -28,7 +26,6 @@ public class ChessGame {
             throw new InvalidTargetPosition("현재 위치와 같습니다.");
         }
 
-
         Position sourcePos = new Position(source);
         Position targetPos = new Position(target);
 
@@ -53,14 +50,8 @@ public class ChessGame {
     public double calculatePoint(Color color) {
         double totalPoint = 0;
 
-        if (color == WHITE) {
-            for (int i = 0; i < 8; i++) {
-                totalPoint += getTotalPoint(i, WHITE);
-            }
-        } else if (color == BLACK){
-            for (int i = 0; i < 8; i++) {
-                totalPoint += getTotalPoint(i, BLACK);
-            }
+        for (int i = 0; i < 8; i++) {
+            totalPoint += getTotalPoint(i, color);
         }
 
         return totalPoint;
