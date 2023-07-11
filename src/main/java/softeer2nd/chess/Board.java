@@ -7,6 +7,8 @@ import java.util.List;
 
 public class Board {
 
+    private final int BOARD_LENGTH = 8;
+
     private final List<Rank> chessBoard = new ArrayList<>();
 
     public List<Rank> getChessBoard() {
@@ -21,13 +23,13 @@ public class Board {
     }
 
     public void initializeEmpty() {
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < BOARD_LENGTH; i++) {
             chessBoard.add(createBlank(i));
         }
     }
 
     public void initialize() {
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < BOARD_LENGTH; i++) {
             if (i == 0) {
                 chessBoard.add(createBlackOthers());
             } else if (i == 1) {
@@ -44,7 +46,7 @@ public class Board {
 
     public Rank createWhitePawn() {
         List<Piece> r = new ArrayList<>();
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < BOARD_LENGTH; i++) {
             r.add(Pawn.createWhitePawn(new Position(6, i)));
         }
 
@@ -53,7 +55,7 @@ public class Board {
 
     public Rank createBlackPawn() {
         List<Piece> r = new ArrayList<>();
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < BOARD_LENGTH; i++) {
             r.add(Pawn.createBlackPawn(new Position(1, i)));
         }
 
@@ -88,7 +90,7 @@ public class Board {
 
     public Rank createBlank(int row) {
         List<Piece> r = new ArrayList<>();
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < BOARD_LENGTH; i++) {
             r.add(Blank.createBlank(new Position(row, i)));
         }
 
@@ -105,7 +107,7 @@ public class Board {
 
     public int pieceCount() {
         int size = 0;
-        for (int i = 0; i < chessBoard.size(); i++) {
+        for (int i = 0; i < BOARD_LENGTH; i++) {
             if (i == 0 || i == 1 || i == 6 || i == 7) {
                 size += chessBoard.get(i).getRank().size();
             }
@@ -115,7 +117,7 @@ public class Board {
 
     public int pieceCountByColorAndType(Color color, Type type) {
         int count = 0;
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < BOARD_LENGTH; i++) {
             count += (int) chessBoard.get(i).getRank()
                     .stream()
                     .filter(p -> p.getColor().equals(color) && p.getType().equals(type))

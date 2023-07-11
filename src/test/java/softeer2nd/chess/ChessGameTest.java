@@ -8,12 +8,10 @@ import softeer2nd.chess.pieces.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static softeer2nd.chess.pieces.Color.BLACK;
 import static softeer2nd.chess.pieces.Color.WHITE;
 import static softeer2nd.chess.pieces.Type.*;
-import static softeer2nd.utils.StringUtils.appendNewLine;
 
 class ChessGameTest {
 
