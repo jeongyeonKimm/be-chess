@@ -48,9 +48,7 @@ public class Board {
     public void initialSetPiece(String location, Piece piece) {
         Position position = new Position(location);
 
-        List<Piece> r = new ArrayList<>(chessBoard.get(position.getY()).getRank());
-        r.set(position.getX(), piece);
-        chessBoard.set(position.getY(), new Rank(r));
+        chessBoard.get(position.getY()).setPiece(position, piece);
     }
 
     public int pieceCount() {

@@ -33,16 +33,10 @@ public class ChessGame {
         Piece sourcePiece = board.findPiece(sourcePos);
         Piece targetPiece = board.findPiece(targetPos);
 
-
         sourcePiece.verifyMovePosition(targetPiece, this);
 
-        List<Piece> sourcePieceList = new ArrayList<>(board.getChessBoard().get(sourcePos.getY()).getRank());
-        sourcePieceList.set(sourcePos.getX(), Blank.createBlank(sourcePos));
-        board.getChessBoard().set(sourcePos.getY(), new Rank(sourcePieceList));
-
-        List<Piece> targetPieceList = new ArrayList<>(board.getChessBoard().get(targetPos.getY()).getRank());
-        targetPieceList.set(targetPos.getX(), sourcePiece);
-        board.getChessBoard().set(targetPos.getY(), new Rank(targetPieceList));
+        board.getChessBoard().get(sourcePos.getY()).setPiece(sourcePos, Blank.createBlank(sourcePos));
+        board.getChessBoard().get(targetPos.getY()).setPiece(targetPos, sourcePiece);
     }
 
     public double calculatePoint(Color color) {

@@ -17,6 +17,10 @@ public class Rank {
         return Collections.unmodifiableList(rank);
     }
 
+    public void setPiece(Position position, Piece piece) {
+        rank.set(position.getX(), piece);
+    }
+
     public static Rank createWhitePawns() {
         List<Piece> r = new ArrayList<>();
 
