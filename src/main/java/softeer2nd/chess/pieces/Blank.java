@@ -17,7 +17,7 @@ public class Blank extends Piece {
     }
 
     @Override
-    public void verifyMovePosition(Piece target, ChessGame chessGame) {
+    public void verifyMovePosition(Piece target) {
 
     }
 }

@@ -12,12 +12,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class KnightTest {
 
     private Board board;
-    private ChessGame chessGame;
 
     @BeforeEach
     void create_board() {
         board = new Board();
-        chessGame = new ChessGame(board);
     }
 
     @Test
@@ -30,7 +28,7 @@ class KnightTest {
         Piece targetKnight = Blank.createBlank(new Position("c5"));
 
         // when
-        sourceKnight.verifyMovePosition(targetKnight, chessGame);
+        sourceKnight.verifyMovePosition(targetKnight);
 
         // then
         assertEquals("c5", sourceKnight.getPosition().positionToString());
@@ -46,7 +44,7 @@ class KnightTest {
         Piece targetKnight = Blank.createBlank(new Position("f5"));
 
         // when
-        sourceKnight.verifyMovePosition(targetKnight, chessGame);
+        sourceKnight.verifyMovePosition(targetKnight);
 
         // then
         assertEquals("f5", sourceKnight.getPosition().positionToString());
@@ -62,7 +60,7 @@ class KnightTest {
         Piece targetKnight = Blank.createBlank(new Position("c4"));
 
         // when
-        sourceKnight.verifyMovePosition(targetKnight, chessGame);
+        sourceKnight.verifyMovePosition(targetKnight);
 
         // then
         assertEquals("c4", sourceKnight.getPosition().positionToString());
@@ -78,7 +76,7 @@ class KnightTest {
         Piece targetKnight = Blank.createBlank(new Position("f4"));
 
         // when
-        sourceKnight.verifyMovePosition(targetKnight, chessGame);
+        sourceKnight.verifyMovePosition(targetKnight);
 
         // then
         assertEquals("f4", sourceKnight.getPosition().positionToString());
@@ -94,7 +92,7 @@ class KnightTest {
         Piece targetKnight = Blank.createBlank(new Position("d4"));
 
         // when
-        sourceKnight.verifyMovePosition(targetKnight, chessGame);
+        sourceKnight.verifyMovePosition(targetKnight);
 
         // then
         assertEquals("d4", sourceKnight.getPosition().positionToString());
@@ -110,7 +108,7 @@ class KnightTest {
         Piece targetKnight = Blank.createBlank(new Position("e4"));
 
         // when
-        sourceKnight.verifyMovePosition(targetKnight, chessGame);
+        sourceKnight.verifyMovePosition(targetKnight);
 
         // then
         assertEquals("e4", sourceKnight.getPosition().positionToString());
@@ -126,7 +124,7 @@ class KnightTest {
         Piece targetKnight = Blank.createBlank(new Position("d3"));
 
         // when
-        sourceKnight.verifyMovePosition(targetKnight, chessGame);
+        sourceKnight.verifyMovePosition(targetKnight);
 
         // then
         assertEquals("d3", sourceKnight.getPosition().positionToString());
@@ -142,7 +140,7 @@ class KnightTest {
         Piece targetKnight = Blank.createBlank(new Position("e3"));
 
         // when
-        sourceKnight.verifyMovePosition(targetKnight, chessGame);
+        sourceKnight.verifyMovePosition(targetKnight);
 
         // then
         assertEquals("e3", sourceKnight.getPosition().positionToString());

@@ -23,7 +23,7 @@ public class Queen extends Piece {
     }
 
     @Override
-    public void verifyMovePosition(Piece target, ChessGame chessGame) {
+    public void verifyMovePosition(Piece target) {
         Position sourcePos = this.getPosition();
         Position targetPos = target.getPosition();
 
@@ -46,7 +46,7 @@ public class Queen extends Piece {
         verifySameTeamOnPath(target);
         this.setNewPosition(newPosition);
 
-        verifyMovePosition(target, chessGame);
+        verifyMovePosition(target);
     }
 
     private boolean verifySameLine(Position source, Position target) {

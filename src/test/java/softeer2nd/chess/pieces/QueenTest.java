@@ -12,12 +12,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class QueenTest {
 
     private Board board;
-    private ChessGame chessGame;
 
     @BeforeEach
     void create_board() {
         board = new Board();
-        chessGame = new ChessGame(board);
     }
 
     @Test
@@ -30,7 +28,7 @@ class QueenTest {
         Piece targetQueen = Blank.createBlank(new Position("g7"));
 
         // when
-        sourceQueen.verifyMovePosition(targetQueen, chessGame);
+        sourceQueen.verifyMovePosition(targetQueen);
 
         // then
         assertEquals("g7", sourceQueen.getPosition().positionToString());
@@ -46,7 +44,7 @@ class QueenTest {
         Piece targetQueen = Blank.createBlank(new Position("h4"));
 
         // when
-        sourceQueen.verifyMovePosition(targetQueen, chessGame);
+        sourceQueen.verifyMovePosition(targetQueen);
 
         // then
         assertEquals("h4", sourceQueen.getPosition().positionToString());
@@ -62,7 +60,7 @@ class QueenTest {
         Piece targetQueen = Blank.createBlank(new Position("f2"));
 
         // when
-        sourceQueen.verifyMovePosition(targetQueen, chessGame);
+        sourceQueen.verifyMovePosition(targetQueen);
 
         // then
         assertEquals("f2", sourceQueen.getPosition().positionToString());
@@ -78,7 +76,7 @@ class QueenTest {
         Piece targetQueen = Blank.createBlank(new Position("d1"));
 
         // when
-        sourceQueen.verifyMovePosition(targetQueen, chessGame);
+        sourceQueen.verifyMovePosition(targetQueen);
 
         // then
         assertEquals("d1", sourceQueen.getPosition().positionToString());
@@ -94,7 +92,7 @@ class QueenTest {
         Piece targetQueen = Blank.createBlank(new Position("a1"));
 
         // when
-        sourceQueen.verifyMovePosition(targetQueen, chessGame);
+        sourceQueen.verifyMovePosition(targetQueen);
 
         // then
         assertEquals("a1", sourceQueen.getPosition().positionToString());
@@ -110,7 +108,7 @@ class QueenTest {
         Piece targetQueen = Blank.createBlank(new Position("c4"));
 
         // when
-        sourceQueen.verifyMovePosition(targetQueen, chessGame);
+        sourceQueen.verifyMovePosition(targetQueen);
 
         // then
         assertEquals("c4", sourceQueen.getPosition().positionToString());
@@ -126,7 +124,7 @@ class QueenTest {
         Piece targetQueen = Blank.createBlank(new Position("b6"));
 
         // when
-        sourceQueen.verifyMovePosition(targetQueen, chessGame);
+        sourceQueen.verifyMovePosition(targetQueen);
 
         // then
         assertEquals("b6", sourceQueen.getPosition().positionToString());
@@ -142,7 +140,7 @@ class QueenTest {
         Piece targetQueen = Blank.createBlank(new Position("d8"));
 
         // when
-        sourceQueen.verifyMovePosition(targetQueen, chessGame);
+        sourceQueen.verifyMovePosition(targetQueen);
 
         // then
         assertEquals("d8", sourceQueen.getPosition().positionToString());

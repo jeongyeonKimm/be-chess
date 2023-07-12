@@ -26,7 +26,7 @@ public class Pawn extends Piece{
     }
 
     @Override
-    public void verifyMovePosition(Piece target, ChessGame chessGame) {
+    public void verifyMovePosition(Piece target) {
         Position sourcePos = this.getPosition();
         Position targetPos = target.getPosition();
 

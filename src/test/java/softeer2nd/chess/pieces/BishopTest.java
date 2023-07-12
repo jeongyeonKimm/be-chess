@@ -11,12 +11,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BishopTest {
     private Board board;
-    private ChessGame chessGame;
 
     @BeforeEach
     void create_board() {
         board = new Board();
-        chessGame = new ChessGame(board);
     }
 
     @Test
@@ -29,7 +27,7 @@ class BishopTest {
         Piece targetBishop = Blank.createBlank(new Position("e5"));
 
         // when
-        sourceBishop.verifyMovePosition(targetBishop, chessGame);
+        sourceBishop.verifyMovePosition(targetBishop);
 
         // then
         assertEquals("e5", sourceBishop.getPosition().positionToString());
@@ -45,7 +43,7 @@ class BishopTest {
         Piece targetBishop = Blank.createBlank(new Position("d5"));
 
         // when
-        sourceBishop.verifyMovePosition(targetBishop, chessGame);
+        sourceBishop.verifyMovePosition(targetBishop);
 
         // then
         assertEquals("d5", sourceBishop.getPosition().positionToString());
@@ -61,7 +59,7 @@ class BishopTest {
         Piece targetBishop = Blank.createBlank(new Position("f3"));
 
         // when
-        sourceBishop.verifyMovePosition(targetBishop, chessGame);
+        sourceBishop.verifyMovePosition(targetBishop);
 
         // then
         assertEquals("f3", sourceBishop.getPosition().positionToString());
@@ -77,7 +75,7 @@ class BishopTest {
         Piece targetBishop = Blank.createBlank(new Position("c3"));
 
         // when
-        sourceBishop.verifyMovePosition(targetBishop, chessGame);
+        sourceBishop.verifyMovePosition(targetBishop);
 
         // then
         assertEquals("c3", sourceBishop.getPosition().positionToString());

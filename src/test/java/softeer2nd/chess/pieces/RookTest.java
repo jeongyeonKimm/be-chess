@@ -12,12 +12,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class RookTest {
 
     private Board board;
-    private ChessGame chessGame;
 
     @BeforeEach
     void create_board() {
         board = new Board();
-        chessGame = new ChessGame(board);
     }
 
     @Test
@@ -30,7 +28,7 @@ class RookTest {
         Piece targetRook = Blank.createBlank(new Position("c3"));
 
         // when
-        sourceRook.verifyMovePosition(targetRook, chessGame);
+        sourceRook.verifyMovePosition(targetRook);
 
         // then
         assertEquals("c3", sourceRook.getPosition().positionToString());
@@ -46,7 +44,7 @@ class RookTest {
         Piece targetRook = Blank.createBlank(new Position("f3"));
 
         // when
-        sourceRook.verifyMovePosition(targetRook, chessGame);
+        sourceRook.verifyMovePosition(targetRook);
 
         // then
         assertEquals("f3", sourceRook.getPosition().positionToString());
@@ -62,7 +60,7 @@ class RookTest {
         Piece targetRook = Blank.createBlank(new Position("a6"));
 
         // when
-        sourceRook.verifyMovePosition(targetRook, chessGame);
+        sourceRook.verifyMovePosition(targetRook);
 
         // then
         assertEquals("a6", sourceRook.getPosition().positionToString());
@@ -78,7 +76,7 @@ class RookTest {
         Piece targetRook = Blank.createBlank(new Position("h3"));
 
         // when
-        sourceRook.verifyMovePosition(targetRook, chessGame);
+        sourceRook.verifyMovePosition(targetRook);
 
         // then
         assertEquals("h3", sourceRook.getPosition().positionToString());

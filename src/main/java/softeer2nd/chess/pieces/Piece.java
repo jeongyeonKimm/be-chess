@@ -39,7 +39,7 @@ abstract public class Piece {
         return this.color == BLACK;
     }
 
-    abstract public void verifyMovePosition(Piece target, ChessGame chessGame);
+    abstract public void verifyMovePosition(Piece target);
 
     public static Piece createPiece(Color color, Type type, Position position) {
         if (color == NO_COLOR) {

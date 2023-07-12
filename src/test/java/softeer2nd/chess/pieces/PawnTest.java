@@ -12,12 +12,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class PawnTest {
 
     private Board board;
-    private ChessGame chessGame;
 
     @BeforeEach
     void create_board() {
         board = new Board();
-        chessGame = new ChessGame(board);
     }
 
     @Test
@@ -30,7 +28,7 @@ class PawnTest {
         Piece targetPawn = Blank.createBlank(new Position("d3"));
 
         // when
-        sourcePawn.verifyMovePosition(targetPawn, chessGame);
+        sourcePawn.verifyMovePosition(targetPawn);
 
         // then
         assertEquals("d3", sourcePawn.getPosition().positionToString());
@@ -46,7 +44,7 @@ class PawnTest {
         Piece targetPawn = Blank.createBlank(new Position("d4"));
 
         // when
-        sourcePawn.verifyMovePosition(targetPawn, chessGame);
+        sourcePawn.verifyMovePosition(targetPawn);
 
         // then
         assertEquals("d4", sourcePawn.getPosition().positionToString());
@@ -61,12 +59,12 @@ class PawnTest {
         Piece sourcePawn = Pawn.createBlackPawn(new Position("d2"));
         Piece targetPawn = Blank.createBlank(new Position("d4"));
 
-        sourcePawn.verifyMovePosition(targetPawn, chessGame);
+        sourcePawn.verifyMovePosition(targetPawn);
 
         targetPawn = Blank.createBlank(new Position("d5"));
 
         // when
-        sourcePawn.verifyMovePosition(targetPawn, chessGame);
+        sourcePawn.verifyMovePosition(targetPawn);
 
         // then
         assertEquals("d5", sourcePawn.getPosition().positionToString());
@@ -82,7 +80,7 @@ class PawnTest {
         Piece targetPawn = Pawn.createWhitePawn(new Position("c3"));
 
         // when
-        sourcePawn.verifyMovePosition(targetPawn, chessGame);
+        sourcePawn.verifyMovePosition(targetPawn);
 
         // then
         assertEquals("c3", sourcePawn.getPosition().positionToString());
