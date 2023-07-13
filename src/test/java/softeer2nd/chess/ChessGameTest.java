@@ -17,13 +17,11 @@ class ChessGameTest {
 
     private Board board;
     private ChessGame chessGame;
-    private ChessView chessView;
 
     @BeforeEach
     public void create_board() {
         board = new Board();
         chessGame = new ChessGame(board);
-        chessView = new ChessView(board);
     }
 
     @Test
@@ -45,9 +43,10 @@ class ChessGameTest {
 
         String sourcePosition = "b2";
         String targetPosition = "b3";
+        boolean isWhiteTurn = true;
 
         // when
-        chessGame.move(sourcePosition, targetPosition);
+        chessGame.move(sourcePosition, targetPosition, isWhiteTurn);
 
         // then
         assertEquals(NO_PIECE, board.findPiece(new Position(sourcePosition)).getType());
