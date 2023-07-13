@@ -23,6 +23,20 @@ public class Board {
         return chessBoard;
     }
 
+    public Rank getRank(int num) {
+        return chessBoard.get(num);
+    }
+
+    public List<Piece> getPiecesByFile(int fileNum) {
+        List<Piece> file = new ArrayList<>();
+
+        for (int i = 0; i < BOARD_LENGTH; i++) {
+            file.add(getRank(i).getPiece(fileNum));
+        }
+
+        return file;
+    }
+
     public Piece findPiece(Position position) {
         return chessBoard.get(position.getY()).getRank().get(position.getX());
     }

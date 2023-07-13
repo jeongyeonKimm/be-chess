@@ -24,7 +24,7 @@ public class ChessView {
 
     private void showRank(StringBuilder sb, int i) {
         StringBuilder sb2 = new StringBuilder();
-        board.getChessBoard().get(i).getRank().forEach(p -> {
+        board.getRank(i).getRank().forEach(p -> {
             if (p.isColor(WHITE) || p.isColor(NO_COLOR)) {
                 sb2.append(p.getType().getRepresentation());
             } else {

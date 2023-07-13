@@ -54,6 +54,10 @@ abstract public class Piece {
         return this.type == type;
     }
 
+    public boolean isRank(int rankNum) {
+        return this.position.getY() == rankNum;
+    }
+
     public static Piece createPiece(Color color, Type type, Position position) {
         if (type == NO_PIECE) {
             return Blank.createBlank(position);

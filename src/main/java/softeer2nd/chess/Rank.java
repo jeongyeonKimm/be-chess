@@ -2,14 +2,12 @@ package softeer2nd.chess;
 
 import softeer2nd.chess.pieces.*;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import static softeer2nd.chess.Board.*;
-import static softeer2nd.chess.pieces.Color.BLACK;
-import static softeer2nd.chess.pieces.Color.WHITE;
+import static softeer2nd.chess.pieces.Color.*;
 import static softeer2nd.chess.pieces.Type.*;
 import static softeer2nd.chess.pieces.Type.KNIGHT;
 import static softeer2nd.chess.pieces.Type.ROOK;
@@ -25,6 +23,10 @@ public class Rank {
         return Collections.unmodifiableList(rank);
     }
 
+    public Piece getPiece(int num) {
+        return rank.get(num);
+    }
+
     public void setPiece(Position position, Piece piece) {
         rank.set(position.getX(), piece);
     }
@@ -32,7 +34,7 @@ public class Rank {
     public static Rank createWhitePawns() {
         List<Piece> r = new ArrayList<>();
 
-        for (int i = 0; i < Board.BOARD_LENGTH; i++) {
+        for (int i = 0; i < BOARD_LENGTH; i++) {
             r.add(Piece.createPiece(WHITE, PAWN, new Position(i, WHITE_PAWNS_RANK_NUM)));
         }
 
@@ -42,7 +44,7 @@ public class Rank {
     public static Rank createBlackPawns() {
         List<Piece> r = new ArrayList<>();
 
-        for (int i = 0; i < Board.BOARD_LENGTH; i++) {
+        for (int i = 0; i < BOARD_LENGTH; i++) {
             r.add(Piece.createPiece(BLACK, PAWN, new Position(i, BLACK_PAWNS_RANK_NUM)));
         }
 
@@ -82,8 +84,8 @@ public class Rank {
     public static Rank createBlank(int row) {
         List<Piece> r = new ArrayList<>();
 
-        for (int i = 0; i < Board.BOARD_LENGTH; i++) {
-            r.add(Piece.createPiece(Color.NO_COLOR, NO_PIECE, new Position(i, row)));
+        for (int i = 0; i < BOARD_LENGTH; i++) {
+            r.add(Piece.createPiece(NO_COLOR, NO_PIECE, new Position(i, row)));
         }
 
         return new Rank(r);

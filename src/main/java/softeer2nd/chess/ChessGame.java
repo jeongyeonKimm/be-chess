@@ -92,45 +92,45 @@ public class ChessGame {
     public double calculatePoint(Color color) {
         double totalPoint = 0;
 
-        for (int i = 0; i < BOARD_LENGTH; i++) {
-            totalPoint += getTotalPoint(i, color);
+        for (int fileNum = 0; fileNum < BOARD_LENGTH; fileNum++) {
+            totalPoint += getFilePoint(fileNum, color);
         }
 
         return totalPoint;
     }
 
-    private double getTotalPoint(int row, Color color) {
+    private double getFilePoint(int fileNum, Color color) {
         double totalPoint = 0;
-        List<Piece> pieces = board.getChessBoard().get(row).getRank();
+        List<Piece> file = board.getPiecesByFile(fileNum);
 
-        for (Piece piece : pieces) {
-            if (piece.isColor(color)) {
-                totalPoint += getPiecePoint(piece, row, pieces.indexOf(piece));
+        for (Piece p : file) {
+            if (p.isColor(color)) {
+                totalPoint += getPiecePoint(p, color, file.indexOf(p), fileNum);
             }
         }
         return totalPoint;
     }
 
-    private double getPiecePoint(Piece piece, int row, int col) {
+    private double getPiecePoint(Piece piece, Color color, int rankNum, int fileNum) {
         double piecePoint = piece.getType().getDefaultPoint();
 
-        if (piece.getType() == PAWN && existPawn(piece.getColor(), row, col)) {
+        if (piece.isType(PAWN) && existPawn(color, rankNum, fileNum)) {
             piecePoint = 0.5;
         }
 
         return piecePoint;
     }
 
-    private boolean existPawn(Color color, int row, int col) {
-        boolean flag = false;
-        for (int i = 0; i < BOARD_LENGTH; i++) {
-            Piece piece = board.getChessBoard().get(i).getRank().get(col);
-            if (piece.isType(PAWN) && piece.isColor(color) && i != row) {
-                flag = true;
-                break;
+    private boolean existPawn(Color color, int rankNum, int fileNum) {
+        List<Piece> file = board.getPiecesByFile(fileNum);
+
+        for (Piece p : file) {
+            if (p.isType(PAWN) && p.isColor(color) && !p.isRank(rankNum)) {
+                return true;
             }
         }
-        return flag;
+
+        return false;
     }
 
     public List<Piece> sortByPointAsc(Color color) {
