@@ -10,6 +10,7 @@ public class GameController {
     private final Board board = new Board();
     private final ChessGame chessGame = new ChessGame(board);
     private final ChessView chessView = new ChessView(board);
+    private boolean isWhiteTurn = true;
 
     public void run() {
         Scanner sc = new Scanner(System.in);
@@ -26,8 +27,9 @@ public class GameController {
                     String[] commands = command.split(" ");
                     String source = commands[1];
                     String target = commands[2];
-                    chessGame.move(source, target);
+                    chessGame.move(source, target, isWhiteTurn);
                     System.out.println(chessView.showBoard());
+                    isWhiteTurn = !isWhiteTurn;
                 }
             } catch (ChessGameException e) {
                 System.out.println(e.getMessage());

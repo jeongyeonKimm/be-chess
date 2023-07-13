@@ -1,9 +1,6 @@
 package softeer2nd.chess;
 
-import softeer2nd.chess.exception.BoardOutOfBounds;
-import softeer2nd.chess.exception.EmptyPieceException;
-import softeer2nd.chess.exception.ExistSameColorPiece;
-import softeer2nd.chess.exception.InvalidTargetPosition;
+import softeer2nd.chess.exception.*;
 import softeer2nd.chess.pieces.Blank;
 import softeer2nd.chess.pieces.Color;
 import softeer2nd.chess.pieces.Piece;
@@ -24,7 +21,7 @@ public class ChessGame {
         this.board = board;
     }
 
-    public void move(String source, String target) {
+    public void move(String source, String target, boolean isWhiteTurn) {
         Position sourcePos = new Position(source);
         Position targetPos = new Position(target);
 
@@ -33,6 +30,7 @@ public class ChessGame {
         Piece sourcePiece = board.findPiece(sourcePos);
         Piece targetPiece = board.findPiece(targetPos);
 
+        verifyPieceTurn(isWhiteTurn, sourcePiece);
         verifyEmptyPiece(sourcePiece);
         verifySameTeamOnTarget(sourcePiece, targetPiece);
 
@@ -58,6 +56,16 @@ public class ChessGame {
     private void verifySameTeamOnTarget(Piece source, Piece target) {
         if (target.getColor() == source.getColor()) {
             throw new ExistSameColorPiece("이동하려는 위치에 같은 편 기물이 존재합니다.");
+        }
+    }
+
+    private void verifyPieceTurn(boolean isWhiteTurn, Piece source) {
+        if (isWhiteTurn && source.isBlack()) {
+            throw new IllegalTurnException("흰색 기물 이동 차례 입니다.");
+        }
+
+        if (!isWhiteTurn && source.isWhite()) {
+            throw new IllegalTurnException("검은색 기물 이동 차례 입니다.");
         }
     }
 
