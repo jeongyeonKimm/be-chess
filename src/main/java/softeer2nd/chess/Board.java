@@ -8,10 +8,10 @@ import java.util.List;
 public class Board {
 
     public static final int BOARD_LENGTH = 8;
-    private static final int BLACK_OTHERS_RANK_NUM = 0;
-    private static final int BLACK_PAWNS_RANK_NUM = 1;
-    private static final int WHITE_PAWNS_RANK_NUM = 6;
-    private static final int WHITE_OTHERS_RANK_NUM = 7;
+    public static final int BLACK_OTHERS_RANK_NUM = 0;
+    public static final int BLACK_PAWNS_RANK_NUM = 1;
+    public static final int WHITE_PAWNS_RANK_NUM = 6;
+    public static final int WHITE_OTHERS_RANK_NUM = 7;
 
 
     private final List<Rank> chessBoard = new ArrayList<>();

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static softeer2nd.chess.pieces.Color.*;
+import static softeer2nd.chess.pieces.Type.*;
 
 abstract public class Piece {
 
@@ -53,12 +54,12 @@ abstract public class Piece {
         return this.type == type;
     }
 
-    public Piece createPiece(Color color, Type type, Position position) {
-        if (isColor(NO_COLOR)) {
+    public static Piece createPiece(Color color, Type type, Position position) {
+        if (type == NO_PIECE) {
             return Blank.createBlank(position);
         }
 
-        boolean flag = isWhite();
+        boolean flag = (color == WHITE);
 
         switch(type) {
             case PAWN:

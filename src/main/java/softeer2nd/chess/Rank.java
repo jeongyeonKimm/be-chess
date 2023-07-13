@@ -2,9 +2,17 @@ package softeer2nd.chess;
 
 import softeer2nd.chess.pieces.*;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import static softeer2nd.chess.Board.*;
+import static softeer2nd.chess.pieces.Color.BLACK;
+import static softeer2nd.chess.pieces.Color.WHITE;
+import static softeer2nd.chess.pieces.Type.*;
+import static softeer2nd.chess.pieces.Type.KNIGHT;
+import static softeer2nd.chess.pieces.Type.ROOK;
 
 public class Rank {
     private final List<Piece> rank;
@@ -25,7 +33,7 @@ public class Rank {
         List<Piece> r = new ArrayList<>();
 
         for (int i = 0; i < Board.BOARD_LENGTH; i++) {
-            r.add(Pawn.createWhitePawn(new Position(i, 6)));
+            r.add(Piece.createPiece(WHITE, PAWN, new Position(i, WHITE_PAWNS_RANK_NUM)));
         }
 
         return new Rank(r);
@@ -35,7 +43,7 @@ public class Rank {
         List<Piece> r = new ArrayList<>();
 
         for (int i = 0; i < Board.BOARD_LENGTH; i++) {
-            r.add(Pawn.createBlackPawn(new Position(i, 1)));
+            r.add(Piece.createPiece(BLACK, PAWN, new Position(i, BLACK_PAWNS_RANK_NUM)));
         }
 
         return new Rank(r);
@@ -44,14 +52,14 @@ public class Rank {
     public static Rank createWhiteOthers() {
         List<Piece> r = new ArrayList<>();
 
-        r.add(Rook.createWhiteRook(new Position(0, 7)));
-        r.add(Knight.createWhiteKnight(new Position(1, 7)));
-        r.add(Bishop.createWhiteBishop(new Position(2, 7)));
-        r.add(Queen.createWhiteQueen(new Position(3, 7)));
-        r.add(King.createWhiteKing(new Position(4, 7)));
-        r.add(Bishop.createWhiteBishop(new Position(5, 7)));
-        r.add(Knight.createWhiteKnight(new Position(6, 7)));
-        r.add(Rook.createWhiteRook(new Position(7, 7)));
+        r.add(Piece.createPiece(WHITE, ROOK, new Position(0, WHITE_OTHERS_RANK_NUM)));
+        r.add(Piece.createPiece(WHITE, KNIGHT, new Position(1, WHITE_OTHERS_RANK_NUM)));
+        r.add(Piece.createPiece(WHITE, BISHOP, new Position(2, WHITE_OTHERS_RANK_NUM)));
+        r.add(Piece.createPiece(WHITE, QUEEN, new Position(3, WHITE_OTHERS_RANK_NUM)));
+        r.add(Piece.createPiece(WHITE, KING, new Position(4, WHITE_OTHERS_RANK_NUM)));
+        r.add(Piece.createPiece(WHITE, BISHOP, new Position(5, WHITE_OTHERS_RANK_NUM)));
+        r.add(Piece.createPiece(WHITE, KNIGHT, new Position(6, WHITE_OTHERS_RANK_NUM)));
+        r.add(Piece.createPiece(WHITE, ROOK, new Position(7, WHITE_OTHERS_RANK_NUM)));
 
         return new Rank(r);
     }
@@ -59,14 +67,14 @@ public class Rank {
     public static Rank createBlackOthers() {
         List<Piece> r = new ArrayList<>();
 
-        r.add(Rook.createBlackRook(new Position(0, 0)));
-        r.add(Knight.createBlackKnight(new Position(1, 0)));
-        r.add(Bishop.createBlackBishop(new Position(2, 0)));
-        r.add(Queen.createBlackQueen(new Position(3, 0)));
-        r.add(King.createBlackKing(new Position(4, 0)));
-        r.add(Bishop.createBlackBishop(new Position(5, 0)));
-        r.add(Knight.createBlackKnight(new Position(6, 0)));
-        r.add(Rook.createBlackRook(new Position(7, 0)));
+        r.add(Piece.createPiece(BLACK, ROOK, new Position(0, BLACK_OTHERS_RANK_NUM)));
+        r.add(Piece.createPiece(BLACK, KNIGHT, new Position(1, BLACK_OTHERS_RANK_NUM)));
+        r.add(Piece.createPiece(BLACK, BISHOP, new Position(2, BLACK_OTHERS_RANK_NUM)));
+        r.add(Piece.createPiece(BLACK, QUEEN, new Position(3, BLACK_OTHERS_RANK_NUM)));
+        r.add(Piece.createPiece(BLACK, KING, new Position(4, BLACK_OTHERS_RANK_NUM)));
+        r.add(Piece.createPiece(BLACK, BISHOP, new Position(5, BLACK_OTHERS_RANK_NUM)));
+        r.add(Piece.createPiece(BLACK, KNIGHT, new Position(6, BLACK_OTHERS_RANK_NUM)));
+        r.add(Piece.createPiece(BLACK, ROOK, new Position(7, BLACK_OTHERS_RANK_NUM)));
 
         return new Rank(r);
     }
@@ -75,7 +83,7 @@ public class Rank {
         List<Piece> r = new ArrayList<>();
 
         for (int i = 0; i < Board.BOARD_LENGTH; i++) {
-            r.add(Blank.createBlank(new Position(i, row)));
+            r.add(Piece.createPiece(Color.NO_COLOR, NO_PIECE, new Position(i, row)));
         }
 
         return new Rank(r);
