@@ -4,7 +4,6 @@ import softeer2nd.chess.Direction;
 import softeer2nd.chess.Position;
 import softeer2nd.chess.exception.IllegalDirection;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static softeer2nd.chess.pieces.Color.BLACK;
@@ -32,11 +31,7 @@ public class King extends Piece {
     }
 
     @Override
-    public List<Position> getMovePath(Direction direction, Position target) {
-        return new ArrayList<>();
-    }
-
-    private Direction verifyDirection(List<Direction> directions, Position target) {
+    public Direction verifyDirection(List<Direction> directions, Position target) {
         int dx = target.getX() - getPosition().getX();
         int dy = target.getY() - getPosition().getY();
 

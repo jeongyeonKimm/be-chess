@@ -24,7 +24,7 @@ public class Blank extends Piece {
     }
 
     @Override
-    public List<Position> getMovePath(Direction direction, Position target) {
+    public Direction verifyDirection(List<Direction> directions, Position target) {
         return null;
     }
 }

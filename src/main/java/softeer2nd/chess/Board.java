@@ -1,6 +1,5 @@
 package softeer2nd.chess;
 
-import softeer2nd.chess.exception.BoardOutOfBounds;
 import softeer2nd.chess.pieces.*;
 
 import java.util.ArrayList;

@@ -4,7 +4,6 @@ import softeer2nd.chess.Direction;
 import softeer2nd.chess.Position;
 import softeer2nd.chess.exception.IllegalDirection;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static softeer2nd.chess.pieces.Color.BLACK;
@@ -32,30 +31,7 @@ public class Rook extends Piece {
     }
 
     @Override
-    public List<Position> getMovePath(Direction direction, Position target) {
-        List<Position> movePath = new ArrayList<>();
-
-        int dx = direction.getXDegree();
-        int dy = direction.getYDegree();
-
-        int maxMoveCount = (dx == 0) ?
-                Math.abs(target.getY() - getPosition().getY()) :
-                Math.abs(target.getX() - getPosition().getX());
-
-        for (int moveCount = 1; moveCount <= maxMoveCount; moveCount++) {
-            int nx = this.getPosition().getX() + dx * moveCount;
-            int ny = this.getPosition().getY() + -1 * dy * moveCount;
-            Position position = new Position(nx, ny);
-            if (position.equals(target)) {
-                break;
-            }
-            movePath.add(position);
-        }
-
-        return movePath;
-    }
-
-    private Direction verifyDirection(List<Direction> directions, Position target) {
+    public Direction verifyDirection(List<Direction> directions, Position target) {
         int dx = target.getX() - getPosition().getX();
         int dy = target.getY() - getPosition().getY();
 

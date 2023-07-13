@@ -1,8 +1,10 @@
 package softeer2nd.chess.pieces;
 
+import softeer2nd.chess.Board;
 import softeer2nd.chess.Direction;
 import softeer2nd.chess.Position;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static softeer2nd.chess.pieces.Color.*;
@@ -31,6 +33,10 @@ abstract public class Piece {
         return position;
     }
 
+    public void setNewPosition(Position newPosition) {
+        this.position = newPosition;
+    }
+
     public boolean isWhite() {
         return this.color == WHITE;
     }
@@ -38,9 +44,6 @@ abstract public class Piece {
     public boolean isBlack() {
         return this.color == BLACK;
     }
-
-    abstract public Direction verifyMovePosition(Piece target);
-    abstract public List<Position> getMovePath(Direction direction, Position target);
 
     public static Piece createPiece(Color color, Type type, Position position) {
         if (color == NO_COLOR) {
@@ -66,8 +69,26 @@ abstract public class Piece {
                 return Blank.createBlank(position);
         }
     }
+    abstract public Direction verifyMovePosition(Piece target);
 
-    public void setNewPosition(Position newPosition) {
-        this.position = newPosition;
+    abstract public Direction verifyDirection(List<Direction> directions, Position target);
+
+    public List<Position> getMovePath(Direction direction, Position target) {
+        List<Position> movePath = new ArrayList<>();
+
+        int dx = direction.getXDegree();
+        int dy = direction.getYDegree();
+
+        for (int moveCount = 1; moveCount <= Board.BOARD_LENGTH; moveCount++) {
+            int nx = this.getPosition().getX() + dx * moveCount;
+            int ny = this.getPosition().getY() + -1 * dy * moveCount;
+            Position position = new Position(nx, ny);
+            if (position.equals(target)) {
+                break;
+            }
+            movePath.add(position);
+        }
+
+        return movePath;
     }
 }
