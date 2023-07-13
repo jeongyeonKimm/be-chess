@@ -40,7 +40,6 @@ public class ChessGame {
 
         verifyOtherPieceOnPath(movePath);
 
-        sourcePiece.setNewPosition(targetPos);
         board.changePiece(sourcePiece, targetPiece);
     }
 
@@ -84,7 +83,7 @@ public class ChessGame {
     private void verifyOtherPieceOnPath(List<Position> movePath) {
         for (Position p : movePath) {
             Piece foundPiece = board.findPiece(p);
-            if (foundPiece.isType(NO_PIECE)) {
+            if (!foundPiece.isType(NO_PIECE)) {
                 throw new ExistSameColorPiece("이동 경로에 다른 기물이 존재합니다.");
             }
         }

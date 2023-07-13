@@ -83,6 +83,7 @@ public class Board {
         Position sourcePos = source.getPosition();
         Position targetPos = target.getPosition();
 
+        source.setNewPosition(targetPos);
         chessBoard.get(sourcePos.getY()).setPiece(sourcePos, Blank.createBlank(sourcePos));
         chessBoard.get(targetPos.getY()).setPiece(targetPos, source);
     }
