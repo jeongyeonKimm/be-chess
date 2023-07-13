@@ -1,14 +1,17 @@
 package softeer2nd.chess;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import softeer2nd.chess.exception.*;
 import softeer2nd.chess.pieces.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 import static softeer2nd.chess.pieces.Color.BLACK;
 import static softeer2nd.chess.pieces.Color.WHITE;
 import static softeer2nd.chess.pieces.Type.*;
@@ -52,6 +55,109 @@ class ChessGameTest {
         assertEquals(NO_PIECE, board.findPiece(new Position(sourcePosition)).getType());
         assertEquals(PAWN, board.findPiece(new Position(targetPosition)).getType());
     }
+
+    @Test
+    @DisplayName("source와 target이 체스판 안에 있는지 확인한다.")
+    void verifyChessBoardBound() throws Exception {
+        // given
+        board.initialize();
+
+        String sourcePosition = "a9";
+        String targetPosition = "a7";
+        boolean isWhiteTurn = true;
+
+        // when
+        // then
+        Assertions.assertThrows(BoardOutOfBounds.class, () -> {
+            chessGame.move(sourcePosition, targetPosition, isWhiteTurn);
+        });
+    }
+
+    @Test
+    @DisplayName("souce와 target이 같은 경우 예외가 발생을 확인한다.")
+    void verifyPresentPosition() throws Exception {
+        // given
+        board.initialize();
+
+        String sourcePosition = "b2";
+        String targetPosition = "b2";
+        boolean isWhiteTurn = true;
+
+        // when
+        // then
+        Assertions.assertThrows(InvalidTargetPosition.class, () -> {
+            chessGame.move(sourcePosition, targetPosition, isWhiteTurn);
+        });
+    }
+
+    @Test
+    @DisplayName("흰색 기물 차례를 확인한다.")
+    void verifyPieceTurn() throws Exception {
+        // given
+        board.initialize();
+
+        String sourcePosition = "b7";
+        String targetPosition = "b6";
+        boolean isWhiteTurn = true;
+
+        // when
+        // then
+        Assertions.assertThrows(IllegalTurnException.class, () -> {
+            chessGame.move(sourcePosition, targetPosition, isWhiteTurn);
+        });
+    }
+
+    @Test
+    @DisplayName("해당 위치에 기물이 있는지 확인한다.")
+    void verifyEmptyPiece() throws Exception {
+        // given
+        board.initialize();
+
+        String sourcePosition = "b5";
+        String targetPosition = "b6";
+        boolean isWhiteTurn = true;
+
+        // when
+        // then
+        Assertions.assertThrows(EmptyPieceException.class, () -> {
+            chessGame.move(sourcePosition, targetPosition, isWhiteTurn);
+        });
+    }
+
+    @Test
+    @DisplayName("target에 같은 편 기물이 있는지 확인한다.")
+    void verifySameTeamOnTarget() throws Exception {
+        // given
+        board.initialize();
+
+        String sourcePosition = "a1";
+        String targetPosition = "a2";
+        boolean isWhiteTurn = true;
+
+        // when
+        // then
+        Assertions.assertThrows(ExistSameColorPiece.class, () -> {
+            chessGame.move(sourcePosition, targetPosition, isWhiteTurn);
+        });
+    }
+
+    @Test
+    @DisplayName("이동 경로에 다른 기물이 있는지 확인한다.")
+    void verifyOtherPieceOnPath() throws Exception {
+        // given
+        board.initialize();
+
+        String sourcePosition = "a1";
+        String targetPosition = "a5";
+        boolean isWhiteTurn = true;
+
+        // when
+        // then
+        Assertions.assertThrows(ExistSameColorPiece.class, () -> {
+            chessGame.move(sourcePosition, targetPosition, isWhiteTurn);
+        });
+    }
+
 
     @Test
     @DisplayName("주어진 위치에 기물을 추가하고 색깔별로 점수 계산이 되는지 확인한다.")

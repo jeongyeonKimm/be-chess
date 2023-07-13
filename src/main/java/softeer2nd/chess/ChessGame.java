@@ -24,6 +24,9 @@ public class ChessGame {
         Position sourcePos = new Position(source);
         Position targetPos = new Position(target);
 
+        verifyChessBoardBound(sourcePos);
+        verifyChessBoardBound(targetPos);
+
         Piece sourcePiece = board.findPiece(sourcePos);
         Piece targetPiece = board.findPiece(targetPos);
 
@@ -31,9 +34,6 @@ public class ChessGame {
         verifyPieceTurn(isWhiteTurn, sourcePiece);
         verifyEmptyPiece(sourcePiece);
         verifySameTeamOnTarget(sourcePiece, targetPiece);
-
-        verifyChessBoardBound(sourcePos);
-        verifyChessBoardBound(targetPos);
 
         Direction direction = sourcePiece.verifyMovePosition(targetPiece);
         List<Position> movePath = sourcePiece.getMovePath(direction, targetPos);
