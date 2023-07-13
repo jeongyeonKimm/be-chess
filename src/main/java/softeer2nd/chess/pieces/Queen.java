@@ -37,10 +37,7 @@ public class Queen extends Piece {
         int dy = target.getY() - getPosition().getY();
 
         for (Direction d : directions) {
-            if ((dx != 0 && dy != 0 && Math.abs(dx) == Math.abs(dy) &&
-                    d.getXDegree() == dx / Math.abs(dx) && d.getYDegree() == -1 * dy / Math.abs(dy)) ||
-                    (dx == 0 && d.getXDegree() == dx && d.getYDegree() == -1 * dy / Math.abs(dy)) ||
-                    (dy == 0 && d.getYDegree() == dy && d.getXDegree() == dx / Math.abs(dx))) {
+            if (d.isDiagonal(dx, dy) || d.isLinear(dx, dy)) {
                 return d;
             }
         }

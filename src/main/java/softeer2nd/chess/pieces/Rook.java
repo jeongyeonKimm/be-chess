@@ -36,8 +36,7 @@ public class Rook extends Piece {
         int dy = target.getY() - getPosition().getY();
 
         for (Direction d : directions) {
-            if ((dx == 0 && d.getXDegree() == dx && d.getYDegree() == -1 * dy / Math.abs(dy)) ||
-                    (dy == 0 && d.getYDegree() == dy && d.getXDegree() == dx / Math.abs(dx))) {
+            if (d.isLinear(dx, dy)) {
                 return d;
             }
         }

@@ -36,8 +36,7 @@ public class Bishop extends Piece {
         int dy = target.getY() - getPosition().getY();
 
         for (Direction d : directions) {
-            if (dx != 0 && dy != 0 && Math.abs(dx) == Math.abs(dy) &&
-                    d.getXDegree() == dx / Math.abs(dx) && d.getYDegree() == -1 * dy / Math.abs(dy)) {
+            if (d.isDiagonal(dx, dy)) {
                 return d;
             }
         }

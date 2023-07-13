@@ -62,4 +62,14 @@ public enum Direction {
     public static List<Direction> blackPawnDirection() {
         return Arrays.asList(SOUTH, SOUTHEAST, SOUTHWEST);
     }
+
+    public boolean isLinear(int dx, int dy) {
+        return (dx == 0 && xDegree == dx && yDegree == -1 * dy / Math.abs(dy)) ||
+                (dy == 0 && yDegree == dy && xDegree == dx / Math.abs(dx));
+    }
+
+    public boolean isDiagonal(int dx, int dy) {
+        return (dx != 0 && dy != 0 && Math.abs(dx) == Math.abs(dy) &&
+                xDegree == dx / Math.abs(dx) && yDegree == -1 * dy / Math.abs(dy));
+    }
 }
