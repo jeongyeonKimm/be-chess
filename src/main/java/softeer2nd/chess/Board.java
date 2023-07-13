@@ -8,6 +8,11 @@ import java.util.List;
 public class Board {
 
     public static final int BOARD_LENGTH = 8;
+    private static final int BLACK_OTHERS_RANK_NUM = 0;
+    private static final int BLACK_PAWNS_RANK_NUM = 1;
+    private static final int WHITE_PAWNS_RANK_NUM = 6;
+    private static final int WHITE_OTHERS_RANK_NUM = 7;
+
 
     private final List<Rank> chessBoard = new ArrayList<>();
 
@@ -30,13 +35,13 @@ public class Board {
 
     public void initialize() {
         for (int i = 0; i < BOARD_LENGTH; i++) {
-            if (i == 0) {
+            if (i == BLACK_OTHERS_RANK_NUM) {
                 chessBoard.add(Rank.createBlackOthers());
-            } else if (i == 1) {
+            } else if (i == BLACK_PAWNS_RANK_NUM) {
                 chessBoard.add(Rank.createBlackPawns());
-            } else if (i == 6) {
+            } else if (i == WHITE_PAWNS_RANK_NUM) {
                 chessBoard.add(Rank.createWhitePawns());
-            } else if (i == 7) {
+            } else if (i == WHITE_OTHERS_RANK_NUM) {
                 chessBoard.add(Rank.createWhiteOthers());
             } else {
                 chessBoard.add(Rank.createBlank(i));
@@ -53,7 +58,10 @@ public class Board {
     public int pieceCount() {
         int size = 0;
         for (int i = 0; i < BOARD_LENGTH; i++) {
-            if (i == 0 || i == 1 || i == 6 || i == 7) {
+            if (i == BLACK_OTHERS_RANK_NUM ||
+                    i == BLACK_PAWNS_RANK_NUM ||
+                    i == WHITE_PAWNS_RANK_NUM ||
+                    i == WHITE_OTHERS_RANK_NUM) {
                 size += chessBoard.get(i).getRank().size();
             }
         }
