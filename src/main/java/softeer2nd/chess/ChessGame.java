@@ -1,6 +1,7 @@
 package softeer2nd.chess;
 
 import softeer2nd.chess.exception.BoardOutOfBounds;
+import softeer2nd.chess.exception.EmptyPieceException;
 import softeer2nd.chess.exception.ExistSameColorPiece;
 import softeer2nd.chess.exception.InvalidTargetPosition;
 import softeer2nd.chess.pieces.Blank;
@@ -27,10 +28,14 @@ public class ChessGame {
         Position sourcePos = new Position(source);
         Position targetPos = new Position(target);
 
+        verifyPresentPosition(source, target);
+
         Piece sourcePiece = board.findPiece(sourcePos);
         Piece targetPiece = board.findPiece(targetPos);
 
-        verifyPresentPosition(source, target);
+        verifyEmptyPiece(sourcePiece);
+        verifySameTeamOnTarget(sourcePiece, targetPiece);
+
         verifyChessBoardBound(sourcePos);
         verifyChessBoardBound(targetPos);
 
@@ -44,9 +49,21 @@ public class ChessGame {
         board.getChessBoard().get(targetPos.getY()).setPiece(targetPos, sourcePiece);
     }
 
-    private static void verifyPresentPosition(String source, String target) {
+    private void verifyPresentPosition(String source, String target) {
         if (source.equals(target)) {
             throw new InvalidTargetPosition("현재 위치와 같습니다.");
+        }
+    }
+
+    private void verifySameTeamOnTarget(Piece source, Piece target) {
+        if (target.getColor() == source.getColor()) {
+            throw new ExistSameColorPiece("이동하려는 위치에 같은 편 기물이 존재합니다.");
+        }
+    }
+
+    private static void verifyEmptyPiece(Piece sourcePiece) {
+        if (sourcePiece.getType() == NO_PIECE) {
+            throw new EmptyPieceException("source 위치에 기물이 없습니다.");
         }
     }
 
