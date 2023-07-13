@@ -73,9 +73,17 @@ public class Board {
         for (int i = 0; i < BOARD_LENGTH; i++) {
             count += (int) chessBoard.get(i).getRank()
                     .stream()
-                    .filter(p -> p.getColor().equals(color) && p.getType().equals(type))
+                    .filter(p -> p.isColor(color) && p.isType(type))
                     .count();
         }
         return count;
+    }
+
+    public void changePiece(Piece source, Piece target) {
+        Position sourcePos = source.getPosition();
+        Position targetPos = target.getPosition();
+
+        chessBoard.get(sourcePos.getY()).setPiece(sourcePos, Blank.createBlank(sourcePos));
+        chessBoard.get(targetPos.getY()).setPiece(targetPos, source);
     }
 }

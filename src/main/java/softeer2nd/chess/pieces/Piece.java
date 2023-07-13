@@ -45,12 +45,20 @@ abstract public class Piece {
         return this.color == BLACK;
     }
 
-    public static Piece createPiece(Color color, Type type, Position position) {
-        if (color == NO_COLOR) {
+    public boolean isColor(Color color) {
+        return this.color == color;
+    }
+
+    public boolean isType(Type type) {
+        return this.type == type;
+    }
+
+    public Piece createPiece(Color color, Type type, Position position) {
+        if (isColor(NO_COLOR)) {
             return Blank.createBlank(position);
         }
 
-        boolean flag = color == WHITE;
+        boolean flag = isWhite();
 
         switch(type) {
             case PAWN:

@@ -1,7 +1,6 @@
 package softeer2nd.chess;
 
 import softeer2nd.chess.exception.*;
-import softeer2nd.chess.pieces.Blank;
 import softeer2nd.chess.pieces.Color;
 import softeer2nd.chess.pieces.Piece;
 
@@ -25,11 +24,10 @@ public class ChessGame {
         Position sourcePos = new Position(source);
         Position targetPos = new Position(target);
 
-        verifyPresentPosition(source, target);
-
         Piece sourcePiece = board.findPiece(sourcePos);
         Piece targetPiece = board.findPiece(targetPos);
 
+        verifyPresentPosition(source, target);
         verifyPieceTurn(isWhiteTurn, sourcePiece);
         verifyEmptyPiece(sourcePiece);
         verifySameTeamOnTarget(sourcePiece, targetPiece);
@@ -43,8 +41,7 @@ public class ChessGame {
         verifyOtherPieceOnPath(movePath);
 
         sourcePiece.setNewPosition(targetPos);
-        board.getChessBoard().get(sourcePos.getY()).setPiece(sourcePos, Blank.createBlank(sourcePos));
-        board.getChessBoard().get(targetPos.getY()).setPiece(targetPos, sourcePiece);
+        board.changePiece(sourcePiece, targetPiece);
     }
 
     private void verifyPresentPosition(String source, String target) {
@@ -70,7 +67,7 @@ public class ChessGame {
     }
 
     private static void verifyEmptyPiece(Piece sourcePiece) {
-        if (sourcePiece.getType() == NO_PIECE) {
+        if (sourcePiece.isType(NO_PIECE)) {
             throw new EmptyPieceException("source 위치에 기물이 없습니다.");
         }
     }
@@ -86,7 +83,8 @@ public class ChessGame {
 
     private void verifyOtherPieceOnPath(List<Position> movePath) {
         for (Position p : movePath) {
-            if (board.findPiece(p).getType() != NO_PIECE) {
+            Piece foundPiece = board.findPiece(p);
+            if (foundPiece.isType(NO_PIECE)) {
                 throw new ExistSameColorPiece("이동 경로에 다른 기물이 존재합니다.");
             }
         }
@@ -107,7 +105,7 @@ public class ChessGame {
         List<Piece> pieces = board.getChessBoard().get(row).getRank();
 
         for (Piece piece : pieces) {
-            if (piece.getColor() == color) {
+            if (piece.isColor(color)) {
                 totalPoint += getPiecePoint(piece, row, pieces.indexOf(piece));
             }
         }
@@ -128,7 +126,7 @@ public class ChessGame {
         boolean flag = false;
         for (int i = 0; i < BOARD_LENGTH; i++) {
             Piece piece = board.getChessBoard().get(i).getRank().get(col);
-            if (piece.getType() == PAWN && piece.getColor() == color && i != row) {
+            if (piece.isType(PAWN) && piece.isColor(color) && i != row) {
                 flag = true;
                 break;
             }
@@ -140,7 +138,7 @@ public class ChessGame {
         List<Piece> pieceList = new ArrayList<>();
         for (Rank rank : board.getChessBoard()) {
             rank.getRank().stream()
-                    .filter(p -> p.getColor() == color)
+                    .filter(p -> p.isColor(color))
                     .forEach(pieceList::add);
         }
 
@@ -154,7 +152,7 @@ public class ChessGame {
         for (Rank rank : board.getChessBoard()) {
 
             rank.getRank().stream()
-                    .filter(p -> p.getColor() == color)
+                    .filter(p -> p.isColor(color))
                     .forEach(pieceList::add);
         }
 

@@ -7,7 +7,7 @@ import static softeer2nd.chess.pieces.Color.WHITE;
 
 public class ChessView {
 
-    private Board board;
+    private final Board board;
 
     public ChessView(Board board) {
         this.board = board;
@@ -25,7 +25,7 @@ public class ChessView {
     private void showRank(StringBuilder sb, int i) {
         StringBuilder sb2 = new StringBuilder();
         board.getChessBoard().get(i).getRank().forEach(p -> {
-            if (p.getColor() == WHITE || p.getColor() == NO_COLOR) {
+            if (p.isColor(WHITE) || p.isColor(NO_COLOR)) {
                 sb2.append(p.getType().getRepresentation());
             } else {
                 sb2.append(Character.toUpperCase(p.getType().getRepresentation()));
