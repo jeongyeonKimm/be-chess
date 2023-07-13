@@ -104,4 +104,12 @@ abstract public class Piece {
 
         return movePath;
     }
+
+    public int calculateDeltaX(Position target) {
+        return target.getX() - this.position.getX();
+    }
+
+    public int calculateDeltaY(Position target) {
+        return target.getY() - this.position.getY();
+    }
 }

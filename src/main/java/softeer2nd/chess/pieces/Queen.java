@@ -33,8 +33,8 @@ public class Queen extends Piece {
 
     @Override
     public Direction verifyDirection(List<Direction> directions, Position target) {
-        int dx = target.getX() - getPosition().getX();
-        int dy = target.getY() - getPosition().getY();
+        int dx = calculateDeltaX(target);
+        int dy = calculateDeltaY(target);
 
         for (Direction d : directions) {
             if (d.isDiagonal(dx, dy) || d.isLinear(dx, dy)) {
