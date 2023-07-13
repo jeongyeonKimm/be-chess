@@ -44,7 +44,7 @@ public class Rook extends Piece {
 
         for (int moveCount = 1; moveCount <= maxMoveCount; moveCount++) {
             int nx = this.getPosition().getX() + dx * moveCount;
-            int ny = this.getPosition().getY() + dy * moveCount;
+            int ny = this.getPosition().getY() + -1 * dy * moveCount;
             Position position = new Position(nx, ny);
             if (position.equals(target)) {
                 break;

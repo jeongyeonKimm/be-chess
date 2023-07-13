@@ -12,6 +12,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import static softeer2nd.chess.Board.BOARD_LENGTH;
+import static softeer2nd.chess.pieces.Type.NO_PIECE;
 import static softeer2nd.chess.pieces.Type.PAWN;
 
 public class ChessGame {
@@ -36,7 +37,7 @@ public class ChessGame {
         Direction direction = sourcePiece.verifyMovePosition(targetPiece);
         List<Position> movePath = sourcePiece.getMovePath(direction, targetPos);
 
-        verifySameTeamOnPath(movePath, sourcePiece);
+        verifyOtherPieceOnPath(movePath);
 
         sourcePiece.setNewPosition(targetPos);
         board.getChessBoard().get(sourcePos.getY()).setPiece(sourcePos, Blank.createBlank(sourcePos));
@@ -49,7 +50,7 @@ public class ChessGame {
         }
     }
 
-    public void verifyChessBoardBound(Position target) {
+    private void verifyChessBoardBound(Position target) {
         if (target.getX() >= 0 && target.getX() < BOARD_LENGTH &&
                 target.getY() >= 0 && target.getY() < BOARD_LENGTH) {
             return;
@@ -58,10 +59,10 @@ public class ChessGame {
         throw new BoardOutOfBounds("체스판 밖으로 이동할 수 없습니다.");
     }
 
-    private void verifySameTeamOnPath(List<Position> movePath, Piece source) {
+    private void verifyOtherPieceOnPath(List<Position> movePath) {
         for (Position p : movePath) {
-            if (board.findPiece(p).getColor() == source.getColor()) {
-                throw new ExistSameColorPiece("이동 경로에 같은 편 기물이 존재합니다.");
+            if (board.findPiece(p).getType() != NO_PIECE) {
+                throw new ExistSameColorPiece("이동 경로에 다른 기물이 존재합니다.");
             }
         }
     }
