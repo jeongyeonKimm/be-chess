@@ -2,6 +2,7 @@ package softeer2nd.chess.pieces;
 
 import softeer2nd.chess.Direction;
 import softeer2nd.chess.Position;
+import softeer2nd.chess.exception.EmptyPieceException;
 
 import java.util.List;
 
@@ -20,11 +21,11 @@ public class Blank extends Piece {
 
     @Override
     public Direction verifyMovePosition(Piece target) {
-        return null;
+        throw new EmptyPieceException("기물이 없습니다.");
     }
 
     @Override
     public Direction verifyDirection(List<Direction> directions, Position target) {
-        return null;
+        throw new EmptyPieceException("기물이 없습니다.");
     }
 }
