@@ -13,7 +13,7 @@ import static softeer2nd.chess.pieces.Type.BISHOP;
 
 public class Bishop extends Piece {
 
-    public Bishop(Color color, Type type, Position position) {
+    private Bishop(Color color, Type type, Position position) {
         super(color, type, position);
     }
 

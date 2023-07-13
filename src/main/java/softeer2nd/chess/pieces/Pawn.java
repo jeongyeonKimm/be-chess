@@ -15,7 +15,7 @@ public class Pawn extends Piece{
 
     private boolean initialState = true;
 
-    public Pawn(Color color, Type type, Position position) {
+    private Pawn(Color color, Type type, Position position) {
         super(color, type, position);
     }
 

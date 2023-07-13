@@ -13,7 +13,7 @@ import static softeer2nd.chess.pieces.Type.ROOK;
 
 public class Rook extends Piece {
 
-    public Rook(Color color, Type type, Position position) {
+    private Rook(Color color, Type type, Position position) {
         super(color, type, position);
     }
 

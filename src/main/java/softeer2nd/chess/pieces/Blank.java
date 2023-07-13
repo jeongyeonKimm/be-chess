@@ -10,7 +10,7 @@ import static softeer2nd.chess.pieces.Type.NO_PIECE;
 
 public class Blank extends Piece {
 
-    public Blank(Color color, Type type, Position position) {
+    private Blank(Color color, Type type, Position position) {
         super(color, type, position);
     }
 

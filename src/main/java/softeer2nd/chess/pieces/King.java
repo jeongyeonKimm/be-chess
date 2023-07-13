@@ -13,7 +13,7 @@ import static softeer2nd.chess.pieces.Type.KING;
 
 public class King extends Piece {
 
-    public King(Color color, Type type, Position position) {
+    private King(Color color, Type type, Position position) {
         super(color, type, position);
     }
 
