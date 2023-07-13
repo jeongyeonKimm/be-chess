@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import softeer2nd.chess.Board;
-import softeer2nd.chess.ChessGame;
+import softeer2nd.chess.Direction;
 import softeer2nd.chess.Position;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -28,10 +28,10 @@ class QueenTest {
         Piece targetQueen = Blank.createBlank(new Position("g7"));
 
         // when
-        sourceQueen.verifyMovePosition(targetQueen);
+        Direction direction = sourceQueen.verifyMovePosition(targetQueen);
 
         // then
-        assertEquals("g7", sourceQueen.getPosition().positionToString());
+        assertEquals(Direction.NORTHEAST, direction);
     }
 
     @Test
@@ -44,10 +44,10 @@ class QueenTest {
         Piece targetQueen = Blank.createBlank(new Position("h4"));
 
         // when
-        sourceQueen.verifyMovePosition(targetQueen);
+        Direction direction = sourceQueen.verifyMovePosition(targetQueen);
 
         // then
-        assertEquals("h4", sourceQueen.getPosition().positionToString());
+        assertEquals(Direction.EAST, direction);
     }
 
     @Test
@@ -60,10 +60,10 @@ class QueenTest {
         Piece targetQueen = Blank.createBlank(new Position("f2"));
 
         // when
-        sourceQueen.verifyMovePosition(targetQueen);
+        Direction direction = sourceQueen.verifyMovePosition(targetQueen);
 
         // then
-        assertEquals("f2", sourceQueen.getPosition().positionToString());
+        assertEquals(Direction.SOUTHEAST, direction);
     }
 
     @Test
@@ -76,10 +76,10 @@ class QueenTest {
         Piece targetQueen = Blank.createBlank(new Position("d1"));
 
         // when
-        sourceQueen.verifyMovePosition(targetQueen);
+        Direction direction = sourceQueen.verifyMovePosition(targetQueen);
 
         // then
-        assertEquals("d1", sourceQueen.getPosition().positionToString());
+        assertEquals(Direction.SOUTH, direction);
     }
 
     @Test
@@ -92,10 +92,10 @@ class QueenTest {
         Piece targetQueen = Blank.createBlank(new Position("a1"));
 
         // when
-        sourceQueen.verifyMovePosition(targetQueen);
+        Direction direction = sourceQueen.verifyMovePosition(targetQueen);
 
         // then
-        assertEquals("a1", sourceQueen.getPosition().positionToString());
+        assertEquals(Direction.SOUTHWEST, direction);
     }
 
     @Test
@@ -108,10 +108,10 @@ class QueenTest {
         Piece targetQueen = Blank.createBlank(new Position("c4"));
 
         // when
-        sourceQueen.verifyMovePosition(targetQueen);
+        Direction direction = sourceQueen.verifyMovePosition(targetQueen);
 
         // then
-        assertEquals("c4", sourceQueen.getPosition().positionToString());
+        assertEquals(Direction.WEST, direction);
     }
 
     @Test
@@ -124,10 +124,10 @@ class QueenTest {
         Piece targetQueen = Blank.createBlank(new Position("b6"));
 
         // when
-        sourceQueen.verifyMovePosition(targetQueen);
+        Direction direction = sourceQueen.verifyMovePosition(targetQueen);
 
         // then
-        assertEquals("b6", sourceQueen.getPosition().positionToString());
+        assertEquals(Direction.NORTHWEST, direction);
     }
 
     @Test
@@ -140,9 +140,9 @@ class QueenTest {
         Piece targetQueen = Blank.createBlank(new Position("d8"));
 
         // when
-        sourceQueen.verifyMovePosition(targetQueen);
+        Direction direction = sourceQueen.verifyMovePosition(targetQueen);
 
         // then
-        assertEquals("d8", sourceQueen.getPosition().positionToString());
+        assertEquals(Direction.NORTH, direction);
     }
 }

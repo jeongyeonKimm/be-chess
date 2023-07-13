@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import softeer2nd.chess.Board;
-import softeer2nd.chess.ChessGame;
+import softeer2nd.chess.Direction;
 import softeer2nd.chess.Position;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -24,14 +24,14 @@ class KnightTest {
         // given
         board.initialize();
 
-        Piece sourceKnight = Knight.createWhiteKnight(new Position("b3"));
-        Piece targetKnight = Blank.createBlank(new Position("c5"));
+        Piece sourceKnight = Knight.createWhiteKnight(new Position("d4"));
+        Piece targetKnight = Blank.createBlank(new Position("e6"));
 
         // when
-        sourceKnight.verifyMovePosition(targetKnight);
+        Direction direction = sourceKnight.verifyMovePosition(targetKnight);
 
         // then
-        assertEquals("c5", sourceKnight.getPosition().positionToString());
+        assertEquals(Direction.NNE, direction);
     }
 
     @Test
@@ -40,14 +40,14 @@ class KnightTest {
         // given
         board.initializeEmpty();
 
-        Piece sourceKnight = Knight.createWhiteKnight(new Position("g3"));
-        Piece targetKnight = Blank.createBlank(new Position("f5"));
+        Piece sourceKnight = Knight.createWhiteKnight(new Position("d4"));
+        Piece targetKnight = Blank.createBlank(new Position("c6"));
 
         // when
-        sourceKnight.verifyMovePosition(targetKnight);
+        Direction direction = sourceKnight.verifyMovePosition(targetKnight);
 
         // then
-        assertEquals("f5", sourceKnight.getPosition().positionToString());
+        assertEquals(Direction.NNW, direction);
     }
 
     @Test
@@ -56,14 +56,14 @@ class KnightTest {
         // given
         board.initializeEmpty();
 
-        Piece sourceKnight = Knight.createWhiteKnight(new Position("b6"));
-        Piece targetKnight = Blank.createBlank(new Position("c4"));
+        Piece sourceKnight = Knight.createWhiteKnight(new Position("d4"));
+        Piece targetKnight = Blank.createBlank(new Position("e2"));
 
         // when
-        sourceKnight.verifyMovePosition(targetKnight);
+        Direction direction = sourceKnight.verifyMovePosition(targetKnight);
 
         // then
-        assertEquals("c4", sourceKnight.getPosition().positionToString());
+        assertEquals(Direction.SSE, direction);
     }
 
     @Test
@@ -72,14 +72,14 @@ class KnightTest {
         // given
         board.initializeEmpty();
 
-        Piece sourceKnight = Knight.createWhiteKnight(new Position("g6"));
-        Piece targetKnight = Blank.createBlank(new Position("f4"));
+        Piece sourceKnight = Knight.createWhiteKnight(new Position("d4"));
+        Piece targetKnight = Blank.createBlank(new Position("c2"));
 
         // when
-        sourceKnight.verifyMovePosition(targetKnight);
+        Direction direction = sourceKnight.verifyMovePosition(targetKnight);
 
         // then
-        assertEquals("f4", sourceKnight.getPosition().positionToString());
+        assertEquals(Direction.SSW, direction);
     }
 
     @Test
@@ -88,14 +88,14 @@ class KnightTest {
         // given
         board.initialize();
 
-        Piece sourceKnight = Knight.createWhiteKnight(new Position("b3"));
-        Piece targetKnight = Blank.createBlank(new Position("d4"));
+        Piece sourceKnight = Knight.createWhiteKnight(new Position("d4"));
+        Piece targetKnight = Blank.createBlank(new Position("f5"));
 
         // when
-        sourceKnight.verifyMovePosition(targetKnight);
+        Direction direction = sourceKnight.verifyMovePosition(targetKnight);
 
         // then
-        assertEquals("d4", sourceKnight.getPosition().positionToString());
+        assertEquals(Direction.EEN, direction);
     }
 
     @Test
@@ -104,14 +104,14 @@ class KnightTest {
         // given
         board.initializeEmpty();
 
-        Piece sourceKnight = Knight.createWhiteKnight(new Position("g3"));
-        Piece targetKnight = Blank.createBlank(new Position("e4"));
+        Piece sourceKnight = Knight.createWhiteKnight(new Position("d4"));
+        Piece targetKnight = Blank.createBlank(new Position("b5"));
 
         // when
-        sourceKnight.verifyMovePosition(targetKnight);
+        Direction direction = sourceKnight.verifyMovePosition(targetKnight);
 
         // then
-        assertEquals("e4", sourceKnight.getPosition().positionToString());
+        assertEquals(Direction.WWN, direction);
     }
 
     @Test
@@ -120,14 +120,14 @@ class KnightTest {
         // given
         board.initializeEmpty();
 
-        Piece sourceKnight = Knight.createWhiteKnight(new Position("b4"));
-        Piece targetKnight = Blank.createBlank(new Position("d3"));
+        Piece sourceKnight = Knight.createWhiteKnight(new Position("d4"));
+        Piece targetKnight = Blank.createBlank(new Position("f3"));
 
         // when
-        sourceKnight.verifyMovePosition(targetKnight);
+        Direction direction = sourceKnight.verifyMovePosition(targetKnight);
 
         // then
-        assertEquals("d3", sourceKnight.getPosition().positionToString());
+        assertEquals(Direction.EES, direction);
     }
 
     @Test
@@ -136,13 +136,13 @@ class KnightTest {
         // given
         board.initializeEmpty();
 
-        Piece sourceKnight = Knight.createWhiteKnight(new Position("g4"));
-        Piece targetKnight = Blank.createBlank(new Position("e3"));
+        Piece sourceKnight = Knight.createWhiteKnight(new Position("d4"));
+        Piece targetKnight = Blank.createBlank(new Position("b3"));
 
         // when
-        sourceKnight.verifyMovePosition(targetKnight);
+        Direction direction = sourceKnight.verifyMovePosition(targetKnight);
 
         // then
-        assertEquals("e3", sourceKnight.getPosition().positionToString());
+        assertEquals(Direction.WWS, direction);
     }
 }

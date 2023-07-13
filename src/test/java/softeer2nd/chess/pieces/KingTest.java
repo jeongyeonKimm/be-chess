@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import softeer2nd.chess.Board;
-import softeer2nd.chess.ChessGame;
+import softeer2nd.chess.Direction;
 import softeer2nd.chess.Position;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -28,10 +28,10 @@ class KingTest {
         Piece targetKing = Blank.createBlank(new Position("g6"));
 
         // when
-        sourceKing.verifyMovePosition(targetKing);
+        Direction direction = sourceKing.verifyMovePosition(targetKing);
 
         // then
-        assertEquals("g6", sourceKing.getPosition().positionToString());
+        assertEquals(Direction.NORTHEAST, direction);
     }
 
     @Test
@@ -44,10 +44,10 @@ class KingTest {
         Piece targetKing = Blank.createBlank(new Position("f6"));
 
         // when
-        sourceKing.verifyMovePosition(targetKing);
+        Direction direction = sourceKing.verifyMovePosition(targetKing);
 
         // then
-        assertEquals("f6", sourceKing.getPosition().positionToString());
+        assertEquals(Direction.NORTH, direction);
     }
 
     @Test
@@ -60,10 +60,10 @@ class KingTest {
         Piece targetKing = Blank.createBlank(new Position("e6"));
 
         // when
-        sourceKing.verifyMovePosition(targetKing);
+        Direction direction = sourceKing.verifyMovePosition(targetKing);
 
         // then
-        assertEquals("e6", sourceKing.getPosition().positionToString());
+        assertEquals(Direction.NORTHWEST, direction);
     }
 
     @Test
@@ -76,10 +76,10 @@ class KingTest {
         Piece targetKing = Blank.createBlank(new Position("e5"));
 
         // when
-        sourceKing.verifyMovePosition(targetKing);
+        Direction direction = sourceKing.verifyMovePosition(targetKing);
 
         // then
-        assertEquals("e5", sourceKing.getPosition().positionToString());
+        assertEquals(Direction.WEST, direction);
     }
 
     @Test
@@ -92,10 +92,10 @@ class KingTest {
         Piece targetKing = Blank.createBlank(new Position("e4"));
 
         // when
-        sourceKing.verifyMovePosition(targetKing);
+        Direction direction = sourceKing.verifyMovePosition(targetKing);
 
         // then
-        assertEquals("e4", sourceKing.getPosition().positionToString());
+        assertEquals(Direction.SOUTHWEST, direction);
     }
 
     @Test
@@ -108,10 +108,10 @@ class KingTest {
         Piece targetKing = Blank.createBlank(new Position("f4"));
 
         // when
-        sourceKing.verifyMovePosition(targetKing);
+        Direction direction =  sourceKing.verifyMovePosition(targetKing);
 
         // then
-        assertEquals("f4", sourceKing.getPosition().positionToString());
+        assertEquals(Direction.SOUTH, direction);
     }
 
     @Test
@@ -124,10 +124,10 @@ class KingTest {
         Piece targetKing = Blank.createBlank(new Position("g4"));
 
         // when
-        sourceKing.verifyMovePosition(targetKing);
+        Direction direction = sourceKing.verifyMovePosition(targetKing);
 
         // then
-        assertEquals("g4", sourceKing.getPosition().positionToString());
+        assertEquals(Direction.SOUTHEAST, direction);
     }
 
     @Test
@@ -140,9 +140,9 @@ class KingTest {
         Piece targetKing = Blank.createBlank(new Position("g5"));
 
         // when
-        sourceKing.verifyMovePosition(targetKing);
+        Direction direction = sourceKing.verifyMovePosition(targetKing);
 
         // then
-        assertEquals("g5", sourceKing.getPosition().positionToString());
+        assertEquals(Direction.EAST, direction);
     }
 }

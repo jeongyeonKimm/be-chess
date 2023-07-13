@@ -1,9 +1,9 @@
 package softeer2nd.chess.pieces;
 
-import softeer2nd.chess.ChessGame;
+import softeer2nd.chess.Direction;
 import softeer2nd.chess.Position;
-import softeer2nd.chess.exception.BoardOutOfBounds;
-import softeer2nd.chess.exception.ExistSameColorPiece;
+
+import java.util.List;
 
 import static softeer2nd.chess.pieces.Color.*;
 
@@ -39,7 +39,8 @@ abstract public class Piece {
         return this.color == BLACK;
     }
 
-    abstract public void verifyMovePosition(Piece target);
+    abstract public Direction verifyMovePosition(Piece target);
+    abstract public List<Position> getMovePath(Direction direction, Position target);
 
     public static Piece createPiece(Color color, Type type, Position position) {
         if (color == NO_COLOR) {
@@ -68,11 +69,5 @@ abstract public class Piece {
 
     public void setNewPosition(Position newPosition) {
         this.position = newPosition;
-    }
-
-    public void verifySameTeamOnPath(Piece target) {
-        if (this.getColor() == target.getColor()) {
-            throw new ExistSameColorPiece("이동하려는 위치에 같은 편의 기물이 있습니다.");
-        }
     }
 }

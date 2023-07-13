@@ -1,9 +1,11 @@
 package softeer2nd.chess.pieces;
 
-import softeer2nd.chess.ChessGame;
+import softeer2nd.chess.Direction;
 import softeer2nd.chess.Position;
-import softeer2nd.chess.exception.ExistSameColorPiece;
-import softeer2nd.chess.exception.InvalidTargetPosition;
+import softeer2nd.chess.exception.IllegalDirection;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static softeer2nd.chess.pieces.Color.BLACK;
 import static softeer2nd.chess.pieces.Color.WHITE;
@@ -26,40 +28,48 @@ public class Pawn extends Piece{
     }
 
     @Override
-    public void verifyMovePosition(Piece target) {
-        Position sourcePos = this.getPosition();
-        Position targetPos = target.getPosition();
+    public Direction verifyMovePosition(Piece target) {
+        List<Direction> directions = isBlack() ? Direction.blackPawnDirection() : Direction.whitePawnDirection();
+        return verifyDirection(directions, target.getPosition());
+    }
 
-        int dx = targetPos.getX() - sourcePos.getX();
-        int dy = targetPos.getY() - sourcePos.getY();
+    @Override
+    public List<Position> getMovePath(Direction direction, Position target) {
+        List<Position> movePath = new ArrayList<>();
 
-        if (initialState) {
-            if ((isWhite() && dx == 0 && dy == -2) ||
-                    (isBlack() && dx == 0 && dy == 2)) {
-                initialState = false;
+        int dx = direction.getXDegree();
+        int dy = direction.getYDegree();
+
+        int maxMoveCount = Math.max(target.getY() - getPosition().getY(), target.getX() - getPosition().getX());
+
+        for (int moveCount = 1; moveCount <= maxMoveCount; moveCount++) {
+            int nx = this.getPosition().getX() + dx * moveCount;
+            int ny = this.getPosition().getY() + dy * moveCount;
+            Position position = new Position(nx, ny);
+            if (position.equals(target)) {
+                break;
             }
-        } else if (verifyDiagonal(dx, dy)) {
-            if (!verifyOtherTeamOnDiagonal(target)) {
-                throw new ExistSameColorPiece("같은 편 기물 입니다.");
-            }
-        } else if (dx != 0 || Math.abs(dy) != 1) {
-            throw new InvalidTargetPosition("유효하지 않은 도착지 입니다.");
+            movePath.add(position);
         }
 
-        int nx = sourcePos.getX() + dx;
-        int ny = sourcePos.getY() + dy;
-
-        Position newPosition = new Position(nx, ny);
-        verifySameTeamOnPath(target);
-        this.setNewPosition(newPosition);
+        return movePath;
     }
 
-    private boolean verifyDiagonal(int dx, int dy) {
-        if (isWhite()) return dy == -1 && Math.abs(dx) == 1;
-        else return dy == 1 && Math.abs(dx) == 1;
-    }
+    private Direction verifyDirection(List<Direction> directions, Position target) {
+        int dx = target.getX() - getPosition().getX();
+        int dy = target.getY() - getPosition().getY();
 
-    private boolean verifyOtherTeamOnDiagonal(Piece target) {
-        return target.getColor() != this.getColor();
+        for (Direction d : directions) {
+            if (initialState) {
+                if (dx == 0 && Math.abs(dy) > 0 && Math.abs(dy) <= 2 && d.getYDegree() == -1 * dy / Math.abs(dy)) {
+                    this.initialState = false;
+                    return d;
+                }
+            } else if (dx == d.getXDegree() && -1 * dy == d.getYDegree()) {
+                return d;
+            }
+        }
+
+        throw new IllegalDirection("Pawn이 이동할 수 없는 방향 입니다.");
     }
 }

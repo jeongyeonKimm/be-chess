@@ -1,5 +1,7 @@
 package softeer2nd.chess;
 
+import softeer2nd.chess.exception.BoardOutOfBounds;
+import softeer2nd.chess.exception.ExistSameColorPiece;
 import softeer2nd.chess.exception.InvalidTargetPosition;
 import softeer2nd.chess.pieces.Blank;
 import softeer2nd.chess.pieces.Color;
@@ -9,40 +11,65 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+import static softeer2nd.chess.Board.BOARD_LENGTH;
 import static softeer2nd.chess.pieces.Type.PAWN;
 
 public class ChessGame {
 
-    private Board board;
+    private final Board board;
 
     public ChessGame(Board board) {
         this.board = board;
     }
 
     public void move(String source, String target) {
-        if (source.equals(target)) {
-            throw new InvalidTargetPosition("현재 위치와 같습니다.");
-        }
-
         Position sourcePos = new Position(source);
         Position targetPos = new Position(target);
-
-        board.verifyChessBoardBound(sourcePos);
-        board.verifyChessBoardBound(targetPos);
 
         Piece sourcePiece = board.findPiece(sourcePos);
         Piece targetPiece = board.findPiece(targetPos);
 
-        sourcePiece.verifyMovePosition(targetPiece, this);
+        verifyPresentPosition(source, target);
+        verifyChessBoardBound(sourcePos);
+        verifyChessBoardBound(targetPos);
 
+        Direction direction = sourcePiece.verifyMovePosition(targetPiece);
+        List<Position> movePath = sourcePiece.getMovePath(direction, targetPos);
+
+        verifySameTeamOnPath(movePath, sourcePiece);
+
+        sourcePiece.setNewPosition(targetPos);
         board.getChessBoard().get(sourcePos.getY()).setPiece(sourcePos, Blank.createBlank(sourcePos));
         board.getChessBoard().get(targetPos.getY()).setPiece(targetPos, sourcePiece);
+    }
+
+    private static void verifyPresentPosition(String source, String target) {
+        if (source.equals(target)) {
+            throw new InvalidTargetPosition("현재 위치와 같습니다.");
+        }
+    }
+
+    public void verifyChessBoardBound(Position target) {
+        if (target.getX() >= 0 && target.getX() < BOARD_LENGTH &&
+                target.getY() >= 0 && target.getY() < BOARD_LENGTH) {
+            return;
+        }
+
+        throw new BoardOutOfBounds("체스판 밖으로 이동할 수 없습니다.");
+    }
+
+    private void verifySameTeamOnPath(List<Position> movePath, Piece source) {
+        for (Position p : movePath) {
+            if (board.findPiece(p).getColor() == source.getColor()) {
+                throw new ExistSameColorPiece("이동 경로에 같은 편 기물이 존재합니다.");
+            }
+        }
     }
 
     public double calculatePoint(Color color) {
         double totalPoint = 0;
 
-        for (int i = 0; i < Board.BOARD_LENGTH; i++) {
+        for (int i = 0; i < BOARD_LENGTH; i++) {
             totalPoint += getTotalPoint(i, color);
         }
 
@@ -73,7 +100,7 @@ public class ChessGame {
 
     private boolean existPawn(Color color, int row, int col) {
         boolean flag = false;
-        for (int i = 0; i < Board.BOARD_LENGTH; i++) {
+        for (int i = 0; i < BOARD_LENGTH; i++) {
             Piece piece = board.getChessBoard().get(i).getRank().get(col);
             if (piece.getType() == PAWN && piece.getColor() == color && i != row) {
                 flag = true;

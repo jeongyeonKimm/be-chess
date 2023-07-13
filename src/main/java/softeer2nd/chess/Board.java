@@ -12,11 +12,11 @@ public class Board {
 
     private final List<Rank> chessBoard = new ArrayList<>();
 
-    public List<Rank> getChessBoard() {
-        return chessBoard;
+    public Board() {
     }
 
-    public Board() {
+    public List<Rank> getChessBoard() {
+        return chessBoard;
     }
 
     public Piece findPiece(Position position) {
@@ -70,14 +70,5 @@ public class Board {
                     .count();
         }
         return count;
-    }
-
-    public void verifyChessBoardBound(Position target) {
-        if (target.getX() >= 0 && target.getX() < BOARD_LENGTH &&
-                target.getY() >= 0 && target.getY() < BOARD_LENGTH) {
-            return;
-        }
-
-        throw new BoardOutOfBounds("체스판 밖으로 이동할 수 없습니다.");
     }
 }

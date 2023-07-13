@@ -1,5 +1,7 @@
 package softeer2nd.chess;
 
+import java.util.Objects;
+
 public class Position {
     private final int x;
     private final int y;
@@ -22,7 +24,16 @@ public class Position {
         return y;
     }
 
-    public String positionToString() {
-        return (char) ('a' + this.getY()) + "" + (Board.BOARD_LENGTH - this.getX());
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Position position = (Position) o;
+        return getX() == position.getX() && getY() == position.getY();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getX(), getY());
     }
 }

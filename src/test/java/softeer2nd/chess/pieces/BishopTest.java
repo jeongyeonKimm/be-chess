@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import softeer2nd.chess.Board;
-import softeer2nd.chess.ChessGame;
+import softeer2nd.chess.Direction;
 import softeer2nd.chess.Position;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -23,14 +23,14 @@ class BishopTest {
         // given
         board.initializeEmpty();
 
-        Piece sourceBishop = Bishop.createBlackBishop(new Position("c3"));
-        Piece targetBishop = Blank.createBlank(new Position("e5"));
+        Piece sourceBishop = Bishop.createBlackBishop(new Position("d5"));
+        Piece targetBishop = Blank.createBlank(new Position("g8"));
 
         // when
-        sourceBishop.verifyMovePosition(targetBishop);
+        Direction direction = sourceBishop.verifyMovePosition(targetBishop);
 
         // then
-        assertEquals("e5", sourceBishop.getPosition().positionToString());
+        assertEquals(Direction.NORTHEAST, direction);
     }
 
     @Test
@@ -39,14 +39,14 @@ class BishopTest {
         // given
         board.initializeEmpty();
 
-        Piece sourceBishop = Bishop.createBlackBishop(new Position("f3"));
-        Piece targetBishop = Blank.createBlank(new Position("d5"));
+        Piece sourceBishop = Bishop.createBlackBishop(new Position("d5"));
+        Piece targetBishop = Blank.createBlank(new Position("b7"));
 
         // when
-        sourceBishop.verifyMovePosition(targetBishop);
+        Direction direction = sourceBishop.verifyMovePosition(targetBishop);
 
         // then
-        assertEquals("d5", sourceBishop.getPosition().positionToString());
+        assertEquals(Direction.NORTHWEST, direction);
     }
 
     @Test
@@ -55,14 +55,14 @@ class BishopTest {
         // given
         board.initializeEmpty();
 
-        Piece sourceBishop = Bishop.createBlackBishop(new Position("c6"));
-        Piece targetBishop = Blank.createBlank(new Position("f3"));
+        Piece sourceBishop = Bishop.createBlackBishop(new Position("d5"));
+        Piece targetBishop = Blank.createBlank(new Position("g2"));
 
         // when
-        sourceBishop.verifyMovePosition(targetBishop);
+        Direction direction = sourceBishop.verifyMovePosition(targetBishop);
 
         // then
-        assertEquals("f3", sourceBishop.getPosition().positionToString());
+        assertEquals(Direction.SOUTHEAST, direction);
     }
 
     @Test
@@ -71,14 +71,13 @@ class BishopTest {
         // given
         board.initializeEmpty();
 
-        Piece sourceBishop = Bishop.createBlackBishop(new Position("f6"));
-        Piece targetBishop = Blank.createBlank(new Position("c3"));
+        Piece sourceBishop = Bishop.createBlackBishop(new Position("d5"));
+        Piece targetBishop = Blank.createBlank(new Position("a2"));
 
         // when
-        sourceBishop.verifyMovePosition(targetBishop);
+        Direction direction = sourceBishop.verifyMovePosition(targetBishop);
 
         // then
-        assertEquals("c3", sourceBishop.getPosition().positionToString());
+        assertEquals(Direction.SOUTHWEST, direction);
     }
-
 }

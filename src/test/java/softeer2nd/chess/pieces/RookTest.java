@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import softeer2nd.chess.Board;
-import softeer2nd.chess.ChessGame;
+import softeer2nd.chess.Direction;
 import softeer2nd.chess.Position;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -24,14 +24,14 @@ class RookTest {
         // given
         board.initializeEmpty();
 
-        Piece sourceRook = Rook.createWhiteRook(new Position("a3"));
-        Piece targetRook = Blank.createBlank(new Position("c3"));
+        Piece sourceRook = Rook.createWhiteRook(new Position("d5"));
+        Piece targetRook = Blank.createBlank(new Position("f5"));
 
         // when
-        sourceRook.verifyMovePosition(targetRook);
+        Direction direction = sourceRook.verifyMovePosition(targetRook);
 
         // then
-        assertEquals("c3", sourceRook.getPosition().positionToString());
+        assertEquals(Direction.EAST, direction);
     }
 
     @Test
@@ -40,14 +40,14 @@ class RookTest {
         // given
         board.initializeEmpty();
 
-        Piece sourceRook = Rook.createWhiteRook(new Position("h3"));
-        Piece targetRook = Blank.createBlank(new Position("f3"));
+        Piece sourceRook = Rook.createWhiteRook(new Position("d5"));
+        Piece targetRook = Blank.createBlank(new Position("b5"));
 
         // when
-        sourceRook.verifyMovePosition(targetRook);
+        Direction direction = sourceRook.verifyMovePosition(targetRook);
 
         // then
-        assertEquals("f3", sourceRook.getPosition().positionToString());
+        assertEquals(Direction.WEST, direction);
     }
 
     @Test
@@ -56,14 +56,14 @@ class RookTest {
         // given
         board.initializeEmpty();
 
-        Piece sourceRook = Rook.createWhiteRook(new Position("a3"));
-        Piece targetRook = Blank.createBlank(new Position("a6"));
+        Piece sourceRook = Rook.createWhiteRook(new Position("d5"));
+        Piece targetRook = Blank.createBlank(new Position("d8"));
 
         // when
-        sourceRook.verifyMovePosition(targetRook);
+        Direction direction = sourceRook.verifyMovePosition(targetRook);
 
         // then
-        assertEquals("a6", sourceRook.getPosition().positionToString());
+        assertEquals(Direction.NORTH, direction);
     }
 
     @Test
@@ -72,13 +72,13 @@ class RookTest {
         // given
         board.initializeEmpty();
 
-        Piece sourceRook = Rook.createWhiteRook(new Position("h6"));
-        Piece targetRook = Blank.createBlank(new Position("h3"));
+        Piece sourceRook = Rook.createWhiteRook(new Position("d5"));
+        Piece targetRook = Blank.createBlank(new Position("d2"));
 
         // when
-        sourceRook.verifyMovePosition(targetRook);
+        Direction direction = sourceRook.verifyMovePosition(targetRook);
 
         // then
-        assertEquals("h3", sourceRook.getPosition().positionToString());
+        assertEquals(Direction.SOUTH, direction);
     }
 }

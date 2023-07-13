@@ -1,8 +1,11 @@
 package softeer2nd.chess.pieces;
 
-import softeer2nd.chess.ChessGame;
+import softeer2nd.chess.Direction;
 import softeer2nd.chess.Position;
-import softeer2nd.chess.exception.InvalidTargetPosition;
+import softeer2nd.chess.exception.IllegalDirection;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static softeer2nd.chess.pieces.Color.BLACK;
 import static softeer2nd.chess.pieces.Color.WHITE;
@@ -23,23 +26,26 @@ public class Knight extends Piece {
     }
 
     @Override
-    public void verifyMovePosition(Piece target) {
-        Position sourcePos = this.getPosition();
-        Position targetPos = target.getPosition();
+    public Direction verifyMovePosition(Piece target) {
+        List<Direction> directions = Direction.knightDirection();
+        return verifyDirection(directions, target.getPosition());
+    }
 
-        int dx = targetPos.getX() - sourcePos.getX();
-        int dy = targetPos.getY() - sourcePos.getY();
+    @Override
+    public List<Position> getMovePath(Direction direction, Position target) {
+        return new ArrayList<>();
+    }
 
-        if ((Math.abs(dx) != 1 || Math.abs(dy) != 2) &&
-                (Math.abs(dx) != 2 || Math.abs(dy) != 1)) {
-            throw new InvalidTargetPosition("유효하지 않은 도착지 입니다.");
+    private Direction verifyDirection(List<Direction> directions, Position target) {
+        int dx = target.getX() - getPosition().getX();
+        int dy = target.getY() - getPosition().getY();
+
+        for (Direction d : directions) {
+            if (dx == d.getXDegree() && -1 * dy == d.getYDegree()) {
+                return d;
+            }
         }
 
-        int nx = sourcePos.getX() + dx;
-        int ny = sourcePos.getY() + dy;
-
-        Position newPosition = new Position(nx, ny);
-        verifySameTeamOnPath(target);
-        this.setNewPosition(newPosition);
+        throw new IllegalDirection("Knight가 이동할 수 없는 방향 입니다.");
     }
 }

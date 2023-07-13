@@ -1,8 +1,11 @@
 package softeer2nd.chess.pieces;
 
-import softeer2nd.chess.ChessGame;
+import softeer2nd.chess.Direction;
 import softeer2nd.chess.Position;
-import softeer2nd.chess.exception.InvalidTargetPosition;
+import softeer2nd.chess.exception.IllegalDirection;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static softeer2nd.chess.pieces.Color.BLACK;
 import static softeer2nd.chess.pieces.Color.WHITE;
@@ -23,43 +26,47 @@ public class Queen extends Piece {
     }
 
     @Override
-    public void verifyMovePosition(Piece target) {
-        Position sourcePos = this.getPosition();
-        Position targetPos = target.getPosition();
+    public Direction verifyMovePosition(Piece target) {
+        List<Direction> directions = Direction.everyDirection();
 
-        // 전후좌우
-        if (sourcePos.getX() == targetPos.getX() && sourcePos.getY() == targetPos.getY()) {
-            return;
-        }
-
-        int dx = Integer.compare((targetPos.getX() - sourcePos.getX()), 0);
-        int dy = Integer.compare((targetPos.getY() - sourcePos.getY()), 0);
-
-        if (!verifySameLine(sourcePos, targetPos)) {
-            throw new InvalidTargetPosition("유효하지 않은 도착지 입니다.");
-        }
-
-        int nx = sourcePos.getX() + dx;
-        int ny = sourcePos.getY() + dy;
-
-        Position newPosition = new Position(nx, ny);
-        verifySameTeamOnPath(target);
-        this.setNewPosition(newPosition);
-
-        verifyMovePosition(target);
+        return verifyDirection(directions, target.getPosition());
     }
 
-    private boolean verifySameLine(Position source, Position target) {
-        // 전후좌우
-        if (target.getX() == source.getX() || target.getY() == source.getY()) {
-            return true;
+    @Override
+    public List<Position> getMovePath(Direction direction, Position target) {
+        List<Position> movePath = new ArrayList<>();
+
+        int dx = direction.getXDegree();
+        int dy = direction.getYDegree();
+
+        int maxMoveCount = Math.max(target.getY() - getPosition().getY(), target.getX() - getPosition().getX());
+
+        for (int moveCount = 1; moveCount <= maxMoveCount; moveCount++) {
+            int nx = this.getPosition().getX() + dx * moveCount;
+            int ny = this.getPosition().getY() + dy * moveCount;
+            Position position = new Position(nx, ny);
+            if (position.equals(target)) {
+                break;
+            }
+            movePath.add(position);
         }
 
-        // 대각선
-        if (Math.abs(target.getX() - source.getX()) == Math.abs(target.getY() - source.getY())) {
-            return true;
+        return movePath;
+    }
+
+    private Direction verifyDirection(List<Direction> directions, Position target) {
+        int dx = target.getX() - getPosition().getX();
+        int dy = target.getY() - getPosition().getY();
+
+        for (Direction d : directions) {
+            if ((dx != 0 && dy != 0 && Math.abs(dx) == Math.abs(dy) &&
+                    d.getXDegree() == dx / Math.abs(dx) && d.getYDegree() == -1 * dy / Math.abs(dy)) ||
+                    (dx == 0 && d.getXDegree() == dx && d.getYDegree() == -1 * dy / Math.abs(dy)) ||
+                    (dy == 0 && d.getYDegree() == dy && d.getXDegree() == dx / Math.abs(dx))) {
+                return d;
+            }
         }
 
-        return false;
+        throw new IllegalDirection("Queen이 이동할 수 없는 방향 입니다.");
     }
 }

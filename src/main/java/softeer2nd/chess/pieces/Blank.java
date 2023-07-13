@@ -1,7 +1,9 @@
 package softeer2nd.chess.pieces;
 
-import softeer2nd.chess.ChessGame;
+import softeer2nd.chess.Direction;
 import softeer2nd.chess.Position;
+
+import java.util.List;
 
 import static softeer2nd.chess.pieces.Color.NO_COLOR;
 import static softeer2nd.chess.pieces.Type.NO_PIECE;
@@ -17,7 +19,12 @@ public class Blank extends Piece {
     }
 
     @Override
-    public void verifyMovePosition(Piece target) {
+    public Direction verifyMovePosition(Piece target) {
+        return null;
+    }
 
+    @Override
+    public List<Position> getMovePath(Direction direction, Position target) {
+        return null;
     }
 }
